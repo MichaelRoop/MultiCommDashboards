@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using WpfCustomControlLib.Core.UtilWindows;
 
 namespace MultiCommDashboards {
 
@@ -105,8 +106,7 @@ namespace MultiCommDashboards {
                     if (Application.Current != null && Application.Current.MainWindow != null) {
                         main = Application.Current.MainWindow;
                     }
-                    // TODO
-                    //CrashReport.ShowBox(report, main);
+                    CrashReport.ShowBox(report, main, "Multi Comm Dashboards");
                 }
                 catch (Exception e) {
                     this.log.Exception(9999, "Wrapper_UnexpectedExceptionEvent", "", e);
@@ -151,8 +151,7 @@ namespace MultiCommDashboards {
             if (Application.Current != null && Application.Current.MainWindow != null) {
                 main = Application.Current.MainWindow;
             }
-            // TODO
-            //CrashReport.ShowBox(e, main);
+            CrashReport.ShowBox(e, main, "Multi Comm Dashboards");
             Application.Current.Shutdown();
         }
 

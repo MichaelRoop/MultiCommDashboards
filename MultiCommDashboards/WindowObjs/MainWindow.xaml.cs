@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using LogUtils.Net;
 using WpfCustomControlLib.Core.UtilWindows;
+using ChkUtils.Net;
 
 namespace MultiCommDashboards.WindowObjs {
 
@@ -27,9 +28,8 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
         private void btnTest_Click(object sender, RoutedEventArgs e) {
-
             MsgBoxSimple.ShowBox(this, "BLIPO");
-
         }
+
     }
 }
