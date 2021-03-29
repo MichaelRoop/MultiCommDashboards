@@ -1,9 +1,4 @@
-﻿using log4net;
-using log4net.Appender;
-using log4net.Core;
-using log4net.Layout;
-using log4net.Repository.Hierarchy;
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using LogUtils.Net;
 using WpfCustomControlLib.Core.UtilWindows;
-//using System.Windows.Shapes;
 
 namespace MultiCommDashboards.WindowObjs {
 

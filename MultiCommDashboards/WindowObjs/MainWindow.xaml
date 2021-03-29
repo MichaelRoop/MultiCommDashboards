@@ -4,13 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultiCommDashboards.WindowObjs"
+        xmlns:helpers="clr-namespace:MultiCommDashboards.WpfHelpers"
         xmlns:buttons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <DockPanel HorizontalAlignment="Center">
             <buttons:UC_IconButton x:Name="btnTest"  Margin="0,0,10,0" Content="Test"
-            Style="{StaticResource TextIconButton}"  Click="btnTest_Click"/>
+            Style="{StaticResource TextIconButton}"  
+            IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
+
+            Click="btnTest_Click"/>
         </DockPanel>
 
     </Grid>

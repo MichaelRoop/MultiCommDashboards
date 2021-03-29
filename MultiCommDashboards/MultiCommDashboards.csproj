@@ -7,13 +7,70 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\icons8-add-50-noborder.png" />
+    <None Remove="Images\icons8-bluetooth-50.png" />
+    <None Remove="Images\icons8-bluetooth-white-50.png" />
+    <None Remove="Images\icons8-checkmark-50.png" />
+    <None Remove="Images\icons8-close-window-50-noborder.png" />
+    <None Remove="Images\icons8-edit-50.png" />
+    <None Remove="Images\icons8-exit-50.png" />
+    <None Remove="Images\icons8-help-50.png" />
+    <None Remove="Images\icons8-help-white-50.png" />
+    <None Remove="Images\icons8-index-50.png" />
+    <None Remove="Images\icons8-language-50.png" />
+    <None Remove="Images\icons8-language-white-50.png" />
+    <None Remove="Images\icons8-menu-white-50.png" />
+    <None Remove="Images\icons8-quick-mode-on-100.png" />
+    <None Remove="Images\icons8-running-24.png" />
+    <None Remove="Images\icons8-search-50.png" />
+    <None Remove="Images\icons8-trash-can-50.png" />
+    <None Remove="Images\icons8-usb-2-50-white.png" />
+    <None Remove="Images\icons8-usb-2-50.png" />
+    <None Remove="Images\icons8-wi-fi-32.png" />
+    <None Remove="Images\icons8_code.png" />
+    <None Remove="Images\icons8_code_white.png" />
+    <None Remove="Images\icons8_maintenance.png" />
+    <None Remove="Images\icons8_maintenance_white.png" />
+    <None Remove="Images\icons8_openbook.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.12" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharedNetCoreLibs\WpfCustomControlLib.Core\WpfCustomControlLib.Core.csproj" />
     <ProjectReference Include="..\..\SharedNetLibs\ChkUtils.Net\ChkUtils.Net.csproj" />
+    <ProjectReference Include="..\..\SharedNetLibs\IconFactory\IconFactory.Net.csproj" />
     <ProjectReference Include="..\..\SharedNetLibs\LogUtils.Net\LogUtils.Net.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\icons8-add-50-noborder.png" />
+    <Resource Include="Images\icons8-bluetooth-50.png" />
+    <Resource Include="Images\icons8-bluetooth-white-50.png" />
+    <Resource Include="Images\icons8-checkmark-50.png" />
+    <Resource Include="Images\icons8-close-window-50-noborder.png" />
+    <Resource Include="Images\icons8-edit-50.png" />
+    <Resource Include="Images\icons8-exit-50.png" />
+    <Resource Include="Images\icons8-help-50.png" />
+    <Resource Include="Images\icons8-help-white-50.png" />
+    <Resource Include="Images\icons8-index-50.png" />
+    <Resource Include="Images\icons8-language-50.png" />
+    <Resource Include="Images\icons8-language-white-50.png" />
+    <Resource Include="Images\icons8-menu-white-50.png" />
+    <Resource Include="Images\icons8-quick-mode-on-100.png" />
+    <Resource Include="Images\icons8-running-24.png" />
+    <Resource Include="Images\icons8-search-50.png" />
+    <Resource Include="Images\icons8-trash-can-50.png" />
+    <Resource Include="Images\icons8-usb-2-50-white.png" />
+    <Resource Include="Images\icons8-usb-2-50.png" />
+    <Resource Include="Images\icons8-wi-fi-32.png" />
+    <Resource Include="Images\icons8_code.png" />
+    <Resource Include="Images\icons8_code_white.png" />
+    <Resource Include="Images\icons8_maintenance.png" />
+    <Resource Include="Images\icons8_maintenance_white.png" />
+    <Resource Include="Images\icons8_openbook.png" />
   </ItemGroup>
 
 </Project>
