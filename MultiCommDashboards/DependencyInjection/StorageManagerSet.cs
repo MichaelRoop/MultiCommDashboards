@@ -1,4 +1,8 @@
-﻿using MultiCommDashboardWrapper.Interfaces;
+﻿using MultiCommDashboardData.Storage;
+using MultiCommDashboardWrapper.Interfaces;
+using StorageFactory.Net.interfaces;
+using StorageFactory.Net.Serializers;
+using StorageFactory.Net.StorageManagers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +13,10 @@ namespace MultiCommDashboards.DependencyInjection {
 
         #region Data
 
-        //private IStorageManager<SettingItems> settingStorage =
-        //    new SimpleStorageManger<SettingItems>(new JsonReadWriteSerializerIndented<SettingItems>());
+
+
+        private IStorageManager<SettingsDataModel> settings =
+            new SimpleStorageManger<SettingsDataModel>(new JsonReadWriteSerializerIndented<SettingsDataModel>());
 
 
         ///// <summary>Singleton terminator indexed storage</summary>
@@ -53,7 +59,7 @@ namespace MultiCommDashboards.DependencyInjection {
         // The properties from the interface will load the variable
 
         // Example
-        //public IStorageManager<SettingItems> Settings { get { return this.settingStorage; } }
+        public IStorageManager<SettingsDataModel> Settings { get { return this.settings; } }
 
     }
 

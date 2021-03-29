@@ -18,16 +18,7 @@ namespace MultiCommDashboardWrapper.WrapCode {
 
         #endregion
 
-
-        public ILangFactory Languages { 
-            get {
-                if (this._languages == null) {
-                    this._languages = this.container.GetObjSingleton<ILangFactory>();
-                    this._languages.LanguageChanged += this.languageChanged;
-                }
-                return this._languages;
-            }
-        }
+        public ILangFactory Languages { get { return this.LanguageInit(); } }
 
 
         public CommDashWrapper(IObjContainer container) {

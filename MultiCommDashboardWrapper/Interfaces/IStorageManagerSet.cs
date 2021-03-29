@@ -1,13 +1,15 @@
-﻿namespace MultiCommDashboardWrapper.Interfaces {
+﻿using MultiCommDashboardData.Storage;
+using StorageFactory.Net.interfaces;
+
+namespace MultiCommDashboardWrapper.Interfaces {
 
     public interface IStorageManagerSet {
 
+        /// <summary>Storage for current settings</summary>
+        IStorageManager<SettingsDataModel> Settings { get; }
+
 
         // TODO - examples from the Multi Comm Terminal
-
-        ///// <summary>Storage for current settings</summary>
-        //IStorageManager<SettingItems> Settings { get; }
-
 
         ///// <summary>Terminator indexed storage</summary>
         //IIndexedStorageManager<TerminatorDataModel, DefaultFileExtraInfo> Terminators { get; }
