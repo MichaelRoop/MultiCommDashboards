@@ -21,6 +21,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfHelperClasses.Core", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Communications.UWP.Core", "..\SharedNetCoreLibs\Communications.UWP.Core\Communications.UWP.Core.csproj", "{411010CC-E589-413A-ADF4-B794D88B78B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCommDashboardData", "MultiCommDashboardData\MultiCommDashboardData.csproj", "{73552844-EC50-4C20-9FD1-71A5A96522E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageFactory.Net", "..\SharedNetLibs\StorageFactory.Net\StorageFactory.Net.csproj", "{392208F7-0938-4328-86CD-396DAC486852}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCommDashboardWrapper", "MultiCommDashboardWrapper\MultiCommDashboardWrapper.csproj", "{77454594-626D-4689-ABFA-23B270A744A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectorFactory.Net", "..\SharedNetLibs\DependencyInjectorFactory\DependencyInjectorFactory.Net.csproj", "{7E83278A-246D-4C21-8AE9-4303AB783417}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +71,22 @@ Global
 		{411010CC-E589-413A-ADF4-B794D88B78B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{411010CC-E589-413A-ADF4-B794D88B78B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{411010CC-E589-413A-ADF4-B794D88B78B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73552844-EC50-4C20-9FD1-71A5A96522E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73552844-EC50-4C20-9FD1-71A5A96522E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73552844-EC50-4C20-9FD1-71A5A96522E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73552844-EC50-4C20-9FD1-71A5A96522E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{392208F7-0938-4328-86CD-396DAC486852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{392208F7-0938-4328-86CD-396DAC486852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{392208F7-0938-4328-86CD-396DAC486852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{392208F7-0938-4328-86CD-396DAC486852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77454594-626D-4689-ABFA-23B270A744A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77454594-626D-4689-ABFA-23B270A744A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77454594-626D-4689-ABFA-23B270A744A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77454594-626D-4689-ABFA-23B270A744A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E83278A-246D-4C21-8AE9-4303AB783417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E83278A-246D-4C21-8AE9-4303AB783417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E83278A-246D-4C21-8AE9-4303AB783417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E83278A-246D-4C21-8AE9-4303AB783417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

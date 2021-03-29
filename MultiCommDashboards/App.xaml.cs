@@ -6,6 +6,7 @@ using log4net.Core;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
 using LogUtils.Net;
+using MultiCommDashboards.DependencyInjection;
 using System;
 using System.IO;
 using System.Reflection;
@@ -86,18 +87,15 @@ namespace MultiCommDashboards {
             // Start it here for first load and retrieve stored language
             ErrReport err;
             WrapErr.ToErrReport(out err, 9999, () => {
-                // TODO
-                //DI.Wrapper.CurrentStoredLanguage();
-                //DI.Wrapper.UnexpectedExceptionEvent += this.Wrapper_UnexpectedExceptionEvent;
-
-                // TODO - set the DI language factory singleton in the 
-                //WpfCustomControlLib.Core.Helpers.CustomTxtBinder.SetGetMsgFunc
+                DI.W.UnexpectedExceptionEvent += this.Wrapper_UnexpectedExceptionEvent;
+                WpfCustomControlLib.Core.Helpers.CustomTxtBinder.SetLanguageFactory(DI.W.Languages);
             });
             if (err.Code != 0) {
                 MessageBox.Show(err.Msg, "Critical Error loading DI container");
                 Application.Current.Shutdown();
             }
         }
+
 
         private void Wrapper_UnexpectedExceptionEvent(object sender, ErrReport report) {
             Dispatcher.Invoke(() => {

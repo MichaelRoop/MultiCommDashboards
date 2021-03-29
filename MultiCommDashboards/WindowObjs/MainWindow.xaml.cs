@@ -28,7 +28,8 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
         private void btnTest_Click(object sender, RoutedEventArgs e) {
-            MsgBoxSimple.ShowBox(this, "BLIPO");
+            //MsgBoxSimple.ShowBox(this, "BLIPO");
+            MsgBoxYesNo.ShowBox(this, "Don't do it");
         }
 
     }
