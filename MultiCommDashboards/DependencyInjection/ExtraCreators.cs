@@ -1,5 +1,6 @@
 ﻿using DependencyInjectorFactory.Net;
 using DependencyInjectorFactory.Net.interfaces;
+using MultiCommDashboardWrapper.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,10 @@ namespace MultiCommDashboards.DependencyInjection {
 
         public ExtraCreators() {
             // Add singleton and other creators
+
+            this.SingletonCreators.Add(
+                typeof(IStorageManagerSet), new ObjSingletonCreator(() => new StorageManagerSet()));
+
 
             // From MultiCommTerminal
             //this.SingletonCreators.Add(
@@ -34,8 +39,6 @@ namespace MultiCommDashboards.DependencyInjection {
             //this.SingletonCreators.Add(
             //    typeof(IEthernetInterface), new ObjSingletonCreator(() => new EthernetImplUwp()));
 
-            //this.SingletonCreators.Add(
-            //    typeof(IStorageManagerSet), new ObjSingletonCreator(() => new StorageManagerSetWin()));
         }
 
 

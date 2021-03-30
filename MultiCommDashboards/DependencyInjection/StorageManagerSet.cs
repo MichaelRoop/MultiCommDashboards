@@ -13,8 +13,6 @@ namespace MultiCommDashboards.DependencyInjection {
 
         #region Data
 
-
-
         private IStorageManager<SettingsDataModel> settings =
             new SimpleStorageManger<SettingsDataModel>(new JsonReadWriteSerializerIndented<SettingsDataModel>());
 

@@ -1,4 +1,5 @@
 ﻿using ChkUtils.Net;
+using MultiCommDashboardData.Storage;
 using MultiCommDashboardWrapper.Interfaces;
 using StorageFactory.Net.interfaces;
 
@@ -61,9 +62,9 @@ namespace MultiCommDashboardWrapper.StorageFactories {
 
         public IStorageManager<T> GetManager<T>() where T : class {
             // TODO
-            //if (typeof(T).Name == typeof(SettingItems).Name) {
-            //    return this.set.Settings as IStorageManager<T>;
-            //}
+            if (typeof(T).Name == typeof(SettingsDataModel).Name) {
+                return this.set.Settings as IStorageManager<T>;
+            }
             ////else if(typeof(T).Name == typeof(TerminatorData).Name) {
             ////}
             WrapErr.ChkTrue(false, 9999, () => string.Format("No storage manager for type {0}", typeof(T).Name));
