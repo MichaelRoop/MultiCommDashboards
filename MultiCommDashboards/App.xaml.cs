@@ -1,5 +1,6 @@
 ﻿using ChkUtils.Net;
 using ChkUtils.Net.ErrObjects;
+using LanguageFactory.Net.data;
 using log4net;
 using log4net.Appender;
 using log4net.Core;
@@ -84,7 +85,6 @@ namespace MultiCommDashboards {
 
 
         private void SetupDI() {
-            // Start it here for first load and retrieve stored language
             ErrReport err;
             WrapErr.ToErrReport(out err, 9999, () => {
                 DI.W.UnexpectedExceptionEvent += this.Wrapper_UnexpectedExceptionEvent;
@@ -202,15 +202,13 @@ namespace MultiCommDashboards {
         }
 
 
-        public static void ShowMsg(string msg) {
-            // TODO
-            //STATIC_APP.DispatchProxy(() => WindowHelpers.ShowMsg(msg));
+        public static void ShowErrMsg(string msg) {
+            STATIC_APP.DispatchProxy(() => MsgBoxSimple.ShowBox(DI.W.GetText(MsgCode.Error), msg));
         }
 
 
         public static void ShowMsgTitle(string title, string msg) {
-            // TODO
-            //STATIC_APP.DispatchProxy(() => WindowHelpers.ShowMsgTitle(title, msg));
+            STATIC_APP.DispatchProxy(() => MsgBoxSimple.ShowBox(title, msg));
         }
 
         #endregion
