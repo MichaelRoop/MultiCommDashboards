@@ -45,7 +45,7 @@ namespace MultiCommDashboards.WindowObjs.BTWins {
             DI.W.BT_Discovered += this.deviceDiscovered;
             DI.W.BT_DiscoveryComplete += this.discoveryComplete;
             this.gridWait.Show();
-            DI.W.BTDiscoverAsync(false);
+            DI.W.BTDiscoverAsync(true);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {

@@ -9,13 +9,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <StackPanel VerticalAlignment="Center">
+            
         <DockPanel HorizontalAlignment="Center">
-            <buttons:UC_IconButton x:Name="btnTest"  Margin="0,0,10,0" Content="Test"
-            Style="{StaticResource TextIconButton}"  
-            IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
+            <buttons:UC_IconButton x:Name="btnConnect"  Margin="0,0,10,0" 
+                Style="{StaticResource TextIconButton}"  
+                Content="{Binding Source={x:Static helpers:TxtBinder.Connect}}"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
+                Click="btnConnect_Click"/>
 
-            Click="btnTest_Click"/>
+            <buttons:UC_IconButton x:Name="btnDisconnect"  Margin="0,0,10,0" 
+                Style="{StaticResource TextIconButton}"  
+                Content="{Binding Source={x:Static helpers:TxtBinder.Disconnect}}"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
+                Click="btnDisconnect_Click"/>
+
+            <buttons:UC_IconButton x:Name="btnSend"  Margin="0,0,10,0" 
+                Style="{StaticResource TextIconButton}"  
+                Content="{Binding Source={x:Static helpers:TxtBinder.Send}}"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.SEND}}"                                   
+                Click="btnSend_Click"/>
         </DockPanel>
+            <TextBox x:Name="txtInput" Text="XXXX" HorizontalAlignment="Center" Margin="30" FontSize="16" />
+        </StackPanel>
+
+
 
     </Grid>
 </Window>
