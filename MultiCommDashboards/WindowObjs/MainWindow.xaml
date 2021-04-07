@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultiCommDashboards.WindowObjs"
+        xmlns:controls="clr-namespace:MultiCommDashboards.UserControls"
         xmlns:helpers="clr-namespace:MultiCommDashboards.WpfHelpers"
         xmlns:buttons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
         mc:Ignorable="d"
@@ -31,8 +32,14 @@
                 Click="btnSend_Click"/>
         </DockPanel>
             <TextBox x:Name="txtInput" Text="XXXX" HorizontalAlignment="Center" Margin="30" FontSize="16" />
-        </StackPanel>
 
+        <DockPanel HorizontalAlignment="Center">
+            <controls:UC_ValueDisplay/>
+
+        </DockPanel>
+            <controls:UC_BoolToggle x:Name="sliderTest"/>
+        
+        </StackPanel>
 
 
     </Grid>

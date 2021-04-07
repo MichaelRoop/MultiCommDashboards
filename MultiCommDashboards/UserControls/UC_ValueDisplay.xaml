@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MultiCommDashboards.UserControls.UC_ValueDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helpers="clr-namespace:MultiCommDashboards.WpfHelpers"
+             xmlns:local="clr-namespace:MultiCommDashboards.UserControls"
+             xmlns:customControl="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
+             xmlns:userControl="clr-namespace:WpfUserControlLib;assembly=WpfUserControlLib"
+             BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             mc:Ignorable="d" 
+             >
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <Label Grid.Row="0" x:Name="lbId" Content="{Binding Source={x:Static helpers:TxtBinder.Id}}"  Style="{Binding Source={StaticResource NameLabelLeft}}" Margin="5,0,0,0" Padding="0" VerticalAlignment="Center" />
+            <Label Grid.Row="0"  Content=":"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0" VerticalAlignment="Center" />
+            <Label Grid.Row="0" x:Name="lbIdTxt" Content="0"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0"  />
+            <Label Grid.Row="0" x:Name="lbName" Content="Name" Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0"  />
+            <Label Grid.Row="0" x:Name="lbDataType" Content="bool" Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0"  />
+        </DockPanel>
+        <Label Grid.Row="1" Content="XXXX" Style="{Binding Source={StaticResource NameLabelRight}}" />
+    </Grid>
+
+</UserControl>

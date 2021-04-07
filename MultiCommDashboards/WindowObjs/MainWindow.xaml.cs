@@ -1,25 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using LogUtils.Net;
-using WpfCustomControlLib.Core.UtilWindows;
-using ChkUtils.Net;
-using MultiCommDashboards.WindowObjs.BTWins;
-using BluetoothCommon.Net;
-using MultiCommDashboards.DependencyInjection;
+﻿using BluetoothCommon.Net;
 using CommunicationStack.Net.BinaryMsgs;
+using MultiCommDashboards.DependencyInjection;
+using MultiCommDashboards.WindowObjs.BTWins;
+using System.Windows;
 
 namespace MultiCommDashboards.WindowObjs {
 
@@ -31,7 +14,9 @@ namespace MultiCommDashboards.WindowObjs {
             InitializeComponent();
             DI.W.BT_Connected += W_BT_Connected;
             DI.W.MsgEventFloat32 += W_MsgEventFloat32;
+            this.sliderTest.OnStateChange += SliderTest_OnStateChange;
         }
+
 
         private void W_MsgEventFloat32(object sender, BinaryMsgFloat32 e) {
             this.Dispatcher.Invoke(() => {
@@ -71,5 +56,13 @@ namespace MultiCommDashboards.WindowObjs {
             BinaryMsgBool mb = new BinaryMsgBool(10, true);
             DI.W.BTSend(mb.ToByteArray());
         }
+
+
+        private void SliderTest_OnStateChange(object sender, UserControls.UC_BoolToggle.StateChange state) {
+            DI.W.BTSend(new BinaryMsgBool(state.Id, state.Value).ToByteArray());
+        }
+
+
+
     }
 }

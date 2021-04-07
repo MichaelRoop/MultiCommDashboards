@@ -6,6 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MyColours.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MyButtons.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MyWindows.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MyLabelAndText.xaml"/>

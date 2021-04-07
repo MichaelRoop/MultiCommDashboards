@@ -2,7 +2,6 @@
 using LanguageFactory.Net.Languages.en;
 using LanguageFactory.Net.Messaging;
 using MultiCommDashboards.DependencyInjection;
-//using MultiCommTerminal.NetCore.DependencyInjection;
 
 namespace MultiCommDashboards.WpfHelpers {
 
@@ -30,50 +29,45 @@ namespace MultiCommDashboards.WpfHelpers {
         #endregion
 
 
-        //static TxtBinder() { }
+        #region Text strings
+        public static string Cancel { get { return GetTxt(MsgCode.cancel); } }
+        public static string Connect { get { return GetTxt(MsgCode.connect); } }
+        public static string DataType { get { return GetTxt(MsgCode.DataType); } }
+        public static string Disconnect { get { return GetTxt(MsgCode.Disconnect); } }
+        public static string Name { get { return GetTxt(MsgCode.Name); } }
+        public static string Select { get { return GetTxt(MsgCode.select); } }
+        public static string Send { get { return GetTxt(MsgCode.send); } }
+        public static string Id { get { return GetTxt(MsgCode.Id); } }
 
-
-        //#region Text strings
+        #endregion
 
         //public static string Save { get { return GetTxt(MsgCode.save); } }
         //public static string Copy { get { return GetTxt(MsgCode.copy); } }
-        public static string Select { get { return GetTxt(MsgCode.select); } }
-        public static string Cancel { get { return GetTxt(MsgCode.cancel); } }
-
-
         //public static string Exit { get { return GetTxt(MsgCode.exit); } }
         //public static string OK { get { return GetTxt(MsgCode.Ok); } }
         //public static string Yes { get { return GetTxt(MsgCode.yes); } }
         //public static string No { get { return GetTxt(MsgCode.no); } }
-
         //public static string Language { get { return GetTxt(MsgCode.language); } }
         //public static string Start { get { return GetTxt(MsgCode.start); } }
         //public static string Stop { get { return GetTxt(MsgCode.stop); } }
-        public static string Send { get { return GetTxt(MsgCode.send); } }
         //public static string Command { get { return GetTxt(MsgCode.command); } }
         //public static string Commands { get { return GetTxt(MsgCode.commands); } }
         //public static string Response { get { return GetTxt(MsgCode.response); } }
         //public static string Discover { get { return GetTxt(MsgCode.Search); } }
-        public static string Connect { get { return GetTxt(MsgCode.connect); } }
-        public static string Disconnect { get { return GetTxt(MsgCode.Disconnect); } }
         //public static string Info { get { return GetTxt(MsgCode.info); } }
         //public static string Terminators { get { return GetTxt(MsgCode.Terminators); } }
-        //public static string Name { get { return GetTxt(MsgCode.Name); } }
         //public static string EnterName { get { return GetTxt(MsgCode.EnterName); } }
         //public static string Continue { get { return GetTxt(MsgCode.Continue); } }
         //public  static string Configure { get { return GetTxt(MsgCode.Configure); } }
         //public static string PairedDevice { get { return GetTxt(MsgCode.PairedDevices); } }
         //public static string Pair { get { return GetTxt(MsgCode.Pair); } }
         //public static string UnPair { get { return GetTxt(MsgCode.Unpair); } }
-
         //public static string Password { get { return GetTxt(MsgCode.Password); } }
         //public static string HostName { get { return GetTxt(MsgCode.HostName); } }
         //public static string NetworkService { get { return GetTxt(MsgCode.NetworkService); } }
         //public static string Port { get { return GetTxt(MsgCode.Port); } }
-
         //public static string HostNameIp { get { return string.Format("{0}/IP", HostName); } }
         //public static string NetworkServicePort { get { return string.Format("{0}/{1}", NetworkService, Port); } }
-
         //public static string NetworkSecurityKey { get { return GetTxt(MsgCode.NetworkSecurityKey); } }
         //public static string Network { get { return GetTxt(MsgCode.Network); } }
         //public static string Socket { get { return GetTxt(MsgCode.Socket); } }
@@ -112,7 +106,6 @@ namespace MultiCommDashboards.WpfHelpers {
         //public static string Descriptor { get { return GetTxt(MsgCode.Descriptor); } }
         //public static string Email { get { return GetTxt(MsgCode.email); } }
         //public static string CrashReport { get { return GetTxt(MsgCode.CrashReport); } }
-        //public static string DataType { get { return GetTxt(MsgCode.DataType); } }
         //public static string Description { get { return GetTxt(MsgCode.Description); } }
         //public static string Address { get { return GetTxt(MsgCode.Address); } }
 
