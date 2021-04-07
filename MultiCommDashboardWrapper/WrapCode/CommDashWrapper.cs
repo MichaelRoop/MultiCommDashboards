@@ -1,5 +1,6 @@
 ﻿using DependencyInjectorFactory.Net.interfaces;
 using LanguageFactory.Net.interfaces;
+using LogUtils.Net;
 using MultiCommDashboardWrapper.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,11 @@ namespace MultiCommDashboardWrapper.WrapCode {
 
         #region Data
 
+        private ClassLog log = new ClassLog("CommDashWrapper");
+
         private IObjContainer container = null;
 
-        // Container creates on demand
-        private ILangFactory _languages = null;
-
         #endregion
-
-        public ILangFactory Languages { get { return this.LanguageInit(); } }
 
 
         public CommDashWrapper(IObjContainer container) {
@@ -27,7 +25,13 @@ namespace MultiCommDashboardWrapper.WrapCode {
 
 
         public void Teardown() {
-            this.LanguageTeardown();
+            try {
+                this.LanguageTeardown();
+                this.BTTeardown();
+            }
+            catch(Exception ex) {
+                this.log.Exception(9999, "", ex);
+            }
         }
 
     }

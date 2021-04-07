@@ -1,4 +1,6 @@
-﻿using DependencyInjectorFactory.Net;
+﻿using CommunicationStack.Net.interfaces;
+using CommunicationStack.Net.Stacks;
+using DependencyInjectorFactory.Net;
 using LanguageFactory.Net.interfaces;
 using LanguageFactory.Net.Messaging;
 using MultiCommDashboardWrapper.Interfaces;
@@ -20,14 +22,12 @@ namespace MultiCommDashboardWrapper.DI {
 
             // Instance creators
 
-            // TODO - binary stack level 0
-            //instanceCreators.Add(typeof(ICommStackLevel0), new ObjInstanceCreator(() => new CommStackLevel0()));
+            instanceCreators.Add(typeof(ICommStackLevel0), new ObjInstanceCreator(() => new CommBinaryStackLevel0()));
 
             singletonCreators.Add(typeof(ILangFactory), new ObjSingletonCreator(() => new SupportedLanguageFactory()));
 
             singletonCreators.Add(typeof(IStorageManagerFactory),
                 new ObjSingletonCreator(() => new MultiCommDashboardsStorageFactory(this.GetObjSingleton<IStorageManagerSet>())));
-
 
         }
     }

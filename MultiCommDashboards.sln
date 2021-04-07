@@ -21,13 +21,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfHelperClasses.Core", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Communications.UWP.Core", "..\SharedNetCoreLibs\Communications.UWP.Core\Communications.UWP.Core.csproj", "{411010CC-E589-413A-ADF4-B794D88B78B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCommDashboardData", "MultiCommDashboardData\MultiCommDashboardData.csproj", "{73552844-EC50-4C20-9FD1-71A5A96522E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiCommDashboardData", "MultiCommDashboardData\MultiCommDashboardData.csproj", "{73552844-EC50-4C20-9FD1-71A5A96522E0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageFactory.Net", "..\SharedNetLibs\StorageFactory.Net\StorageFactory.Net.csproj", "{392208F7-0938-4328-86CD-396DAC486852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCommDashboardWrapper", "MultiCommDashboardWrapper\MultiCommDashboardWrapper.csproj", "{77454594-626D-4689-ABFA-23B270A744A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiCommDashboardWrapper", "MultiCommDashboardWrapper\MultiCommDashboardWrapper.csproj", "{77454594-626D-4689-ABFA-23B270A744A9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectorFactory.Net", "..\SharedNetLibs\DependencyInjectorFactory\DependencyInjectorFactory.Net.csproj", "{7E83278A-246D-4C21-8AE9-4303AB783417}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluetoothCommon.Net", "..\SharedNetLibs\BluetoothCommon.Net\BluetoothCommon.Net.csproj", "{5EE5204B-75B0-4679-92DC-280E3CB18504}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluetoothCommon.UWP", "..\SharedUwpLibs\BluetoothCommon.UWP\BluetoothCommon.UWP.csproj", "{5B12F474-22B2-4606-9071-11336CCE6759}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluetoothRFCommUWP", "..\SharedUwpLibs\BluetoothRFCommUWP\BluetoothRFCommUWP.csproj", "{FB65D239-54D4-4156-A941-B58083A77120}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunicationStack.Net", "..\SharedNetLibs\CommunicationStack.Net\CommunicationStack.Net.csproj", "{190B81E9-EC20-4E39-9823-3423CBDD588A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +95,22 @@ Global
 		{7E83278A-246D-4C21-8AE9-4303AB783417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E83278A-246D-4C21-8AE9-4303AB783417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E83278A-246D-4C21-8AE9-4303AB783417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE5204B-75B0-4679-92DC-280E3CB18504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE5204B-75B0-4679-92DC-280E3CB18504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE5204B-75B0-4679-92DC-280E3CB18504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE5204B-75B0-4679-92DC-280E3CB18504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B12F474-22B2-4606-9071-11336CCE6759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B12F474-22B2-4606-9071-11336CCE6759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B12F474-22B2-4606-9071-11336CCE6759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B12F474-22B2-4606-9071-11336CCE6759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB65D239-54D4-4156-A941-B58083A77120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB65D239-54D4-4156-A941-B58083A77120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB65D239-54D4-4156-A941-B58083A77120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB65D239-54D4-4156-A941-B58083A77120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{190B81E9-EC20-4E39-9823-3423CBDD588A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{190B81E9-EC20-4E39-9823-3423CBDD588A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{190B81E9-EC20-4E39-9823-3423CBDD588A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{190B81E9-EC20-4E39-9823-3423CBDD588A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

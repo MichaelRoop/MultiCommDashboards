@@ -203,12 +203,22 @@ namespace MultiCommDashboards {
 
 
         public static void ShowErrMsg(string msg) {
-            STATIC_APP.DispatchProxy(() => MsgBoxSimple.ShowBox(DI.W.GetText(MsgCode.Error), msg));
+            STATIC_APP.DispatchProxy(() => {
+                try {
+                    MsgBoxSimple.ShowBox(DI.W.GetText(MsgCode.Error), msg);
+                }
+                catch (Exception) { }
+            });
         }
 
 
         public static void ShowMsgTitle(string title, string msg) {
-            STATIC_APP.DispatchProxy(() => MsgBoxSimple.ShowBox(title, msg));
+            STATIC_APP.DispatchProxy(() => {
+                try {
+                    MsgBoxSimple.ShowBox(title, msg);
+                }
+                catch (Exception) { }
+            });
         }
 
         #endregion

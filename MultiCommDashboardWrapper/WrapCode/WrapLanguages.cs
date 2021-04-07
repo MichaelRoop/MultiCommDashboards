@@ -3,17 +3,25 @@ using ChkUtils.Net.ErrObjects;
 using LanguageFactory.Net.data;
 using LanguageFactory.Net.interfaces;
 using LanguageFactory.Net.Messaging;
-using MultiCommDashboardData.Storage;
 using MultiCommDashboardWrapper.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MultiCommDashboardWrapper.WrapCode {
 
     public partial class CommDashWrapper : ICommDashWrapper {
 
+        // Container creates on demand
+        private ILangFactory __languages = null;
+
+        public event EventHandler<SupportedLanguage> LanguageChanged;
+
+
         #region Public
+        
+        public ILangFactory Languages { 
+            get { return this.LanguageInit(); } 
+        }
+
 
         public string GetText(MsgCode code) {
             return this.Languages.CurrentLanguage.GetText(code);
@@ -43,20 +51,36 @@ namespace MultiCommDashboardWrapper.WrapCode {
         /// <summary>Guaranteed load of language factory and set at last saved selection</summary>
         /// <returns>The language factory</returns>
         private ILangFactory LanguageInit() {
-            if (this._languages == null) {
-                this._languages = this.container.GetObjSingleton<ILangFactory>();
+            if (this.__languages == null) {
+                this.__languages = this.container.GetObjSingleton<ILangFactory>();
                 this.Load(
                     this.Settings, 
-                    dm => { this._languages.SetCurrentLanguage(dm.CurrentLanguage); }, 
+                    dm => { this.__languages.SetCurrentLanguage(dm.CurrentLanguage); }, 
                     err => { });
-                this._languages.LanguageChanged += this.languageChanged;
+                this.__languages.LanguageChanged += this.languageChanged;
             }
-            return this._languages;
+            return this.__languages;
         }
 
 
         private void LanguageTeardown() {
-            this._languages.LanguageChanged -= this.languageChanged;
+            if (this.__languages != null){
+                this.__languages.LanguageChanged -= this.languageChanged; 
+            }
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        private void languageChanged(object sender, SupportedLanguage language) {
+            ErrReport report;
+            WrapErr.ToErrReport(out report, 2000201, "Failure on Event_LanguageChanged", () => {
+                // TODO Store change in settings
+
+                this.LanguageChanged?.Invoke(sender, language);
+            });
+            this.RaiseIfException(report);
         }
 
         #endregion

@@ -44,10 +44,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharedNetCoreLibs\WpfCustomControlLib.Core\WpfCustomControlLib.Core.csproj" />
+    <ProjectReference Include="..\..\SharedNetCoreLibs\WpfUserControlLib\WpfUserControlLib.csproj" />
+    <ProjectReference Include="..\..\SharedNetLibs\BluetoothCommon.Net\BluetoothCommon.Net.csproj" />
     <ProjectReference Include="..\..\SharedNetLibs\ChkUtils.Net\ChkUtils.Net.csproj" />
     <ProjectReference Include="..\..\SharedNetLibs\DependencyInjectorFactory\DependencyInjectorFactory.Net.csproj" />
     <ProjectReference Include="..\..\SharedNetLibs\IconFactory\IconFactory.Net.csproj" />
     <ProjectReference Include="..\..\SharedNetLibs\LogUtils.Net\LogUtils.Net.csproj" />
+    <ProjectReference Include="..\..\SharedUwpLibs\BluetoothRFCommUWP\BluetoothRFCommUWP.csproj" />
     <ProjectReference Include="..\MultiCommDashboardWrapper\MultiCommDashboardWrapper.csproj" />
   </ItemGroup>
 

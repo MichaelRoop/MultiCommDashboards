@@ -147,9 +147,11 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string NO { get { return IconBinder.CANCEL; } }
         public static string CANCEL { get { return IconBinder.GetIconSource("icons8-close-window-50-noborder.png"); } }
         public static string LANGUAGE_W { get { return IconBinder.GetIconSource("icons8-language-white-50.png"); } }
+        public static string BLUETOOTH_W { get { return IconBinder.GetIconSource("icons8-bluetooth-white-50.png"); } }
 
 
         private static string GetIconSource(string name) {
+            // Images must be in the app\Images directory and marked as Resource
             return string.Format(@"MultiCommDashboards;component\Images\{0}", name);
         }
 

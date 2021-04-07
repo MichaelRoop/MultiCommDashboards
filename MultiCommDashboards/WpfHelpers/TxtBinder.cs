@@ -1,6 +1,7 @@
 ﻿using LanguageFactory.Net.data;
 using LanguageFactory.Net.Languages.en;
 using LanguageFactory.Net.Messaging;
+using MultiCommDashboards.DependencyInjection;
 //using MultiCommTerminal.NetCore.DependencyInjection;
 
 namespace MultiCommDashboards.WpfHelpers {
@@ -18,15 +19,15 @@ namespace MultiCommDashboards.WpfHelpers {
     /// </example>
     public static class TxtBinder {
 
-        //#region Data
+        #region Data
 
-        ///// <summary>
-        ///// Language module to use at design time because XAML designer cannot 
-        ///// access DI injector which is only initialised at runtime
-        ///// </summary>
-        //private static SupportedLanguage designLanguage = new English();
+        /// <summary>
+        /// Language module to use at design time because XAML designer cannot 
+        /// access DI injector which is only initialised at runtime
+        /// </summary>
+        private static SupportedLanguage designLanguage = new English();
 
-        //#endregion
+        #endregion
 
 
         //static TxtBinder() { }
@@ -36,8 +37,10 @@ namespace MultiCommDashboards.WpfHelpers {
 
         //public static string Save { get { return GetTxt(MsgCode.save); } }
         //public static string Copy { get { return GetTxt(MsgCode.copy); } }
-        //public static string Select { get { return GetTxt(MsgCode.select); } }
-        //public static string Cancel { get { return GetTxt(MsgCode.cancel); } }
+        public static string Select { get { return GetTxt(MsgCode.select); } }
+        public static string Cancel { get { return GetTxt(MsgCode.cancel); } }
+
+
         //public static string Exit { get { return GetTxt(MsgCode.exit); } }
         //public static string OK { get { return GetTxt(MsgCode.Ok); } }
         //public static string Yes { get { return GetTxt(MsgCode.yes); } }
@@ -138,19 +141,18 @@ namespace MultiCommDashboards.WpfHelpers {
 
         //#endregion
 
-        //#region Private
+        #region Private
 
-        //private static string GetTxt(MsgCode code) {
-        //    if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime) {
-        //        // If in VS XMAL designer get text from the english language module
-        //        return designLanguage.GetMsg(code).Display;
-        //    }
-        //    // Dependency injector
-        //    return DI.Wrapper.GetText(code);
-        //}
+        private static string GetTxt(MsgCode code) {
+            if (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime) {
+                // If in VS XMAL designer get text from the english language module
+                return designLanguage.GetMsg(code).Display;
+            }
+            // Dependency injector
+            return DI.W.GetText(code);
+        }
 
-
-        //#endregion
+        #endregion
 
     }
 }
