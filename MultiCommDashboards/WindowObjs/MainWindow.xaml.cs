@@ -1,6 +1,7 @@
 ﻿using BluetoothCommon.Net;
 using CommunicationStack.Net.BinaryMsgs;
 using CommunicationStack.Net.Enumerations;
+using LanguageFactory.Net.data;
 using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.UserControls;
 using MultiCommDashboards.WindowObjs.BTWins;
@@ -11,16 +12,12 @@ namespace MultiCommDashboards.WindowObjs {
     /// <summary>Logic for MainWindow.xaml</summary>
     public partial class MainWindow : Window {
 
-
         public MainWindow() {
             InitializeComponent();
             DI.W.BT_Connected += W_BT_Connected;
             DI.W.MsgEventFloat32 += W_MsgEventFloat32;
-
-            this.sliderBool.InitAsBool();
-            this.numericSlider.InitAsNumeric(BinaryMsgDataType.typeUInt8, 1, 0, 254);
-            this.sliderBool.OnStateChange += SliderBool_OnStateChange;
-            this.numericSlider.OnStateChange += NumericSlider_OnStateChange;
+            DI.W.SetLanguage(LangCode.Spanish, App.ShowErrMsg);
+            this.InitControls();
         }
 
 
@@ -29,6 +26,7 @@ namespace MultiCommDashboards.WindowObjs {
                 this.txtInput.Text = e.Value.ToString();
             });
         }
+
 
         private void W_BT_Connected(object sender, bool ok) {
             if (ok) {
@@ -39,11 +37,6 @@ namespace MultiCommDashboards.WindowObjs {
             }
         }
 
-        private void btnTest_Click(object sender, RoutedEventArgs e) {
-
-            //MsgBoxSimple.ShowBox(this, "BLIPO");
-            //MsgBoxYesNo.ShowBox(this, "Don't do it");
-        }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e) {
             BTDeviceInfo device = SelectBT.ShowBox(this);
@@ -51,29 +44,72 @@ namespace MultiCommDashboards.WindowObjs {
                 DI.W.BTConnectAsync(device);
             }
             else {
-                App.ShowErrMsg("No device");
+                App.ShowErrMsg("No device selected");
             }
         }
+
 
         private void btnDisconnect_Click(object sender, RoutedEventArgs e) {
             DI.W.BTDisconnect();
         }
 
+
         private void btnSend_Click(object sender, RoutedEventArgs e) {
-            //this.sliderTest.Init(0, 0, 1023);
+            //BinaryMsgBool mb = new BinaryMsgBool(10, true);
+            //DI.W.BTSend(mb.ToByteArray());
+        }
 
-            BinaryMsgBool mb = new BinaryMsgBool(10, true);
-            DI.W.BTSend(mb.ToByteArray());
+        #region Init Controls
+
+        // This will be done later from saved configurations in dashboards
+
+        private void InitControls() {
+            this.sliderBool.SetSendAction(this.sendAction);
+            this.sliderBool.SetTrueFalseTranslators(this.translateTrueFalseFunc);
+            this.sliderBool.InitAsBool(10, "IO 1 LED");
+
+            this.numericSlider.SetSendAction(this.sendAction);
+            this.numericSlider.SetTrueFalseTranslators(this.translateTrueFalseFunc);
+            this.numericSlider.InitAsNumeric(12, "IO 3 PWM", BinaryMsgDataType.typeUInt8, 1, 0, 254);
+        }
+
+        #endregion
+
+        #region Actions to pass to the sliders
+
+        private string translateTrueFalseFunc(bool trueFalse) {
+            return DI.W.GetText(trueFalse ? MsgCode.True : MsgCode.False);
         }
 
 
-        private void NumericSlider_OnStateChange(object sender, UserControls.UC_BoolToggle.StateChange e) {
-            
+        private void sendAction(byte id, BinaryMsgDataType dataType, double value) {
+            // TODO Can do some validation here of range
+            switch (dataType) {
+                case BinaryMsgDataType.typeBool:
+                    DI.W.BTSend(new BinaryMsgBool(id, (value != 0)).ToByteArray());
+                    break;
+                case BinaryMsgDataType.typeInt8:
+                    break;
+                case BinaryMsgDataType.typeUInt8:
+                    DI.W.BTSend(new BinaryMsgUInt8(id, (byte)value).ToByteArray());
+                    break;
+                case BinaryMsgDataType.typeInt16:
+                    break;
+                case BinaryMsgDataType.typeUInt16:
+                    break;
+                case BinaryMsgDataType.typeInt32:
+                    break;
+                case BinaryMsgDataType.typeUInt32:
+                    break;
+                case BinaryMsgDataType.typeFloat32:
+                    break;
+                case BinaryMsgDataType.tyepUndefined:
+                case BinaryMsgDataType.typeInvalid:
+                    break;
+            }
         }
 
-        private void SliderBool_OnStateChange(object sender, UC_BoolToggle.StateChange state) {
-            DI.W.BTSend(new BinaryMsgBool(state.Id, state.Value).ToByteArray());
-        }
+        #endregion
 
 
 

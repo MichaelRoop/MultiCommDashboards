@@ -22,7 +22,7 @@
             <buttons:UC_IconButton x:Name="btnDisconnect"  Margin="0,0,10,0" 
                 Style="{StaticResource TextIconButton}"  
                 Content="{Binding Source={x:Static helpers:TxtBinder.Disconnect}}"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
+                IconSource="{Binding Source={x:Static helpers:IconBinder.CANCEL}}"                                   
                 Click="btnDisconnect_Click"/>
 
             <buttons:UC_IconButton x:Name="btnSend"  Margin="0,0,10,0" 
