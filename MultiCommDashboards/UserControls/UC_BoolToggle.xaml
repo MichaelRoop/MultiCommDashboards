@@ -13,16 +13,27 @@
              mc:Ignorable="d" 
              >
     <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Column="0">
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Label x:Name="lbId" Content="{Binding Source={x:Static helpers:TxtBinder.Id}}"  Style="{Binding Source={StaticResource NameLabelLeft}}" Margin="5,0,0,0" Padding="0" VerticalAlignment="Center" />
             <Label Content=":"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0" VerticalAlignment="Center" />
             <Label x:Name="lbIdTxt" Content="0"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0"  />
+            <Label x:Name="lbIdNameTxt" Content="My Name"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0"  />
         </DockPanel>
-        <customSliders:UC_SliderBool Grid.Column="1" Style="{StaticResource BoolSliderStyle}" ValueChanged="sliderValueChanged" />
+        <customSliders:UC_SliderBool Grid.Row="1" Grid.Column="0" x:Name="boolSlider"  Style="{StaticResource BoolSliderStyle}" 
+                                     ValueChanged="booSliderValueChanged" Visibility="Collapsed" />
+        <Slider Grid.Row="1"  Grid.Column="0" x:Name="sliderNumeric" Style="{StaticResource MySliderStyle }"
+              ValueChanged="sliderNumeric_ValueChanged" Width="100" />
+
+        <Border Grid.Row="1"  Grid.Column="3" BorderBrush="{StaticResource CommonBlue}" BorderThickness=".5" Margin="1" Padding="0">
+            <Label  x:Name="lblValue" Style="{StaticResource NameLabelLeft }" Padding="0" Content="XXX" Width="50" HorizontalContentAlignment="Center" />
+        </Border>
     </Grid>
 </UserControl>

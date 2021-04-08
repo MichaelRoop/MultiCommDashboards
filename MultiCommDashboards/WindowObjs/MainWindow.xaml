@@ -35,10 +35,10 @@
 
         <DockPanel HorizontalAlignment="Center">
             <controls:UC_ValueDisplay/>
-
         </DockPanel>
-            <controls:UC_BoolToggle x:Name="sliderTest"/>
-        
+            
+            <controls:UC_BoolToggle x:Name="sliderBool"/>
+            <controls:UC_BoolToggle x:Name="numericSlider"/>
         </StackPanel>
 
 
