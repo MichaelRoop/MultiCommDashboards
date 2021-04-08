@@ -23,11 +23,12 @@ namespace MultiCommDashboardWrapper.WrapCode {
         private IBTInterface __classicBluetooth = null;
         private ICommStackLevel0 __btClassicStack = null;
 
+
+        // Either stack or BT can be called first
+
         private ICommStackLevel0 BTStack {
             get {
-                if (this.__btClassicStack == null) {
-                    this.__btClassicStack = this.container.GetObjInstance<ICommStackLevel0>();
-                }
+                this.EnsureStackAndBTInitialised();
                 return this.__btClassicStack;
             }
         }
@@ -35,23 +36,34 @@ namespace MultiCommDashboardWrapper.WrapCode {
 
         private IBTInterface BT {
             get {
-                if (this.__classicBluetooth == null) {
-                    this.__classicBluetooth = this.container.GetObjSingleton<IBTInterface>();
-
-                    // Connect comm channel and its stack - Property to ensure just in time creation
-                    this.BTStack.SetCommChannel(this.__classicBluetooth);
-                    this.BTStack.InTerminators = BinaryMsgDefines.StartDelimiters; ;
-                    this.BTStack.OutTerminators = BinaryMsgDefines.EndDelimiters;
-                    this.BTStack.MsgReceived += this.BTStack_BytesReceivedHandler;
-                    // BT event handlers connected
-                    this.__classicBluetooth.DiscoveredBTDevice += this.BT_DiscoveredHandler;
-                    this.__classicBluetooth.DiscoveryComplete += this.BT_DiscoveryCompleteHandler;
-                    //this.__classicBluetooth.BT_DeviceInfoGathered += this.BT_InfoGatheredHandler;
-                    this.__classicBluetooth.ConnectionCompleted += this.BT_ConnectedHander;
-                }
+                this.EnsureStackAndBTInitialised();
                 return this.__classicBluetooth;
             }
         }
+
+
+        // Potential for either stack or BT called first
+        private void EnsureStackAndBTInitialised() {
+            if (this.__classicBluetooth == null || this.__btClassicStack == null) {
+                if (this.__classicBluetooth == null) {
+                    this.__classicBluetooth = this.container.GetObjSingleton<IBTInterface>();
+                }
+                if (this.__btClassicStack == null) {
+                    this.__btClassicStack = this.container.GetObjInstance<ICommStackLevel0>();
+                }
+                // Connect comm channel and its stack - Property to ensure just in time creation
+                this.BTStack.SetCommChannel(this.__classicBluetooth);
+                this.BTStack.InTerminators = BinaryMsgDefines.StartDelimiters; ;
+                this.BTStack.OutTerminators = BinaryMsgDefines.EndDelimiters;
+                this.BTStack.MsgReceived += this.BTStack_BytesReceivedHandler;
+                // BT event handlers connected
+                this.__classicBluetooth.DiscoveredBTDevice += this.BT_DiscoveredHandler;
+                this.__classicBluetooth.DiscoveryComplete += this.BT_DiscoveryCompleteHandler;
+                //this.__classicBluetooth.BT_DeviceInfoGathered += this.BT_InfoGatheredHandler;
+                this.__classicBluetooth.ConnectionCompleted += this.BT_ConnectedHander;
+            }
+        }
+
 
         #endregion
 
