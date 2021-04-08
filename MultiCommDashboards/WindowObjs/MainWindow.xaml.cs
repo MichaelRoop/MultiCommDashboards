@@ -21,6 +21,11 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            this.SizeToContent = SizeToContent.WidthAndHeight;
+        }
+
+
         private void W_MsgEventFloat32(object sender, BinaryMsgFloat32 e) {
             this.Dispatcher.Invoke(() => {
                 this.txtInput.Text = e.Value.ToString();
@@ -54,9 +59,13 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
+        bool selectMode = false;
         private void btnSend_Click(object sender, RoutedEventArgs e) {
             //BinaryMsgBool mb = new BinaryMsgBool(10, true);
             //DI.W.BTSend(mb.ToByteArray());
+            this.selectMode = !this.selectMode;
+            this.vSlider1.SetSelectMode(this.selectMode);
+
         }
 
         #region Init Controls
@@ -109,9 +118,9 @@ namespace MultiCommDashboards.WindowObjs {
             }
         }
 
+
+
         #endregion
-
-
 
     }
 }

@@ -8,39 +8,47 @@
         xmlns:helpers="clr-namespace:MultiCommDashboards.WpfHelpers"
         xmlns:buttons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel VerticalAlignment="Center">
-            
-        <DockPanel HorizontalAlignment="Center">
-            <buttons:UC_IconButton x:Name="btnConnect"  Margin="0,0,10,0" 
+        Title="MainWindow"
+        Loaded="Window_Loaded"
+        >
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+
+            <DockPanel HorizontalAlignment="Center">
+                <buttons:UC_IconButton x:Name="btnConnect"  Margin="0,0,10,0" 
                 Style="{StaticResource TextIconButton}"  
                 Content="{Binding Source={x:Static helpers:TxtBinder.Connect}}"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
                 Click="btnConnect_Click"/>
 
-            <buttons:UC_IconButton x:Name="btnDisconnect"  Margin="0,0,10,0" 
+                <buttons:UC_IconButton x:Name="btnDisconnect"  Margin="0,0,10,0" 
                 Style="{StaticResource TextIconButton}"  
                 Content="{Binding Source={x:Static helpers:TxtBinder.Disconnect}}"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.CANCEL}}"                                   
                 Click="btnDisconnect_Click"/>
 
-            <buttons:UC_IconButton x:Name="btnSend"  Margin="0,0,10,0" 
+                <buttons:UC_IconButton x:Name="btnSend"  Margin="0,0,10,0" 
                 Style="{StaticResource TextIconButton}"  
                 Content="{Binding Source={x:Static helpers:TxtBinder.Send}}"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.SEND}}"                                   
                 Click="btnSend_Click"/>
-        </DockPanel>
+            </DockPanel>
             <TextBox x:Name="txtInput" Text="XXXX" HorizontalAlignment="Center" Margin="30" FontSize="16" />
 
-        <DockPanel HorizontalAlignment="Center">
-            <controls:UC_ValueDisplay/>
-        </DockPanel>
-            
+            <DockPanel HorizontalAlignment="Center">
+                <controls:UC_ValueDisplay/>
+            </DockPanel>
+
             <controls:UC_BoolToggle x:Name="sliderBool"/>
             <controls:UC_BoolToggle x:Name="numericSlider"/>
         </StackPanel>
 
+            <controls:UC_VerticalSlider x:Name="vSlider1" Grid.Column="1" />
 
     </Grid>
 </Window>
