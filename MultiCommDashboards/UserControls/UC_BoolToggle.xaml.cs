@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -29,7 +20,6 @@ namespace MultiCommDashboards.UserControls {
             }
         }
 
-
         public event EventHandler<StateChange> OnStateChange;
 
         public byte Id { get; set; } = 10;
@@ -39,12 +29,10 @@ namespace MultiCommDashboards.UserControls {
             InitializeComponent();
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> args) {
-            this.slider.Foreground = (args.NewValue == 0)
-                ? new SolidColorBrush(Colors.Red) 
-                : new SolidColorBrush(Colors.YellowGreen);
-            this.OnStateChange?.Invoke( this.Id, new StateChange(this.Id, args.NewValue));
-
+        private void sliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> args) {
+            this.lbIdTxt.Content = args.NewValue.ToString();
+            this.OnStateChange?.Invoke(this.Id, new StateChange(this.Id, args.NewValue));
         }
+
     }
 }
