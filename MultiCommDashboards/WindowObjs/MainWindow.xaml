@@ -12,6 +12,10 @@
         Loaded="Window_Loaded"
         >
     <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -50,5 +54,35 @@
 
             <controls:UC_VerticalSlider x:Name="vSlider1" Grid.Column="1" />
 
+
+        <!--
+PreviewMouseLeftButtonUp="grdBool_PreviewMouseLeftButtonUp"        
+        -->
+        
+        <Grid Grid.Row="1" x:Name="grdBool" Background="Wheat" >
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="boolRow0" MouseLeftButtonUp="boolRow0_MouseLeftButtonUp"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" x:Name="brdBool_0" Opacity=".4" MouseLeftButtonUp="brdBool_0_MouseLeftButtonUp" >
+                <controls:UC_BoolToggle   x:Name="dummyBool" Visibility="Visible"/>
+            </Border>
+        </Grid>
+        
     </Grid>
 </Window>
