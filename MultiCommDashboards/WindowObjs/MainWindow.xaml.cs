@@ -17,8 +17,8 @@ namespace MultiCommDashboards.WindowObjs {
     /// <summary>Logic for MainWindow.xaml</summary>
     public partial class MainWindow : Window {
 
-        SlidersBuilderBool bool0 = new SlidersBuilderBool();
-        SlidersBuilderBool bool1 = new SlidersBuilderBool();
+        InputBuilder<UC_BoolToggle> bool0 = new InputBuilder<UC_BoolToggle>();
+        InputBuilder<UC_HorizontalSlider> bool1 = new InputBuilder<UC_HorizontalSlider>();
 
         public MainWindow() {
             InitializeComponent();

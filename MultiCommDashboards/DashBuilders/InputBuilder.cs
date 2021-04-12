@@ -11,12 +11,12 @@ using CommunicationStack.Net.Enumerations;
 namespace MultiCommDashboards.DashBuilders {
 
 
-    public class SlidersBuilderBool {
+    public class InputBuilder<T>  where T : UC_InputBase, new() {
 
         private class SliderHolder {
-            public UC_BoolToggle Toggle { get; set; }
+            public UC_InputBase Toggle { get; set; }
             public int Column { get; set; }
-            public SliderHolder(int column, UC_BoolToggle toggle) {
+            public SliderHolder(int column, UC_InputBase toggle) {
                 this.Column = column;
                 this.Toggle = toggle;
             }
@@ -38,7 +38,7 @@ namespace MultiCommDashboards.DashBuilders {
 
                 // TODO Here open the Dialog for the ID and name
                 this.testId++;
-                UC_BoolToggle bt = new UC_BoolToggle();
+                UC_InputBase bt = new T();
                 bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeBool, 1, 0, 1);
                 Grid.SetRow(bt, this.row);
                 Grid.SetColumn(bt, nextColumn);
@@ -80,7 +80,7 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
-            UC_BoolToggle toggle = sender as UC_BoolToggle;
+            UC_InputBase toggle = sender as UC_InputBase;
             toggle.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
             this.toggles.RemoveAll(x => x.Toggle == toggle);
             this.grid.Children.Remove(toggle);
