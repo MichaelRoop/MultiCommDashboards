@@ -17,8 +17,8 @@
         >
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <controls:UC_DashBoardEdit Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         <DockPanel Grid.Row="1" HorizontalAlignment="Center" Margin="10">

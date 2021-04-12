@@ -32,7 +32,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="Wheat">
+            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
@@ -67,7 +67,7 @@
                 </Border>
             </Grid>
 
-            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="LightGreen">
+            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -107,7 +107,7 @@
             
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="LightBlue">
+        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

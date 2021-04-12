@@ -8,26 +8,32 @@
              xmlns:customButtons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
              xmlns:customSliders="clr-namespace:WpfCustomControlLib.Core.Sliders;assembly=WpfCustomControlLib.Core"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
-             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
              mc:Ignorable="d" >
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <Label x:Name="lbId" Content="{Binding Source={x:Static helpers:TxtBinder.Id}}"  Style="{Binding Source={StaticResource NameLabelLeft}}" Margin="5,0,0,0" Padding="0" VerticalAlignment="Center" />
-            <Label Content=":"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0" VerticalAlignment="Center" />
-            <Label x:Name="lbIdTxt" Content="0"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0"  />
-            <Label x:Name="lbIdNameTxt" Content="My Name"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0"  />
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,2">
+            <Label x:Name="lbId" Content="{Binding Source={x:Static helpers:TxtBinder.Id}}" FontSize="14"
+                   Style="{Binding Source={StaticResource NameLabelLeft}}" Margin="3,0,0,0" Padding="0" />
+            <Label Content=":"  Style="{Binding Source={StaticResource NameLabelRight}}" FontSize="14"
+                   Margin="0" Padding="0" VerticalAlignment="Center" />
+            <Label x:Name="lbIdTxt" Content="0"  Padding="0" Margin="2,0,0,0" FontSize="14"
+                   Style="{Binding Source={StaticResource NameLabelRight}}"  />
+            <Label x:Name="lbIdNameTxt" Content="My Name"  Style="{Binding Source={StaticResource NameLabelRight}}" 
+                   Margin="5,0,0,0" Padding="0" FontSize="14" />
         </DockPanel>
-        <Slider Grid.Row="1"  Grid.Column="0" x:Name="sliderNumeric" Style="{StaticResource MySliderStyle }" Width="100" />
-        <Border Grid.Row="1"  Grid.Column="3" BorderBrush="{StaticResource CommonBlue}" BorderThickness=".5" Margin="1" Padding="0">
-            <Label  x:Name="lblValue" Style="{StaticResource NameLabelCenter }" Padding="0" Content="0" Width="50" HorizontalContentAlignment="Center" />
+        <Border Grid.Row="1"  Padding="0" Margin="0" Style="{StaticResource brd075}">
+            <Slider Grid.Column="0" x:Name="sliderNumeric" Style="{StaticResource MySliderStyle }" Margin="0" Width="90" />
+        </Border>
+        <Border Grid.Row="1"  Grid.Column="3" Style="{StaticResource brd075}" Margin="0" Padding="0">
+            <Label  x:Name="lblValue" Style="{StaticResource NameLabelCenter }" Padding="0" Margin="0" Content="0" Width="50" 
+                    HorizontalContentAlignment="Center" FontSize="14" />
         </Border>
     </Grid>
 
