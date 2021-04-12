@@ -29,10 +29,10 @@
                 <Label x:Name="lbIdTxt" Content="0"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0" />
             </DockPanel>
             <Label Grid.Row="1" x:Name="lbIdNameTxt" Content="My Name" Height="22" Padding="0"  Style="{Binding Source={StaticResource NameLabelCenter}}" Margin="0" />
-            <Slider Grid.Row="2" x:Name="vSliderNumeric" Style="{StaticResource MyVeritcalSliderStyle}" ValueChanged="vSliderNumeric_ValueChanged" />
+            <Slider Grid.Row="2" x:Name="sliderNumeric" Style="{StaticResource MyVeritcalSliderStyle}" ValueChanged="vSliderNumeric_ValueChanged" />
 
             <Border Grid.Row="3"  Grid.Column="3" BorderBrush="{StaticResource CommonBlue}" BorderThickness=".5" Margin="1,4,1,1" Padding="0">
-                <Label  x:Name="lblValue" Style="{StaticResource NameLabelCenter }" Padding="0" Content="XXX" Width="50" HorizontalContentAlignment="Center" />
+                <Label  x:Name="lblValue" Style="{StaticResource NameLabelCenter }" Padding="0" Content="0" Width="50" HorizontalContentAlignment="Center" />
             </Border>
         </Grid>
     </Border>

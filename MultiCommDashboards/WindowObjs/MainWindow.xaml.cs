@@ -69,13 +69,9 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
-        bool selectMode = false;
         private void btnSend_Click(object sender, RoutedEventArgs e) {
             //BinaryMsgBool mb = new BinaryMsgBool(10, true);
             //DI.W.BTSend(mb.ToByteArray());
-            this.selectMode = !this.selectMode;
-            this.vSlider1.SetSelectMode(this.selectMode);
-
         }
 
         #region Init Controls
