@@ -72,6 +72,9 @@ namespace MultiCommDashboards.WindowObjs {
         private void btnSend_Click(object sender, RoutedEventArgs e) {
             //BinaryMsgBool mb = new BinaryMsgBool(10, true);
             //DI.W.BTSend(mb.ToByteArray());
+
+            DashboardEditor.ShowBox(this);
+
         }
 
         #region Init Controls

@@ -33,6 +33,17 @@ namespace MultiCommDashboards.DashBuilders {
         // bogus test id
         private byte testId = 0;
 
+
+        public InputBuilder() {
+        }
+
+
+        public InputBuilder(Grid grid, int row, int maxColumns) {
+            this.Init(grid, row, maxColumns);
+        }
+
+
+
         public bool Add() {
             if (this.nextColumn <= max) {
 
