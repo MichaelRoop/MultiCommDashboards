@@ -1,52 +1,28 @@
-﻿using CommunicationStack.Net.Enumerations;
-using LogUtils.Net;
-using System;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace MultiCommDashboards.UserControls {
+﻿namespace MultiCommDashboards.UserControls {
 
     /// <summary>UC_HorizontalSlider.xaml</summary>
-    public partial class UC_HorizontalSlider : UserControl {
+    public partial class UC_HorizontalSlider : UC_InputBase {
 
-        private ClassLog log = new ClassLog("UC_HorizontalSlider");
-        private byte id = 0;
-        private BinaryMsgDataType dataType = BinaryMsgDataType.typeUInt8;
-        private Action<byte, BinaryMsgDataType, double> sendAction = null;
-
-        public UC_HorizontalSlider() {
+        public UC_HorizontalSlider() : base() {
             InitializeComponent();
             this.lblValue.Content = "";
+            this.sliderNumeric.ValueChanged += this.controlsValueChangedHandler;
         }
 
 
-        public void SetSendAction(Action<byte, BinaryMsgDataType, double> sendAction) {
-            this.sendAction = sendAction;
+        protected override void DoInit() {
+            this.lbIdTxt.Content = this.Id.ToString();
+            this.lbIdNameTxt.Content = this.IOName;
+            this.sliderNumeric.TickFrequency = this.SendAtStep;
+            this.sliderNumeric.Minimum = this.Minimum;
+            this.sliderNumeric.Maximum = this.Maximum;
+            this.OnValueChanged(this.sliderNumeric.Value);
         }
 
 
-        public void Init(byte id, string name, BinaryMsgDataType dataType, double step, double min, double max) {
-            this.id = id;
-            this.lbIdTxt.Content = id.ToString();
-            this.lbIdNameTxt.Content = name;
-            this.dataType = dataType;
-            this.lblValue.Content = this.sliderNumeric.Value.ToString();
-            this.sliderNumeric.TickFrequency = step;
-            this.sliderNumeric.Minimum = min;
-            this.sliderNumeric.Maximum = max;
+        protected override void OnValueChanged(double newValue) {
+            this.lblValue.Content = newValue.ToString();
         }
-
-
-        private void sliderNumeric_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> args) {
-            try {
-                this.lblValue.Content = args.NewValue.ToString();
-                this.sendAction?.Invoke(this.id, this.dataType, args.NewValue);
-            }
-            catch (Exception ex) {
-                this.log.Exception(9999, "OnSliderActionChanged", "", ex);
-            }
-        }
-
 
     }
 }

@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Linq;
 using System.Windows;
+using CommunicationStack.Net.Enumerations;
 
 namespace MultiCommDashboards.DashBuilders {
 
@@ -38,7 +39,7 @@ namespace MultiCommDashboards.DashBuilders {
                 // TODO Here open the Dialog for the ID and name
                 this.testId++;
                 UC_BoolToggle bt = new UC_BoolToggle();
-                bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId));
+                bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeBool, 1, 0, 1);
                 Grid.SetRow(bt, this.row);
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);
