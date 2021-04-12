@@ -2,6 +2,7 @@
 using CommunicationStack.Net.BinaryMsgs;
 using CommunicationStack.Net.Enumerations;
 using LanguageFactory.Net.data;
+using MultiCommDashboards.DashBuilders;
 using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.UserControls;
 using MultiCommDashboards.WindowObjs.BTWins;
@@ -16,12 +17,17 @@ namespace MultiCommDashboards.WindowObjs {
     /// <summary>Logic for MainWindow.xaml</summary>
     public partial class MainWindow : Window {
 
+        SlidersBuilderBool bool0 = new SlidersBuilderBool();
+        SlidersBuilderBool bool1 = new SlidersBuilderBool();
+
         public MainWindow() {
             InitializeComponent();
             DI.W.BT_Connected += W_BT_Connected;
             DI.W.MsgEventFloat32 += W_MsgEventFloat32;
             DI.W.SetLanguage(LangCode.Spanish, App.ShowErrMsg);
             this.InitControls();
+            this.bool0.Init(this.grdBool, 0, 10);
+            this.bool1.Init(this.grdBool, 1, 10);
         }
 
 
@@ -126,145 +132,59 @@ namespace MultiCommDashboards.WindowObjs {
 
         #endregion
 
-        List<UC_BoolToggle> boolToggles0 = new List<UC_BoolToggle>();
-        int boolNext = 1;
-        int id = 0;
+        //List<UC_BoolToggle> boolToggles0 = new List<UC_BoolToggle>();
+        //int boolNext = 1;
+        //int id = 0;
 
-        private void brdBool_0_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            if (boolNext <= 10) {
-                UC_BoolToggle bt = new UC_BoolToggle();
-                id++;
-                bt.InitAsBool((byte)id, string.Format("DigiIO_{0}", id));
-                Grid.SetRow(bt, 0);
-                Grid.SetColumn(bt, boolNext);
-                this.grdBool.Children.Add(bt);
-                bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
-                this.boolToggles0.Add(bt);
-                boolNext++;
-            }
-        }
-
-        private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
-            UC_BoolToggle bt = sender as UC_BoolToggle;
-            bt.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
-            this.boolToggles0.Remove(bt);
-            this.grdBool.Children.Remove(bt);
-            for (int i = 1; i < this.grdBool.Children.Count; i++) {
-                UC_BoolToggle b = this.grdBool.Children[i] as UC_BoolToggle;
-                Grid.SetColumn(b, i);
-            }
-
-            this.grdBool.InvalidateVisual();
-            boolNext--;
-            if (boolNext < 1) {
-                boolNext = 1;
-            }
-        }
-
-        private void boolRow0_MouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
-            var point = Mouse.GetPosition(this.grdBool);
-
-            App.ShowMsgTitle("Mouse Pos sender", string.Format("boolRow0_MouseLeftButtonUp   Sender:{0} X:{1} Y:{2}", sender.GetType().Name, point.X, point.Y));
-
-        }
-
-        private void grdBool_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
-            //UC_BoolToggle bt = sender as UC_BoolToggle;
-
-            //App.ShowMsgTitle("Mouse Pos sender", string.Format("grdBool_PreviewMouseLeftButtonUp Sender:{0}", sender.GetType().Name));
-
-
-
-            //if (bt != null) {
-            //    int row = (int)bt.GetValue(Grid.RowProperty);
-            //    int col = (int)bt.GetValue(Grid.ColumnProperty);
-            //    App.ShowMsgTitle("Bool Toggle in Grid", string.Format("Name:{0} X:{1} Y:{2}", bt.Name, row, col));
-
-            //    //DataGrid dg = sender as DataGrid;
-            //    //var row = ItemsControl.ContainerFromElement(dg, e.OriginalSource as DependencyObject) as DataGridRow;
-            //    //var column = ItemsControl.ContainerFromElement(dg, e.OriginalSource as DependencyObject) as DataGridColumn;
-            //    //UC_BoolToggle bt = (UC_BoolToggle)this.grdBool.Item
-            //}
-            //else {
-                Grid dg = sender as Grid;
-                if (dg != null) {
-                    //App.ShowMsgTitle("Mouse Pos sender", string.Format("Sender:{0}", sender.GetType().Name));
-
-                    if (e.OriginalSource == null) {
-                        //e.Handled = false;
-                        return;
-                    }
-
-                //if (e.OriginalSource is Border) {
-                //    var b = e.OriginalSource as Border;
-                //    var rrr = b.GetValue(Grid.RowProperty);
-                //    var ccc = b.GetValue(Grid.ColumnProperty);
-                //    //App.ShowMsgTitle("Bool Toggle in Grid", string.Format("Name:{0} Row:{1} Column:{2}", "Name", rrr, ccc));
-
-
-                //    return;
-                //}
-
-                //if (e.OriginalSource is UC_BoolToggle) {
-                //    UC_BoolToggle boolToggle = e.OriginalSource as UC_BoolToggle;
-                //    var rr = boolToggle.GetValue(Grid.RowProperty);
-                //    var cc = boolToggle.GetValue(Grid.ColumnProperty);
-                //    App.ShowMsgTitle("Bool Toggle in Grid", string.Format("Name:{0} Row:{1} Column:{2}", boolToggle.Name, rr, cc));
-
-                //    e.Handled = true;
-                //}
-
-
-
-                    int col = (int)dg.GetValue(Grid.ColumnProperty);
-                    int row = (int)dg.GetValue(Grid.RowProperty);
-
-                    if (col == 0) {
-
-                        //UC_BoolToggle bt = new UC_BoolToggle();
-                        //int id = this.boolToggles0.Count + 1;
-
-                        //bt.InitAsBool((byte)id, string.Format("DigiIO+{0}", id));
-                        //Grid.SetRow(bt, 0);
-                        //Grid.SetColumn(bt, id);
-                        //this.grdBool.Children.Add(bt);
-                        //this.boolToggles0.Add(bt);
-
-
-
-                        //e.Handled = false;
-                        return;
-                    }
-
-                        //bt = (UC_BoolToggle) 
-
-                        //dg.
-
-                        var c = grdBool.Children.Cast<UC_BoolToggle>();
-
-
-                        UC_BoolToggle bt2 = this.grdBool.Children.Cast<UC_BoolToggle>().First(e => Grid.GetRow(e) == row && Grid.GetColumn(e) == col);
-
-                if (bt2 != null) {
-                    App.ShowMsgTitle("Bool Toggle in Grid", string.Format("Name:{0} X:{1} Y:{2}", bt2.Name, row, col));
-
+        private void brdBool_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            if (sender is Border) {
+                switch ((sender as Border).Name) {
+                    case "brdBool_0":
+                        this.bool0.Add();
+                        break;
+                    case "brdBool_1":
+                        this.bool1.Add();
+                        break;
                 }
-
-
-                        //var row = ItemsControl.ContainerFromElement(dg, e.OriginalSource as DependencyObject) as DataGridRow;
-                        //var col = ItemsControl.ContainerFromElement(dg, e.OriginalSource as DependencyObject) as DataGridColumn;
-                        //var collections = (UC_BoolToggle)dg.Items[row.GetIndex()];
-
-                        ////App.ShowMsgTitle("Bool Toggle in Grid", string.Format("Name:{0} X:{1} Y:{2}", bt.Name, row.GetIndex(), col.));
-
-                        int i = 10;
-
-
-                }
+            }
 
 
 
+            //return;
+            
+
+            //if (boolNext <= 10) {
+            //    UC_BoolToggle bt = new UC_BoolToggle();
+            //    id++;
+            //    bt.InitAsBool((byte)id, string.Format("DigiIO_{0}", id));
+            //    Grid.SetRow(bt, 0);
+            //    Grid.SetColumn(bt, boolNext);
+            //    this.grdBool.Children.Add(bt);
+            //    bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
+            //    this.boolToggles0.Add(bt);
+            //    boolNext++;
             //}
         }
+
+        //private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
+        //    UC_BoolToggle bt = sender as UC_BoolToggle;
+        //    bt.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
+        //    this.boolToggles0.Remove(bt);
+        //    this.grdBool.Children.Remove(bt);
+        //    for (int i = 1; i < this.grdBool.Children.Count; i++) {
+        //        UC_BoolToggle b = this.grdBool.Children[i] as UC_BoolToggle;
+        //        Grid.SetColumn(b, i);
+        //    }
+
+        //    this.grdBool.InvalidateVisual();
+        //    boolNext--;
+        //    if (boolNext < 1) {
+        //        boolNext = 1;
+        //    }
+        //}
+
+
+
+
     }
 }
