@@ -12,7 +12,17 @@ namespace MultiCommDashboards.DashBuilders {
 
     public class SlidersBuilderBool {
 
-        private List<UC_BoolToggle> toggles = new List<UC_BoolToggle>();
+        private class SliderHolder {
+            public UC_BoolToggle Toggle { get; set; }
+            public int Column { get; set; }
+            public SliderHolder(int column, UC_BoolToggle toggle) {
+                this.Column = column;
+                this.Toggle = toggle;
+            }
+        }
+
+
+        private List<SliderHolder> toggles = new List<SliderHolder>();
         // Always start at column 1. 0 reserved for Add
         private int nextColumn = 1;
         private int max = 1;
@@ -33,7 +43,7 @@ namespace MultiCommDashboards.DashBuilders {
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);
                 bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
-                this.toggles.Add(bt);
+                this.toggles.Add(new SliderHolder(this.nextColumn, bt)); 
                 nextColumn++;
                 return true;
             }
@@ -50,8 +60,8 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         public void Reset() {
-            foreach (UC_BoolToggle toggle in this.toggles) {
-                toggle.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
+            foreach (SliderHolder holder in this.toggles) {
+                holder.Toggle.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
             }
             this.toggles.Clear();
             this.nextColumn = 1;
@@ -59,20 +69,18 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
-            UC_BoolToggle bt = sender as UC_BoolToggle;
-            bt.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
-            this.toggles.Remove(bt);
-            this.grid.Children.Remove(bt);
+            UC_BoolToggle toggle = sender as UC_BoolToggle;
+            toggle.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
+            this.toggles.RemoveAll(x => x.Toggle == toggle);
+            this.grid.Children.Remove(toggle);
 
-            // Have to cast them as UIElement since some contain Border and will crash
-            // They are not filtered before the cast is applied
-            var children = this.grid.Children.Cast<UIElement>().Where(
-                x => Grid.GetRow(x) == this.row && Grid.GetColumn(x) > 0).ToList();
-
-            for (int i = 0; i < children.Count(); i++) {
-                UC_BoolToggle b = children[i] as UC_BoolToggle;
-                Grid.SetColumn(b, i+1);
+            // change the column in each of the list and reset in grid
+            for (int i = 0; i < this.toggles.Count; i++) {
+                SliderHolder h = this.toggles[i];
+                h.Column = i + 1;
+                Grid.SetColumn(h.Toggle, h.Column);
             }
+
             this.grid.InvalidateVisual();
             this.nextColumn--;
             if (this.nextColumn < 1) {
