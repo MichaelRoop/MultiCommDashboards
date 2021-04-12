@@ -49,7 +49,7 @@
             </DockPanel>
 
             <controls:UC_BoolToggle x:Name="sliderBool"/>
-            <controls:UC_BoolToggle x:Name="numericSlider"/>
+            <controls:UC_HorizontalSlider x:Name="numericSlider"/>
         </StackPanel>
 
             <controls:UC_VerticalSlider x:Name="vSlider1" Grid.Column="1" />

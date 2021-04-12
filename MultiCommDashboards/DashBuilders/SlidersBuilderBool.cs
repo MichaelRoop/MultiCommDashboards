@@ -38,7 +38,7 @@ namespace MultiCommDashboards.DashBuilders {
                 // TODO Here open the Dialog for the ID and name
                 this.testId++;
                 UC_BoolToggle bt = new UC_BoolToggle();
-                bt.InitAsBool(this.testId, string.Format("DigiIO_{0}", this.testId));
+                bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId));
                 Grid.SetRow(bt, this.row);
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);

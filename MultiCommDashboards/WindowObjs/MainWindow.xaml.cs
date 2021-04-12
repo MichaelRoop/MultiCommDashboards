@@ -85,11 +85,10 @@ namespace MultiCommDashboards.WindowObjs {
         private void InitControls() {
             this.sliderBool.SetSendAction(this.sendAction);
             this.sliderBool.SetTrueFalseTranslators(this.translateTrueFalseFunc);
-            this.sliderBool.InitAsBool(10, "IO 1 LED");
+            this.sliderBool.Init(10, "IO 1 LED");
 
             this.numericSlider.SetSendAction(this.sendAction);
-            this.numericSlider.SetTrueFalseTranslators(this.translateTrueFalseFunc);
-            this.numericSlider.InitAsNumeric(12, "IO 3 PWM", BinaryMsgDataType.typeUInt8, 1, 0, 254);
+            this.numericSlider.Init(12, "IO 3 PWM", BinaryMsgDataType.typeUInt8, 1, 0, 254);
         }
 
         #endregion
