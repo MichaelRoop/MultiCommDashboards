@@ -34,6 +34,12 @@ namespace MultiCommDashboards.UserControls {
         /// <summary>At what tick step interval is data to be sent</summary>
         public double SendAtStep { get; set; } = 0;
 
+        /// <summary>Row location in grid</summary>
+        public int Row { get; set; } = 0;
+
+        /// <summary>Column location in grid</summary>
+        public int Column { get; set; } = 0;
+
         #endregion
 
         #region Constructors

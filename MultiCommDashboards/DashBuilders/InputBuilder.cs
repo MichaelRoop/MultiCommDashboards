@@ -1,29 +1,16 @@
-﻿using MultiCommDashboards.UserControls;
-using System;
+﻿using CommunicationStack.Net.Enumerations;
+using MultiCommDashboards.UserControls;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Linq;
-using System.Windows;
-using CommunicationStack.Net.Enumerations;
 
 namespace MultiCommDashboards.DashBuilders {
 
 
     public class InputBuilder<T>  where T : UC_InputBase, new() {
 
-        private class SliderHolder {
-            public UC_InputBase Toggle { get; set; }
-            public int Column { get; set; }
-            public SliderHolder(int column, UC_InputBase toggle) {
-                this.Column = column;
-                this.Toggle = toggle;
-            }
-        }
+        private List<UC_InputBase> controls = new List<UC_InputBase>();
 
-
-        private List<SliderHolder> toggles = new List<SliderHolder>();
         // Always start at column 1. 0 reserved for Add
         private int nextColumn = 1;
         private int max = 1;
@@ -47,15 +34,19 @@ namespace MultiCommDashboards.DashBuilders {
         public bool Add() {
             if (this.nextColumn <= max) {
 
-                // TODO Here open the Dialog for the ID and name
+                // TODO Here open the Dialog for the ID and name, and data type if not bool
+
                 this.testId++;
-                UC_InputBase bt = new T();
+                UC_InputBase bt = new T() {
+                    Column = nextColumn,
+                    Row = this.row,
+                };
                 bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeBool, 1, 0, 1);
                 Grid.SetRow(bt, this.row);
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);
                 bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
-                this.toggles.Add(new SliderHolder(this.nextColumn, bt)); 
+                this.controls.Add(bt);
                 nextColumn++;
 
                 // TODO - turn on if I can ever figure out where it is dropped
@@ -82,25 +73,25 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         public void Reset() {
-            foreach (SliderHolder holder in this.toggles) {
-                holder.Toggle.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
+            foreach (T control in this.controls) {
+                control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
             }
-            this.toggles.Clear();
+            this.controls.Clear();
             this.nextColumn = 1;
         }
 
 
         private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
-            UC_InputBase toggle = sender as UC_InputBase;
-            toggle.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
-            this.toggles.RemoveAll(x => x.Toggle == toggle);
-            this.grid.Children.Remove(toggle);
+            UC_InputBase control = sender as UC_InputBase;
+            control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
+            this.controls.Remove(control);
+            this.grid.Children.Remove(control);
 
             // change the column in each of the list and reset in grid
-            for (int i = 0; i < this.toggles.Count; i++) {
-                SliderHolder h = this.toggles[i];
-                h.Column = i + 1;
-                Grid.SetColumn(h.Toggle, h.Column);
+            for (int i = 0; i < this.controls.Count; i++) {
+                control = this.controls[i];
+                control.Column = i + 1; // Skip column where dummy is
+                Grid.SetColumn(control, control.Column);
             }
 
             this.grid.InvalidateVisual();
