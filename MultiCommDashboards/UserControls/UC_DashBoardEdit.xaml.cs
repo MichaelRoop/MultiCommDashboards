@@ -28,12 +28,22 @@ namespace MultiCommDashboards.UserControls {
         List<OutputBuilder<UC_HorizontalProgressBar>> outputsHNum = new List<OutputBuilder<UC_HorizontalProgressBar>>();
         List<OutputBuilder<UC_VerticalProgressBar>> outputsVNum = new List<OutputBuilder<UC_VerticalProgressBar>>();
 
-        private static int INPUTS_ROWS_BOOL = 4;
-        private static int INPUTS_COLS_BOOL = 10;
-        private static int INPUTS_ROWS_NUM_H = 10;
+        private static int INPUTS_ROWS_BOOL = 3;
+        private static int INPUTS_COLS_BOOL = 6;
+        private static int INPUTS_ROWS_NUM_H = 3;
         private static int INPUTS_COLS_NUM_H = 4;
-        private static int INPUTS_ROWS_NUM_V = 3;
+        private static int INPUTS_ROWS_NUM_V = 2;
         private static int INPUTS_COLS_NUM_V = 10;
+
+
+        private static int OUTPUTS_ROWS_BOOL = 4;
+        private static int OUTPUTS_COLS_BOOL = 10;
+        private static int OUTPUTS_ROWS_NUM_H = 6;
+        private static int OUTPUTS_COLS_NUM_H = 4;
+        private static int OUTPUTS_ROWS_NUM_V = 3;
+        private static int OUTPUTS_COLS_NUM_V = 10;
+
+
 
         #endregion
 
@@ -53,16 +63,16 @@ namespace MultiCommDashboards.UserControls {
             }
 
             // Using same defines for output column and row within grid
-            for (int i = 0; i < INPUTS_ROWS_BOOL; i++) {
-                this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(this.grdOutputsBool, i, INPUTS_COLS_BOOL));
+            for (int i = 0; i < OUTPUTS_ROWS_BOOL; i++) {
+                this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(this.grdOutputsBool, i, OUTPUTS_COLS_BOOL));
             }
 
-            for (int i = 0; i < INPUTS_ROWS_NUM_H; i++) {
-                this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.grdOutputsNumHorizontal, i, INPUTS_COLS_NUM_H));
+            for (int i = 0; i < OUTPUTS_ROWS_NUM_H; i++) {
+                this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.grdOutputsNumHorizontal, i, OUTPUTS_COLS_NUM_H));
             }
 
-            for (int i = 0; i < INPUTS_ROWS_NUM_V; i++) {
-                this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(this.grdOutputsNumVertical, i, INPUTS_COLS_NUM_V));
+            for (int i = 0; i < OUTPUTS_ROWS_NUM_V; i++) {
+                this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(this.grdOutputsNumVertical, i, OUTPUTS_COLS_NUM_V));
             }
         }
 
@@ -134,9 +144,6 @@ namespace MultiCommDashboards.UserControls {
                     case "brdBool_2":
                         this.inputsBool[2].Add();
                         break;
-                    case "brdBool_3":
-                        this.inputsBool[3].Add();
-                        break;
 
                     // Horizontal input rows
                     case "brdHNum_0":
@@ -148,15 +155,6 @@ namespace MultiCommDashboards.UserControls {
                     case "brdHNum_2":
                         this.inputsHNum[2].Add();
                         break;
-                    case "brdHNum_3":
-                        this.inputsHNum[3].Add();
-                        break;
-                    case "brdHNum_4":
-                        this.inputsHNum[4].Add();
-                        break;
-                    case "brdHNum_5":
-                        this.inputsHNum[5].Add();
-                        break;
 
                     // Vertical input rows
                     case "brdVNum_0":
@@ -164,9 +162,6 @@ namespace MultiCommDashboards.UserControls {
                         break;
                     case "brdVNum_1":
                         this.inputsVNum[1].Add();
-                        break;
-                    case "brdVNum_2":
-                        this.inputsVNum[2].Add();
                         break;
                 }
             }

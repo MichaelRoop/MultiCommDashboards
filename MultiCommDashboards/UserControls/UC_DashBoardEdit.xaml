@@ -10,18 +10,20 @@
              >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="250"/>
             <ColumnDefinition MinWidth="150"/>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
             <Label Content="Outputs" Style="{StaticResource NameLabelCenter}" />
         </DockPanel>
+
+
 
         <!-- Outputs - Bool and Horizontal  -->
         <Grid Grid.Row="1" Grid.Column="0"  >
@@ -138,11 +140,11 @@
 
         </Grid>
 
-
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Label Content="Inputs" Style="{StaticResource NameLabelCenter}"/>
         </DockPanel>
-        
+
+
         <!-- Inputs - Bool and Horizontal  -->
         <Grid Grid.Row="3" Grid.Column="0"  >
             <Grid.RowDefinitions>
@@ -164,10 +166,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
                 <Border Grid.Row="0" Grid.Column="0" x:Name="brdBool_0" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
@@ -179,17 +177,11 @@
                 <Border Grid.Row="2" Grid.Column="0" x:Name="brdBool_2" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
                     <local:UC_BoolToggle/>
                 </Border>
-                <Border Grid.Row="3" Grid.Column="0" x:Name="brdBool_3" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
-                    <local:UC_BoolToggle/>
-                </Border>
             </Grid>
 
             <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -209,17 +201,6 @@
                 <Border Grid.Row="2" Grid.Column="0" x:Name="brdHNum_2" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
                     <local:UC_HorizontalSlider/>
                 </Border>
-                <Border Grid.Row="3" Grid.Column="0" x:Name="brdHNum_3" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
-                    <local:UC_HorizontalSlider/>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="0" x:Name="brdHNum_4" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
-                    <local:UC_HorizontalSlider/>
-                </Border>
-                <Border Grid.Row="5" Grid.Column="0" x:Name="brdHNum_5" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
-                    <local:UC_HorizontalSlider/>
-                </Border>
-
-
             </Grid>
             
         </Grid>
@@ -244,19 +225,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
             <Border Grid.Row="0" Grid.Column="0" x:Name="brdVNum_0" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
                 <local:UC_VerticalSlider/>
             </Border>
             <Border Grid.Row="1" Grid.Column="0" x:Name="brdVNum_1" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
                 <local:UC_VerticalSlider/>
             </Border>
-            <Border Grid.Row="2" Grid.Column="0" x:Name="brdVNum_2" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUp" >
-                <local:UC_VerticalSlider/>
-            </Border>
-
-
-
         </Grid>
         
         
