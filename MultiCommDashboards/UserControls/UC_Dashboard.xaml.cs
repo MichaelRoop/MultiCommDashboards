@@ -28,11 +28,6 @@ namespace MultiCommDashboards.UserControls {
         public void Init(DashboardConfiguration config) {
             foreach (var dataModel in config.InputsBool) {
                 this.InitItem(new UC_BoolToggle(dataModel), this.grdInputsBool);
-                //UC_BoolToggle bt = new UC_BoolToggle(v);
-                //bt.SetSendAction(this.sendAction);
-                //Grid.SetRow(bt, bt.Row);
-                //Grid.SetColumn(bt, bt.Column);
-                //this.grdInputsBool.Children.Add(bt);
             }
 
             foreach (var dataModel in config.InputsNumericHorizontal) {
@@ -42,13 +37,31 @@ namespace MultiCommDashboards.UserControls {
             foreach (var dataModel in config.InputsNumericVertical) {
                 this.InitItem(new UC_VerticalSlider(dataModel), this.grdInputsNumVertical);
             }
+
+            // Outputs
+            foreach (var dataModel in config.OutputsBool) {
+                this.InitItem(new UC_BoolProgress(dataModel), this.grdOutputsBool);
+            }
+
+            foreach (var dataModel in config.OutputsNumericHorizontal) {
+                this.InitItem(new UC_HorizontalProgressBar(dataModel), this.grdOutputsNumHorizontal);
+            }
+
+            foreach (var dataModel in config.OutputsNumericVertical) {
+                this.InitItem(new UC_VerticalProgressBar(dataModel), this.grdOutputsNumVertical);
+            }
         }
 
 
         private void InitItem(UC_InputBase input, Grid grid) {
-            //input.Margin = new Thickness(10);
-            //input.BorderThickness = new Thickness(5);
             input.SetSendAction(this.sendAction);
+            Grid.SetRow(input, input.Row);
+            Grid.SetColumn(input, input.Column);
+            grid.Children.Add(input);
+        }
+
+        private void InitItem(UC_OutputBase input, Grid grid) {
+            // TODO - register to receive. subscribe
             Grid.SetRow(input, input.Row);
             Grid.SetColumn(input, input.Column);
             grid.Children.Add(input);

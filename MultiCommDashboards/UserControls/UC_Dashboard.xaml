@@ -8,29 +8,101 @@
              xmlns:customControl="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
              xmlns:userControl="clr-namespace:WpfUserControlLib;assembly=WpfUserControlLib"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
-             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black"
              mc:Ignorable="d" 
              
              >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto" MinHeight="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto" MinHeight="10"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="250"/>
-            <ColumnDefinition MinWidth="150"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
-            <Label Content="Outputs" Style="{StaticResource NameLabelCenter}" />
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="White" >
+            <Label Content="Outputs" Style="{StaticResource NameLabelCenter}"  />
         </DockPanel>
 
+        <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
         <!-- Build in outputs here row 1, column 0 and 1  -->
-        
-        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Label Content="Inputs" Style="{StaticResource NameLabelCenter}"/>
+        <!-- Outputs - Bool and Horizontal  -->
+        <Grid Grid.Row="1" Grid.Column="0"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- Bool outputs -->
+            <Grid Grid.Row="0" x:Name="grdOutputsBool" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <!-- Horizontal numeric outputs -->
+            <Grid Grid.Row="1" x:Name="grdOutputsNumHorizontal" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
+
+        <!-- Outputs - Vertical  -->
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="grdOutputsNumVertical">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+
+        <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  -->
+
+
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="White">
+            <Label Content="Inputs" Style="{StaticResource NameLabelCenter}" />
         </DockPanel>
 
         <Grid Grid.Row="3" Grid.Column="0"  >
@@ -38,7 +110,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="LightBlue" MinHeight="50" MinWidth="50" >
+            <Grid Grid.Row="0" x:Name="grdInputsBool" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
@@ -60,7 +132,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="LightBlue" MinHeight="50" MinWidth="50">
+            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -78,7 +150,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="LightBlue" MinHeight="50" MinWidth="50">
+        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
