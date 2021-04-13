@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MyWindows.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MyLabelAndText.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MySliders.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/WpfCustomControlLib.Core;component/Themes/MyProgressBars.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
