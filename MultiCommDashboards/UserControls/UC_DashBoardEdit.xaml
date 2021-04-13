@@ -23,10 +23,127 @@
             <Label Content="Outputs" Style="{StaticResource NameLabelCenter}" />
         </DockPanel>
 
+        <!-- Outputs - Bool and Horizontal  -->
+        <Grid Grid.Row="1" Grid.Column="0"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!-- Bool outputs -->
+            <Grid Grid.Row="0" x:Name="grdOutputsBool" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0" x:Name="brdOutputBool_0" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_BoolProgress/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="0" x:Name="brdOutputBool_1" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_BoolProgress/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="0" x:Name="brdOutputBool_2" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_BoolProgress/>
+                </Border>
+                <Border Grid.Row="3" Grid.Column="0" x:Name="brdOutputBool_3" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_BoolProgress/>
+                </Border>
+            </Grid>
+            
+            <!-- Horizontal numeric outputs -->
+            <Grid Grid.Row="1" x:Name="grdOutputsNumHorizontal" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" x:Name="brdOutputHNum_0" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_HorizontalProgressBar/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="0" x:Name="brdOutputHNum_1" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_HorizontalProgressBar/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="0" x:Name="brdOutputHNum_2" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_HorizontalProgressBar/>
+                </Border>
+                <Border Grid.Row="3" Grid.Column="0" x:Name="brdOutputHNum_3" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_HorizontalProgressBar/>
+                </Border>
+                <Border Grid.Row="4" Grid.Column="0" x:Name="brdOutputHNum_4" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_HorizontalProgressBar/>
+                </Border>
+                <Border Grid.Row="5" Grid.Column="0" x:Name="brdOutputHNum_5" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                    <local:UC_HorizontalProgressBar/>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- Outputs - Vertical  -->
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="grdOutputsNumVertical" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" x:Name="brdOutputVNum_0" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                <local:UC_VerticalProgressBar/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="0" x:Name="brdOutputVNum_1" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                <local:UC_VerticalProgressBar/>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="0" x:Name="brdOutputVNum_2" Opacity=".4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
+                <local:UC_VerticalProgressBar/>
+            </Border>
+
+
+
+        </Grid>
+
+
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Label Content="Inputs" Style="{StaticResource NameLabelCenter}"/>
         </DockPanel>
         
+        <!-- Inputs - Bool and Horizontal  -->
         <Grid Grid.Row="3" Grid.Column="0"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -107,6 +224,7 @@
             
         </Grid>
 
+        <!-- Inputs - Vertical  -->
         <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

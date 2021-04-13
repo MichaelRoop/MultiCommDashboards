@@ -24,6 +24,10 @@ namespace MultiCommDashboards.UserControls {
         List<InputBuilder<UC_HorizontalSlider>> inputsHNum = new List<InputBuilder<UC_HorizontalSlider>>();
         List<InputBuilder<UC_VerticalSlider>> inputsVNum = new List<InputBuilder<UC_VerticalSlider>>();
 
+        List<OutputBuilder<UC_BoolProgress>> outputsBool = new List<OutputBuilder<UC_BoolProgress>>();
+        List<OutputBuilder<UC_HorizontalProgressBar>> outputsHNum = new List<OutputBuilder<UC_HorizontalProgressBar>>();
+        List<OutputBuilder<UC_VerticalProgressBar>> outputsVNum = new List<OutputBuilder<UC_VerticalProgressBar>>();
+
         private static int INPUTS_ROWS_BOOL = 4;
         private static int INPUTS_COLS_BOOL = 10;
         private static int INPUTS_ROWS_NUM_H = 10;
@@ -47,11 +51,24 @@ namespace MultiCommDashboards.UserControls {
             for (int i = 0; i < INPUTS_ROWS_NUM_V; i++) {
                 this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(this.grdInputsNumVertical, i, INPUTS_COLS_NUM_V));
             }
+
+            // Using same defines for output column and row within grid
+            for (int i = 0; i < INPUTS_ROWS_BOOL; i++) {
+                this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(this.grdOutputsBool, i, INPUTS_COLS_BOOL));
+            }
+
+            for (int i = 0; i < INPUTS_ROWS_NUM_H; i++) {
+                this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.grdOutputsNumHorizontal, i, INPUTS_COLS_NUM_H));
+            }
+
+            for (int i = 0; i < INPUTS_ROWS_NUM_V; i++) {
+                this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(this.grdOutputsNumVertical, i, INPUTS_COLS_NUM_V));
+            }
         }
 
 
         public void Init() {
-
+            // TODO Remove
 
         }
 
@@ -78,6 +95,26 @@ namespace MultiCommDashboards.UserControls {
                     config.InputsNumericVertical.Add(data);
                 }
             }
+
+            // Outputs
+            foreach (var ib in this.outputsBool) {
+                foreach (OutputControlDataModel data in ib.DataModels) {
+                    config.OutputsBool.Add(data);
+                }
+            }
+
+            foreach (var inH in this.outputsHNum) {
+                foreach (OutputControlDataModel data in inH.DataModels) {
+                    config.OutputsNumericHorizontal.Add(data);
+                }
+            }
+
+            foreach (var inV in this.outputsVNum) {
+                foreach (OutputControlDataModel data in inV.DataModels) {
+                    config.OutputsNumericVertical.Add(data);
+                }
+            }
+
             return config;
         }
 
@@ -134,6 +171,61 @@ namespace MultiCommDashboards.UserControls {
                 }
             }
         }
+
+
+
+
+        private void mouseLeftButtonUpOutput(object sender, MouseButtonEventArgs e) {
+            if (sender is Border) {
+                switch ((sender as Border).Name) {
+                    // Boolean Output rows
+                    case "brdOutputBool_0":
+                        this.outputsBool[0].Add();
+                        break;
+                    case "brdOutputBool_1":
+                        this.outputsBool[1].Add();
+                        break;
+                    case "brdOutputBool_2":
+                        this.outputsBool[2].Add();
+                        break;
+                    case "brdOutputBool_3":
+                        this.outputsBool[3].Add();
+                        break;
+
+                    // Horizontal output rows
+                    case "brdOutputHNum_0":
+                        this.outputsHNum[0].Add();
+                        break;
+                    case "brdOutputHNum_1":
+                        this.outputsHNum[1].Add();
+                        break;
+                    case "brdOutputHNum_2":
+                        this.outputsHNum[2].Add();
+                        break;
+                    case "brdOutputHNum_3":
+                        this.outputsHNum[3].Add();
+                        break;
+                    case "brdOutputHNum_4":
+                        this.outputsHNum[4].Add();
+                        break;
+                    case "brdOutputHNum_5":
+                        this.outputsHNum[5].Add();
+                        break;
+
+                    // Vertical input rows
+                    case "brdOutputVNum_0":
+                        this.outputsVNum[0].Add();
+                        break;
+                    case "brdOutputVNum_1":
+                        this.outputsVNum[1].Add();
+                        break;
+                    case "brdOutputVNum_2":
+                        this.outputsVNum[2].Add();
+                        break;
+                }
+            }
+        }
+
 
     }
 }
