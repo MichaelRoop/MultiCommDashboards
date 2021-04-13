@@ -10,7 +10,7 @@
              xmlns:userControl="clr-namespace:WpfUserControlLib;assembly=WpfUserControlLib"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
              HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="2"
-             mc:Ignorable="d"  Margin="5" Background="White"
+             mc:Ignorable="d"  Margin="1" Background="White"
              >
 
     <Border x:Name="mainBorder">

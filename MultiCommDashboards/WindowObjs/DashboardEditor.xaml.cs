@@ -24,8 +24,6 @@ namespace MultiCommDashboards.WindowObjs {
         public static void ShowBox(Window parent) {
             DashboardEditor win = new DashboardEditor(parent);
             win.ShowDialog();
-
-
         }
 
 
@@ -42,7 +40,7 @@ namespace MultiCommDashboards.WindowObjs {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             this.SizeToContent = SizeToContent.WidthAndHeight;
-            this.CenterToParent(this.parent);
+            //this.CenterToParent(this.parent);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
