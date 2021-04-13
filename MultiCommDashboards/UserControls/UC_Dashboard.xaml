@@ -14,47 +14,88 @@
              >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>    
-        
-        <!-- Bottom row of in values -->
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="250"/>
+            <ColumnDefinition MinWidth="150"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+            <Label Content="Outputs" Style="{StaticResource NameLabelCenter}" />
+        </DockPanel>
 
+        <!-- Build in outputs here row 1, column 0 and 1  -->
         
-        
-        
-        
-        <Grid Grid.Row="2" HorizontalAlignment="Left">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <local:UC_ValueDisplay Grid.Column="0"/>
-            <local:UC_ValueDisplay Grid.Column="1"/>
-            <local:UC_ValueDisplay Grid.Column="2"/>
-            <local:UC_ValueDisplay Grid.Column="3"/>
-            <local:UC_ValueDisplay Grid.Column="4"/>
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Label Content="Inputs" Style="{StaticResource NameLabelCenter}"/>
+        </DockPanel>
+
+        <Grid Grid.Row="3" Grid.Column="0"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="White" MinHeight="50" MinWidth="50" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+
+            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White" MinHeight="50" MinWidth="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
         </Grid>
 
-
-        <Grid Grid.Row="3" HorizontalAlignment="Left">
+        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White" MinHeight="50" MinWidth="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <local:UC_ValueDisplay Grid.Column="0" />
-            <local:UC_ValueDisplay Grid.Column="1" />
-            <local:UC_ValueDisplay Grid.Column="2"  />
-            <local:UC_ValueDisplay Grid.Column="3"/>
-            <local:UC_ValueDisplay Grid.Column="4"/>
         </Grid>
 
 

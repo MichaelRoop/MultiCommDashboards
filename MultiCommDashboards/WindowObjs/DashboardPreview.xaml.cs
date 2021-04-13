@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MultiCommDashboardData.Storage;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,23 +16,23 @@ using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.WindowObjs {
     /// <summary>
-    /// Interaction logic for DashboardEditor.xaml
+    /// Interaction logic for DashboardPreview.xaml
     /// </summary>
-    public partial class DashboardEditor : Window {
+    public partial class DashboardPreview : Window {
 
 
+        private DashboardConfiguration config = new DashboardConfiguration();
         private Window parent = null;
 
-        public static void ShowBox(Window parent) {
-            DashboardEditor win = new DashboardEditor(parent);
+        public static void ShowBox(Window parent, DashboardConfiguration config) {
+            DashboardPreview win = new DashboardPreview(parent, config);
             win.ShowDialog();
-
-
         }
 
 
-        public DashboardEditor(Window parent) {
+        public DashboardPreview(Window parent, DashboardConfiguration config) {
             this.parent = parent;
+            this.config = config;
             InitializeComponent();
         }
 
@@ -40,25 +42,19 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
+
         private void Window_Loaded(object sender, RoutedEventArgs e) {
+            this.ucDashboard.Init(this.config);
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.CenterToParent(this.parent);
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+        private void Window_Closing(object sender, CancelEventArgs e) {
 
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e) {
             this.Close();
-        }
-
-        private void btnPreview_Click(object sender, RoutedEventArgs e) {
-            // Get data model from UC and pass to preview window
-
-            DashboardPreview.ShowBox(this, this.ucDashboardEdit.GetConfig());
-
-
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommunicationStack.Net.Enumerations;
+using MultiCommDashboardData.Storage;
 using System;
 
 namespace MultiCommDashboards.UserControls {
@@ -10,10 +11,15 @@ namespace MultiCommDashboards.UserControls {
 
 
         public UC_BoolToggle() : base() {
-            this.translateTrueFalseFunc = this.DefaultTrueFalseTranlator;
             InitializeComponent();
+            this.translateTrueFalseFunc = this.DefaultTrueFalseTranlator;
             this.lblValue.Content = "";
             this.boolSlider.ValueChanged += this.controlsValueChangedHandler;
+        }
+
+
+        public UC_BoolToggle(InputControlDataModel data) : base(data) {
+            // The base initializes variables and calls the DoInit. Initialize there
         }
 
 
@@ -23,13 +29,16 @@ namespace MultiCommDashboards.UserControls {
 
 
         protected override void DoInit() {
+            InitializeComponent();
             this.lbIdTxt.Content = this.Id.ToString();
             this.lbIdNameTxt.Content = this.IOName;
             // Force it bool every time
             this.DataType = BinaryMsgDataType.typeBool;
             this.Minimum = 0;
             this.Maximum = 1;
+            this.translateTrueFalseFunc = this.DefaultTrueFalseTranlator;
             this.lblValue.Content = this.translateTrueFalseFunc(false);
+            this.boolSlider.ValueChanged += this.controlsValueChangedHandler;
         }
 
 
@@ -40,6 +49,10 @@ namespace MultiCommDashboards.UserControls {
 
         private string DefaultTrueFalseTranlator(bool trueFalse) {
             return trueFalse.ToString();
+        }
+
+
+        private void OnConstruction() {
         }
 
     }

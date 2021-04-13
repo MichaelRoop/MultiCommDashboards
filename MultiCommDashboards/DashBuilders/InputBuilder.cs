@@ -1,4 +1,5 @@
 ﻿using CommunicationStack.Net.Enumerations;
+using MultiCommDashboardData.Storage;
 using MultiCommDashboards.UserControls;
 using System.Collections.Generic;
 using System.Windows.Controls;
@@ -9,7 +10,21 @@ namespace MultiCommDashboards.DashBuilders {
 
     public class InputBuilder<T>  where T : UC_InputBase, new() {
 
-        private List<UC_InputBase> controls = new List<UC_InputBase>();
+        private List<UC_InputBase> Controls { get; set; } = new List<UC_InputBase>();
+
+        public List<InputControlDataModel> DataModels {
+            get {
+                List<InputControlDataModel> list = new List<InputControlDataModel>();
+                foreach (var control in Controls) {
+                    // Note. All the columns are over by 1 since 0 is occupied by event dummy
+                    InputControlDataModel dm = control.StorageInfo;
+                    dm.Column -= 1;
+                    list.Add(dm);
+                }
+                return list;
+            }
+        }
+
 
         // Always start at column 1. 0 reserved for Add
         private int nextColumn = 1;
@@ -46,7 +61,7 @@ namespace MultiCommDashboards.DashBuilders {
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);
                 bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
-                this.controls.Add(bt);
+                this.Controls.Add(bt);
                 nextColumn++;
 
                 // TODO - turn on if I can ever figure out where it is dropped
@@ -73,10 +88,10 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         public void Reset() {
-            foreach (T control in this.controls) {
+            foreach (T control in this.Controls) {
                 control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
             }
-            this.controls.Clear();
+            this.Controls.Clear();
             this.nextColumn = 1;
         }
 
@@ -84,12 +99,12 @@ namespace MultiCommDashboards.DashBuilders {
         private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
             UC_InputBase control = sender as UC_InputBase;
             control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
-            this.controls.Remove(control);
+            this.Controls.Remove(control);
             this.grid.Children.Remove(control);
 
             // change the column in each of the list and reset in grid
-            for (int i = 0; i < this.controls.Count; i++) {
-                control = this.controls[i];
+            for (int i = 0; i < this.Controls.Count; i++) {
+                control = this.Controls[i];
                 control.Column = i + 1; // Skip column where dummy is
                 Grid.SetColumn(control, control.Column);
             }

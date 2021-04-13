@@ -1,4 +1,8 @@
-﻿using System;
+﻿using CommunicationStack.Net.BinaryMsgs;
+using CommunicationStack.Net.Enumerations;
+using MultiCommDashboardData.Storage;
+using MultiCommDashboards.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -12,12 +16,70 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MultiCommDashboards.UserControls {
-    /// <summary>
-    /// Interaction logic for UC_Dashboard.xaml
-    /// </summary>
+
+    /// <summary>UC_Dashboard.xaml</summary>
     public partial class UC_Dashboard : UserControl {
+
         public UC_Dashboard() {
             InitializeComponent();
         }
+
+
+        public void Init(DashboardConfiguration config) {
+            foreach (var dataModel in config.InputsBool) {
+                this.InitItem(new UC_BoolToggle(dataModel), this.grdInputsBool);
+                //UC_BoolToggle bt = new UC_BoolToggle(v);
+                //bt.SetSendAction(this.sendAction);
+                //Grid.SetRow(bt, bt.Row);
+                //Grid.SetColumn(bt, bt.Column);
+                //this.grdInputsBool.Children.Add(bt);
+            }
+
+            foreach (var dataModel in config.InputsNumericHorizontal) {
+                this.InitItem(new UC_HorizontalSlider(dataModel), this.grdInputsNumHorizontal);
+            }
+
+            foreach (var dataModel in config.InputsNumericVertical) {
+                this.InitItem(new UC_VerticalSlider(dataModel), this.grdInputsNumVertical);
+            }
+        }
+
+
+        private void InitItem(UC_InputBase input, Grid grid) {
+            input.SetSendAction(this.sendAction);
+            Grid.SetRow(input, input.Row);
+            Grid.SetColumn(input, input.Column);
+            grid.Children.Add(input);
+        }
+
+
+        private void sendAction(byte id, BinaryMsgDataType dataType, double value) {
+            // TODO Can do some validation here of range
+            switch (dataType) {
+                case BinaryMsgDataType.typeBool:
+                    DI.W.BTSend(new BinaryMsgBool(id, (value != 0)).ToByteArray());
+                    break;
+                case BinaryMsgDataType.typeInt8:
+                    break;
+                case BinaryMsgDataType.typeUInt8:
+                    DI.W.BTSend(new BinaryMsgUInt8(id, (byte)value).ToByteArray());
+                    break;
+                case BinaryMsgDataType.typeInt16:
+                    break;
+                case BinaryMsgDataType.typeUInt16:
+                    break;
+                case BinaryMsgDataType.typeInt32:
+                    break;
+                case BinaryMsgDataType.typeUInt32:
+                    break;
+                case BinaryMsgDataType.typeFloat32:
+                    break;
+                case BinaryMsgDataType.tyepUndefined:
+                case BinaryMsgDataType.typeInvalid:
+                    break;
+            }
+        }
+
+
     }
 }

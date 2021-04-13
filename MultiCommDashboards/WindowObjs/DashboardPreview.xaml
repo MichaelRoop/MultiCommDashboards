@@ -1,4 +1,4 @@
-﻿<Window x:Class="MultiCommDashboards.WindowObjs.DashboardEditor"
+﻿<Window x:Class="MultiCommDashboards.WindowObjs.DashboardPreview"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,26 +13,19 @@
         Title="{Binding Source={x:Static helpers:TxtBinder.Select}}"
         Icon="{Binding Source={x:Static helpers:IconBinder.BLUETOOTH_W}}"
         Loaded="Window_Loaded" Closing="Window_Closing"
-         BorderThickness=".5"        
         >
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <controls:UC_DashBoardEdit Grid.Row="0" x:Name="ucDashboardEdit" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <controls:UC_Dashboard x:Name="ucDashboard" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         <DockPanel Grid.Row="1" HorizontalAlignment="Center" Margin="10">
             <customControls:UC_IconButton x:Name="btnExit"  Margin="0,0,10,0" 
                 Style="{StaticResource TextIconButton}"  
                 Content="{Binding Source={x:Static helpers:TxtBinder.Cancel}}"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.CANCEL}}"                                   
-                Click="btnExit_Click"/>
-            <customControls:UC_IconButton x:Name="btnPreview"  Margin="0,0,10,0" 
-                Style="{StaticResource TextIconButton}"  
-                Content="{Binding Source={x:Static helpers:TxtBinder.Preview}}"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
-                Click="btnPreview_Click"/>
-
+                Click="btnExit_Click"/>
         </DockPanel>
     </Grid>
 </Window>

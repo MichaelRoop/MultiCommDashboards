@@ -1,4 +1,5 @@
-﻿using MultiCommDashboards.DashBuilders;
+﻿using MultiCommDashboardData.Storage;
+using MultiCommDashboards.DashBuilders;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -53,6 +54,34 @@ namespace MultiCommDashboards.UserControls {
 
 
         }
+
+
+        public DashboardConfiguration GetConfig() {
+            DashboardConfiguration config = new DashboardConfiguration() {
+                Name = "Test config name"
+            };
+            // NOTE: they are always 1 column over since dummy is in 0. Need decrement
+            foreach (var ib in this.inputsBool) {
+                foreach (InputControlDataModel data in ib.DataModels) {
+                    config.InputsBool.Add(data);
+                }
+            }
+
+            foreach (var inH in this.inputsHNum) {
+                foreach(InputControlDataModel data in inH.DataModels) {
+                    config.InputsNumericHorizontal.Add(data);
+                }
+            }
+
+            foreach (var inV in this.inputsVNum) {
+                foreach(InputControlDataModel data in inV.DataModels) {
+                    config.InputsNumericVertical.Add(data);
+                }
+            }
+            return config;
+        }
+
+
 
 
         private void mouseLeftButtonUp(object sender, MouseButtonEventArgs e) {

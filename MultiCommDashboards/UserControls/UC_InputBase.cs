@@ -1,5 +1,6 @@
 ﻿using CommunicationStack.Net.Enumerations;
 using LogUtils.Net;
+using MultiCommDashboardData.Storage;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,11 +41,35 @@ namespace MultiCommDashboards.UserControls {
         /// <summary>Column location in grid</summary>
         public int Column { get; set; } = 0;
 
+        public InputControlDataModel StorageInfo {
+            get {
+                return new InputControlDataModel() {
+                    Id = this.Id,
+                    IOName = this.IOName,
+                    DataType = this.DataType,
+                    Minimum = this.Minimum,
+                    Maximum = this.Maximum,
+                    SendAtStep = this.SendAtStep,
+                    Row = this.Row,
+                    Column = this.Column,
+                };
+            }
+        }
+
+
+
         #endregion
 
         #region Constructors
 
         public UC_InputBase() {
+        }
+
+
+        public UC_InputBase(InputControlDataModel data) {
+            this.Init(data.Id, data.IOName, data.DataType, data.SendAtStep, data.Minimum, data.Maximum);
+            this.Row = data.Row;
+            this.Column = data.Column;
         }
 
         #endregion

@@ -39,6 +39,12 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string Send { get { return GetTxt(MsgCode.send); } }
         public static string Id { get { return GetTxt(MsgCode.Id); } }
 
+
+        // new
+        public static string Preview { get { return "Preview"; } }
+
+
+
         #endregion
 
         //public static string Save { get { return GetTxt(MsgCode.save); } }
