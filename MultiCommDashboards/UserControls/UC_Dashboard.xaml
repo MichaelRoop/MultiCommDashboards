@@ -38,7 +38,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="White" MinHeight="50" MinWidth="50" >
+            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="LightBlue" MinHeight="50" MinWidth="50" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
@@ -46,7 +46,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -60,7 +60,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White" MinHeight="50" MinWidth="50">
+            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="LightBlue" MinHeight="50" MinWidth="50">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -78,7 +78,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White" MinHeight="50" MinWidth="50">
+        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="LightBlue" MinHeight="50" MinWidth="50">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

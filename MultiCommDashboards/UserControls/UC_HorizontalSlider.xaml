@@ -8,7 +8,7 @@
              xmlns:customButtons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
              xmlns:customSliders="clr-namespace:WpfCustomControlLib.Core.Sliders;assembly=WpfCustomControlLib.Core"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" Margin="5" Background="White">
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition />

@@ -10,7 +10,7 @@
              xmlns:userControl="clr-namespace:WpfUserControlLib;assembly=WpfUserControlLib"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Margin="5" Background="White"
              >
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>

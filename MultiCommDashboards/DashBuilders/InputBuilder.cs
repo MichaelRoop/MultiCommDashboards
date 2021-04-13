@@ -49,14 +49,22 @@ namespace MultiCommDashboards.DashBuilders {
         public bool Add() {
             if (this.nextColumn <= max) {
 
-                // TODO Here open the Dialog for the ID and name, and data type if not bool
 
                 this.testId++;
                 UC_InputBase bt = new T() {
                     Column = nextColumn,
                     Row = this.row,
                 };
-                bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeBool, 1, 0, 1);
+
+                // TODO Here open the Dialog for the ID and name, and data type if not bool
+                if (typeof(T) == typeof(UC_BoolToggle)) {
+                    // TODO - Dialog for bool
+                    bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeBool, 1, 0, 1);
+                }else {
+                    // TODO - Dialog for others
+                    bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeUInt8, 1, 0, 255);
+                }
+
                 Grid.SetRow(bt, this.row);
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);

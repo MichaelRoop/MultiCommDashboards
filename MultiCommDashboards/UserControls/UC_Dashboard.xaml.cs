@@ -46,6 +46,8 @@ namespace MultiCommDashboards.UserControls {
 
 
         private void InitItem(UC_InputBase input, Grid grid) {
+            input.Margin = new Thickness(10);
+            //input.BorderThickness = new Thickness(5);
             input.SetSendAction(this.sendAction);
             Grid.SetRow(input, input.Row);
             Grid.SetColumn(input, input.Column);
