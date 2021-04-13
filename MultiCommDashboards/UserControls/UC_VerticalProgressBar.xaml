@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MultiCommDashboards.UserControls.UC_VerticalProgressBar"
+﻿<local:UC_OutputBase x:Class="MultiCommDashboards.UserControls.UC_VerticalProgressBar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -51,8 +51,8 @@
             <Border Grid.Row="0" Grid.Column="1"  Style="{ StaticResource brd075}" Padding="0" Margin="3,0,0,0">
                 <!--<Slider x:Name="sliderNumeric" Padding="0" Style="{StaticResource MyVeritcalSliderStyle}" />-->
                 <Grid HorizontalAlignment="Stretch">
-                    <ProgressBar  x:Name="sbValue" Style="{StaticResource ioProgressBarHorizontal}" Value="500" Minimum="0" Maximum="100"/>
-                    <TextBlock Text="{Binding ElementName=sbValue, Path=Value, StringFormat={}{0:0}}" 
+                    <ProgressBar  x:Name="sbProgress" Style="{StaticResource ioProgressBarHorizontal}" Value="500" Minimum="0" Maximum="100"/>
+                    <TextBlock Text="{Binding ElementName=sbProgress, Path=Value, StringFormat={}{0:0}}" 
                            Style="{StaticResource ioProgressBarHorizontalText}">
                         <TextBlock.LayoutTransform>
                             <RotateTransform Angle="-90"/>
@@ -65,4 +65,4 @@
         </Grid>
     </Border>
 
-</UserControl>
+</local:UC_OutputBase>

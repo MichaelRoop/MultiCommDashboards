@@ -11,6 +11,9 @@ namespace MultiCommDashboardData.Storage {
         public List<InputControlDataModel> InputsNumericHorizontal { get; set; } = new List<InputControlDataModel>();
         public List<InputControlDataModel> InputsNumericVertical { get; set; } = new List<InputControlDataModel>();
 
+        public List<OutputControlDataModel> OutputsBool { get; set; } = new List<OutputControlDataModel>();
+        public List<OutputControlDataModel> OutputsNumericHorizontal { get; set; } = new List<OutputControlDataModel>();
+        public List<OutputControlDataModel> OutputsNumericVertical { get; set; } = new List<OutputControlDataModel>();
 
     }
 }

@@ -1,23 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using MultiCommDashboardData.Storage;
 
 namespace MultiCommDashboards.UserControls {
-    /// <summary>
-    /// Interaction logic for UC_HorizontalProgressBar.xaml
-    /// </summary>
-    public partial class UC_HorizontalProgressBar : UserControl {
+
+    /// <summary>UC_HorizontalProgressBar.xaml</summary>
+    public partial class UC_HorizontalProgressBar : UC_OutputBase {
+
         public UC_HorizontalProgressBar() {
             InitializeComponent();
+            this.DoDisplay(0);
         }
+
+
+        public UC_HorizontalProgressBar(OutputControlDataModel data) : base(data) {
+            // The base initializes variables and calls the DoInit. Initialize there
+        }
+
+
+        protected override void DoInit() {
+            InitializeComponent();
+            this.lbIdTxt.Content = this.Id.ToString();
+            this.lbIdNameTxt.Content = this.IOName;
+            this.sbProgress.Minimum = this.Minimum;
+            this.sbProgress.Maximum = this.Maximum;
+            this.DoDisplay(0);
+        }
+
+
+        protected override void DoDisplay(double value) {
+            this.sbProgress.Value = value;
+        }
+
     }
 }
