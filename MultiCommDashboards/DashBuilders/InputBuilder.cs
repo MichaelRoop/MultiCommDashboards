@@ -31,7 +31,6 @@ namespace MultiCommDashboards.DashBuilders {
         private int nextColumn = 1;
         private int max = 1;
         private Grid grid;
-        private int row = 0;
 
         // bogus test id
         private byte testId = 0;
@@ -41,8 +40,8 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public InputBuilder(UC_InputBase triggerControl, Grid grid, int row, int maxColumns) {
-            this.Init(triggerControl, grid, row, maxColumns);
+        public InputBuilder(UC_InputBase triggerControl, Grid grid, int maxColumns) {
+            this.Init(triggerControl, grid, maxColumns);
         }
 
 
@@ -53,7 +52,7 @@ namespace MultiCommDashboards.DashBuilders {
                 this.testId++;
                 UC_InputBase bt = new T() {
                     Column = nextColumn,
-                    Row = this.row,
+                    Row = this.triggerControl.Row,
                 };
 
                 // TODO Here open the Dialog for the ID and name, and data type if not bool
@@ -65,7 +64,7 @@ namespace MultiCommDashboards.DashBuilders {
                     bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeUInt8, 1, 0, 255);
                 }
 
-                Grid.SetRow(bt, this.row);
+                Grid.SetRow(bt, this.triggerControl.Row);
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);
                 bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
@@ -84,13 +83,12 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void Init(UC_InputBase triggerControl, Grid grid, int row, int maxColumns) {
+        public void Init(UC_InputBase triggerControl, Grid grid, int maxColumns) {
             //this.Reset();
             this.triggerControl = triggerControl;
             this.triggerControl.SetAsAddDummy();
             this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
             this.grid = grid;
-            this.row = row;
             this.max = maxColumns;
 
             //this.grid.Drop += Grid_Drop;
