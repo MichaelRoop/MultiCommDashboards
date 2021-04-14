@@ -138,6 +138,9 @@ namespace MultiCommDashboards.UserControls {
 
         #region Abstract 
 
+        public virtual void SetAsAddDummy() {
+        }
+
         protected abstract void DoInit();
         protected abstract void DoDisplay(double value);
 

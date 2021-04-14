@@ -77,7 +77,6 @@ namespace MultiCommDashboards.UserControls {
         #region Public
 
         public virtual void SetAsAddDummy() {
-            //
         }
 
         /// <summary>Sets the action to raise when the value changes</summary>

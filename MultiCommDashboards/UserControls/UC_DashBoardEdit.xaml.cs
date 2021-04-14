@@ -88,6 +88,23 @@ namespace MultiCommDashboards.UserControls {
             this.inVSlider0.SetAsAddDummy();
             this.inVSlider1.SetAsAddDummy();
 
+            // Outputs
+            this.outBoolProgress0.SetAsAddDummy();
+            this.outBoolProgress1.SetAsAddDummy();
+            this.outBoolProgress2.SetAsAddDummy();
+            this.outBoolProgress3.SetAsAddDummy();
+
+            this.outHProgress0.SetAsAddDummy();
+            this.outHProgress1.SetAsAddDummy();
+            this.outHProgress2.SetAsAddDummy();
+            this.outHProgress3.SetAsAddDummy();
+            this.outHProgress4.SetAsAddDummy();
+            this.outHProgress5.SetAsAddDummy();
+
+            this.outVProgress0.SetAsAddDummy();
+            this.outVProgress1.SetAsAddDummy();
+            this.outVProgress2.SetAsAddDummy();
+
         }
 
 
