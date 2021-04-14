@@ -19,13 +19,6 @@ namespace MultiCommDashboards.UserControls {
         List<OutputBuilder<UC_HorizontalProgressBar>> outputsHNum = new List<OutputBuilder<UC_HorizontalProgressBar>>();
         List<OutputBuilder<UC_VerticalProgressBar>> outputsVNum = new List<OutputBuilder<UC_VerticalProgressBar>>();
 
-        //private static int INPUTS_ROWS_BOOL = 3;
-        //private static int INPUTS_ROWS_NUM_H = 3;
-        //private static int INPUTS_ROWS_NUM_V = 2;
-        //private static int INPUTS_COLS_BOOL = 6;
-        //private static int INPUTS_COLS_NUM_H = 4;
-        //private static int INPUTS_COLS_NUM_V = 10;
-
 
         private static int OUTPUTS_ROWS_BOOL = 4;
         private static int OUTPUTS_COLS_BOOL = 10;
@@ -33,11 +26,6 @@ namespace MultiCommDashboards.UserControls {
         private static int OUTPUTS_COLS_NUM_H = 4;
         private static int OUTPUTS_ROWS_NUM_V = 3;
         private static int OUTPUTS_COLS_NUM_V = 10;
-
-        private List<UC_BoolToggle> inBools = new List<UC_BoolToggle>();
-        private List<UC_HorizontalSlider> inNumericH = new List<UC_HorizontalSlider>();
-        private List<UC_VerticalSlider> inNumericV = new List<UC_VerticalSlider>();
-
 
         #endregion
 
@@ -73,34 +61,22 @@ namespace MultiCommDashboards.UserControls {
 
 
         private void InitBoolInputs() {
-            this.inBools.Add(this.inBool0);
-            this.inBools.Add(this.inBool1);
-            this.inBools.Add(this.inBool2);
-            for (int i = 0; i < this.inBools.Count; i++) {
-                this.inBools[i].Row = i;
-                this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(this.inBools[i], this.grdInputsBool));
-            }
+            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(0, this.inBool0, this.grdInputsBool));
+            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(1, this.inBool1, this.grdInputsBool));
+            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(2, this.inBool2, this.grdInputsBool));
         }
 
 
         private void InitHorizontalInputs() {
-            this.inNumericH.Add(this.inHSlider0);
-            this.inNumericH.Add(this.inHSlider1);
-            this.inNumericH.Add(this.inHSlider2);
-            for (int i = 0; i < this.inNumericH.Count; i++) {
-                this.inNumericH[i].Row = i;
-                this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(this.inNumericH[i], this.grdInputsNumHorizontal));
-            }
+            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(0, this.inHSlider0, this.grdInputsNumHorizontal));
+            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(1, this.inHSlider1, this.grdInputsNumHorizontal));
+            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(2, this.inHSlider2, this.grdInputsNumHorizontal));
         }
 
 
         private void InitVerticalInputs() {
-            this.inNumericV.Add(this.inVSlider0);
-            this.inNumericV.Add(this.inVSlider1);
-            for (int i = 0; i < this.inNumericV.Count; i++) {
-                this.inNumericV[i].Row = i;
-                this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(this.inNumericV[i], this.grdInputsNumVertical));
-            }
+            this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(0, this.inVSlider0, this.grdInputsNumVertical));
+            this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(1, this.inVSlider1, this.grdInputsNumVertical));
         }
 
 

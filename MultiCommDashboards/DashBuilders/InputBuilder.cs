@@ -40,8 +40,8 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public InputBuilder(UC_InputBase triggerControl, Grid grid) {
-            this.Init(triggerControl, grid);
+        public InputBuilder(int row, UC_InputBase triggerControl, Grid grid) {
+            this.Init(row, triggerControl, grid);
         }
 
 
@@ -83,9 +83,11 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void Init(UC_InputBase triggerControl, Grid grid) {
+        public void Init(int row, UC_InputBase triggerControl, Grid grid) {
             //this.Reset();
             this.triggerControl = triggerControl;
+            this.triggerControl.Row = row;
+            this.triggerControl.Column = 0;
             this.triggerControl.SetAsAddDummy();
             this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
             this.grid = grid;
