@@ -10,8 +10,17 @@ namespace MultiCommDashboards.DashBuilders {
 
     public class InputBuilder<T>  where T : UC_InputBase, new() {
 
+        private enum InputType {
+            Undefined,
+            Bool,
+            Horizontal,
+            Vertical
+        };
+
+
         private List<UC_InputBase> Controls { get; set; } = new List<UC_InputBase>();
         private UC_InputBase triggerControl = null;
+        private InputType inType = InputType.Undefined;
 
         public List<InputControlDataModel> DataModels {
             get {
@@ -37,13 +46,35 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         public InputBuilder() {
+            this.SetType();
         }
 
 
-        public InputBuilder(int row, UC_InputBase triggerControl, Grid grid) {
+        public InputBuilder(int row, UC_InputBase triggerControl, Grid grid) : this() {
             this.Init(row, triggerControl, grid);
         }
 
+
+        public void BuildConfig(DashboardConfiguration config) {
+            foreach (var control in Controls) {
+                // Note. All the columns are over by 1 since 0 is occupied by event dummy
+                InputControlDataModel dm = control.StorageInfo;
+                dm.Column -= 1;
+                switch (this.inType) {
+                    case InputType.Undefined:
+                        break;
+                    case InputType.Bool:
+                        config.InputsBool.Add(dm);
+                        break;
+                    case InputType.Horizontal:
+                        config.InputsNumericHorizontal.Add(dm);
+                        break;
+                    case InputType.Vertical:
+                        config.InputsNumericVertical.Add(dm);
+                        break;
+                }
+            }
+        }
 
 
         private bool Add() {
@@ -138,6 +169,20 @@ namespace MultiCommDashboards.DashBuilders {
             }
         }
 
+        private void SetType() {
+            if (typeof(T) == typeof(UC_BoolToggle)) {
+                this.inType = InputType.Bool;
+            }
+            else if (typeof(T) == typeof(UC_HorizontalSlider)) {
+                this.inType = InputType.Horizontal;
+            }
+            else if (typeof(T) == typeof(UC_VerticalSlider)) {
+                this.inType = InputType.Vertical;
+            }
+
+        }
+
+
 
         #region Drag drop experiments
 
@@ -193,7 +238,7 @@ namespace MultiCommDashboards.DashBuilders {
 
 #endif
 
-#endregion
+        #endregion
 
     }
 }

@@ -11,11 +11,20 @@ namespace MultiCommDashboards.DashBuilders {
 
         #region Data
 
+        private enum OutputType {
+            Undefined,
+            Bool,
+            Horizontal,
+            Vertical
+        };
+
+
         // Always start at column 1. 0 reserved for Add
         private int nextColumn = 1;
         private int max = 1;
         private Grid grid;
-        UC_OutputBase triggerControl = null;
+        private UC_OutputBase triggerControl = null;
+        private OutputType outType = OutputType.Undefined;
 
         // bogus test id
         private byte testId = 0;
@@ -45,10 +54,11 @@ namespace MultiCommDashboards.DashBuilders {
         #region Constructors
 
         public OutputBuilder() {
+            this.SetType();
         }
 
 
-        public OutputBuilder(int row, UC_OutputBase triggerControl, Grid grid) {
+        public OutputBuilder(int row, UC_OutputBase triggerControl, Grid grid) : this() {
             this.Init(row, triggerControl, grid);
         }
 
@@ -99,6 +109,28 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
+        public void BuildConfig(DashboardConfiguration config) {
+            foreach (var control in Controls) {
+                // Note. All the columns are over by 1 since 0 is occupied by event dummy
+                OutputControlDataModel dm = control.StorageInfo;
+                dm.Column -= 1;
+                switch (this.outType) {
+                    case OutputType.Undefined:
+                        break;
+                    case OutputType.Bool:
+                        config.OutputsBool.Add(dm);
+                        break;
+                    case OutputType.Horizontal:
+                        config.OutputsNumericHorizontal.Add(dm);
+                        break;
+                    case OutputType.Vertical:
+                        config.OutputsNumericVertical.Add(dm);
+                        break;
+                }
+            }
+        }
+
+
         public void Reset() {
             if (this.triggerControl != null) {
                 // Need to disconnect?
@@ -139,6 +171,20 @@ namespace MultiCommDashboards.DashBuilders {
 
         private void dummyMouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
             this.Add();
+        }
+
+
+        private void SetType() {
+            if (typeof(T) == typeof(UC_BoolProgress)) {
+                this.outType = OutputType.Bool;
+            }
+            else if (typeof(T) == typeof(UC_HorizontalProgressBar)) {
+                this.outType = OutputType.Horizontal;
+            }
+            else if (typeof(T) == typeof(UC_VerticalProgressBar)) {
+                this.outType = OutputType.Vertical;
+            }
+
         }
 
         #endregion

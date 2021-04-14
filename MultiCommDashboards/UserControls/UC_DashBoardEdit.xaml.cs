@@ -82,42 +82,30 @@ namespace MultiCommDashboards.UserControls {
             DashboardConfiguration config = new DashboardConfiguration() {
                 Name = "Test config name"
             };
-            // NOTE: they are always 1 column over since dummy is in 0. Need decrement
-            foreach (var ib in this.inputsBool) {
-                foreach (InputControlDataModel data in ib.DataModels) {
-                    config.InputsBool.Add(data);
-                }
+
+            // Inputs
+            foreach (var inputs in this.inputsBool) {
+                inputs.BuildConfig(config);
+            }
+            foreach (var inputs in this.inputsHNum) {
+                inputs.BuildConfig(config);
+            }
+            foreach (var inputs in this.inputsVNum) {
+                inputs.BuildConfig(config);
             }
 
-            foreach (var inH in this.inputsHNum) {
-                foreach(InputControlDataModel data in inH.DataModels) {
-                    config.InputsNumericHorizontal.Add(data);
-                }
-            }
-
-            foreach (var inV in this.inputsVNum) {
-                foreach(InputControlDataModel data in inV.DataModels) {
-                    config.InputsNumericVertical.Add(data);
-                }
-            }
 
             // Outputs
-            foreach (var ib in this.outputsBool) {
-                foreach (OutputControlDataModel data in ib.DataModels) {
-                    config.OutputsBool.Add(data);
-                }
+            foreach (var outputs in this.outputsBool) {
+                outputs.BuildConfig(config);
             }
 
-            foreach (var inH in this.outputsHNum) {
-                foreach (OutputControlDataModel data in inH.DataModels) {
-                    config.OutputsNumericHorizontal.Add(data);
-                }
+            foreach (var outputs in this.outputsHNum) {
+                outputs.BuildConfig(config);
             }
 
-            foreach (var inV in this.outputsVNum) {
-                foreach (OutputControlDataModel data in inV.DataModels) {
-                    config.OutputsNumericVertical.Add(data);
-                }
+            foreach (var outputs in this.outputsVNum) {
+                outputs.BuildConfig(config);
             }
 
             return config;
