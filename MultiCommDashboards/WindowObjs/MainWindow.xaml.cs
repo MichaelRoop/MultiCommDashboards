@@ -17,8 +17,8 @@ namespace MultiCommDashboards.WindowObjs {
     /// <summary>Logic for MainWindow.xaml</summary>
     public partial class MainWindow : Window {
 
-        InputBuilder<UC_BoolToggle> bool0 = new InputBuilder<UC_BoolToggle>();
-        InputBuilder<UC_HorizontalSlider> bool1 = new InputBuilder<UC_HorizontalSlider>();
+        //InputBuilder<UC_BoolToggle> bool0 = new InputBuilder<UC_BoolToggle>();
+        //InputBuilder<UC_HorizontalSlider> bool1 = new InputBuilder<UC_HorizontalSlider>();
 
         public MainWindow() {
             InitializeComponent();
@@ -26,8 +26,8 @@ namespace MultiCommDashboards.WindowObjs {
             DI.W.MsgEventFloat32 += W_MsgEventFloat32;
             DI.W.SetLanguage(LangCode.Spanish, App.ShowErrMsg);
             this.InitControls();
-            this.bool0.Init(this.grdBool, 0, 10);
-            this.bool1.Init(this.grdBool, 1, 10);
+            //this.bool0.Init(this.grdBool, 0, 10);
+            //this.bool1.Init(this.grdBool, 1, 10);
         }
 
 
@@ -134,35 +134,35 @@ namespace MultiCommDashboards.WindowObjs {
         //int boolNext = 1;
         //int id = 0;
 
-        private void brdBool_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            if (sender is Border) {
-                switch ((sender as Border).Name) {
-                    case "brdBool_0":
-                        this.bool0.Add();
-                        break;
-                    case "brdBool_1":
-                        this.bool1.Add();
-                        break;
-                }
-            }
+        //private void brdBool_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+        //    if (sender is Border) {
+        //        switch ((sender as Border).Name) {
+        //            case "brdBool_0":
+        //                this.bool0.Add();
+        //                break;
+        //            case "brdBool_1":
+        //                this.bool1.Add();
+        //                break;
+        //        }
+        //    }
 
 
 
-            //return;
+        //    //return;
             
 
-            //if (boolNext <= 10) {
-            //    UC_BoolToggle bt = new UC_BoolToggle();
-            //    id++;
-            //    bt.InitAsBool((byte)id, string.Format("DigiIO_{0}", id));
-            //    Grid.SetRow(bt, 0);
-            //    Grid.SetColumn(bt, boolNext);
-            //    this.grdBool.Children.Add(bt);
-            //    bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
-            //    this.boolToggles0.Add(bt);
-            //    boolNext++;
-            //}
-        }
+        //    //if (boolNext <= 10) {
+        //    //    UC_BoolToggle bt = new UC_BoolToggle();
+        //    //    id++;
+        //    //    bt.InitAsBool((byte)id, string.Format("DigiIO_{0}", id));
+        //    //    Grid.SetRow(bt, 0);
+        //    //    Grid.SetColumn(bt, boolNext);
+        //    //    this.grdBool.Children.Add(bt);
+        //    //    bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
+        //    //    this.boolToggles0.Add(bt);
+        //    //    boolNext++;
+        //    //}
+        //}
 
         //private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
         //    UC_BoolToggle bt = sender as UC_BoolToggle;

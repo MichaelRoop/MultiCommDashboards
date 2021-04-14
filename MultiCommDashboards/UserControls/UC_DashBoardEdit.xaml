@@ -52,7 +52,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
+                
                 <Border Grid.Row="0" Grid.Column="0" x:Name="brdOutputBool_0" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
                     <local:UC_BoolProgress x:Name="outBoolProgress0"/>
                 </Border>
@@ -168,13 +168,18 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-                <Border Grid.Row="0" Grid.Column="0" x:Name="brdBool_0" MouseLeftButtonUp="mouseLeftButtonUp" >
+                <!--
+                MouseLeftButtonUp="mouseLeftButtonUp" 
+                -->
+
+
+                <Border Grid.Row="0" Grid.Column="0" x:Name="brdBool_0" >
                     <local:UC_BoolToggle x:Name="inBool0"/>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="0" x:Name="brdBool_1" MouseLeftButtonUp="mouseLeftButtonUp" >
+                <Border Grid.Row="1" Grid.Column="0" x:Name="brdBool_1" >
                     <local:UC_BoolToggle x:Name="inBool1"/>
                 </Border>
-                <Border Grid.Row="2" Grid.Column="0" x:Name="brdBool_2" MouseLeftButtonUp="mouseLeftButtonUp" >
+                <Border Grid.Row="2" Grid.Column="0" x:Name="brdBool_2" >
                     <local:UC_BoolToggle x:Name="inBool2"/>
                 </Border>
             </Grid>
@@ -192,13 +197,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" x:Name="brdHNum_0" MouseLeftButtonUp="mouseLeftButtonUp" >
+                <Border Grid.Row="0" Grid.Column="0" x:Name="brdHNum_0" >
                     <local:UC_HorizontalSlider x:Name="inHSlider0"/>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="0" x:Name="brdHNum_1" MouseLeftButtonUp="mouseLeftButtonUp" >
+                <Border Grid.Row="1" Grid.Column="0" x:Name="brdHNum_1" >
                     <local:UC_HorizontalSlider x:Name="inHSlider1"/>
                 </Border>
-                <Border Grid.Row="2" Grid.Column="0" x:Name="brdHNum_2" MouseLeftButtonUp="mouseLeftButtonUp" >
+                <Border Grid.Row="2" Grid.Column="0" x:Name="brdHNum_2" >
                     <local:UC_HorizontalSlider x:Name="inHSlider2"/>
                 </Border>
             </Grid>
@@ -225,10 +230,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Row="0" Grid.Column="0" x:Name="brdVNum_0" MouseLeftButtonUp="mouseLeftButtonUp" >
+            <Border Grid.Row="0" Grid.Column="0" x:Name="brdVNum_0" >
                 <local:UC_VerticalSlider x:Name="inVSlider0"/>
             </Border>
-            <Border Grid.Row="1" Grid.Column="0" x:Name="brdVNum_1" MouseLeftButtonUp="mouseLeftButtonUp" >
+            <Border Grid.Row="1" Grid.Column="0" x:Name="brdVNum_1" >
                 <local:UC_VerticalSlider x:Name="inVSlider1"/>
             </Border>
         </Grid>

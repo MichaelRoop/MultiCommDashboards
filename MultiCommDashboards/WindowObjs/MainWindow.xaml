@@ -55,7 +55,7 @@
             <controls:UC_VerticalSlider x:Name="vSlider1" Grid.Column="1" />
 
 
-        <Grid Grid.Row="1" x:Name="grdBool" Background="Wheat" >
+        <!--<Grid Grid.Row="1" x:Name="grdBool" Background="Wheat" >
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="boolRow0" />
                 <RowDefinition/>
@@ -81,7 +81,7 @@
             <Border Grid.Row="1" Grid.Column="0" x:Name="brdBool_1" Opacity=".4" MouseLeftButtonUp="brdBool_MouseLeftButtonUp" >
                 <controls:UC_BoolToggle/>
             </Border>
-        </Grid>
+        </Grid>-->
         
     </Grid>
 </Window>

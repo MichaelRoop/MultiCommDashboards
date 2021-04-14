@@ -11,6 +11,7 @@ namespace MultiCommDashboards.DashBuilders {
     public class InputBuilder<T>  where T : UC_InputBase, new() {
 
         private List<UC_InputBase> Controls { get; set; } = new List<UC_InputBase>();
+        private UC_InputBase triggerControl = null;
 
         public List<InputControlDataModel> DataModels {
             get {
@@ -40,15 +41,14 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public InputBuilder(Grid grid, int row, int maxColumns) {
-            this.Init(grid, row, maxColumns);
+        public InputBuilder(UC_InputBase triggerControl, Grid grid, int row, int maxColumns) {
+            this.Init(triggerControl, grid, row, maxColumns);
         }
 
 
 
-        public bool Add() {
+        private bool Add() {
             if (this.nextColumn <= max) {
-
 
                 this.testId++;
                 UC_InputBase bt = new T() {
@@ -84,8 +84,11 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void Init(Grid grid, int row, int maxColumns) {
-            this.Reset();
+        public void Init(UC_InputBase triggerControl, Grid grid, int row, int maxColumns) {
+            //this.Reset();
+            this.triggerControl = triggerControl;
+            this.triggerControl.SetAsAddDummy();
+            this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
             this.grid = grid;
             this.row = row;
             this.max = maxColumns;
@@ -96,11 +99,22 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         public void Reset() {
+            if (this.triggerControl != null) {
+                // Need to disconnect?
+                this.triggerControl.MouseLeftButtonUp -= this.dummyMouseLeftButtonUp;
+            }
+
+            //Would need to add the trigger event also
             foreach (T control in this.Controls) {
                 control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
             }
             this.Controls.Clear();
             this.nextColumn = 1;
+        }
+
+
+        private void dummyMouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
+            this.Add();
         }
 
 
