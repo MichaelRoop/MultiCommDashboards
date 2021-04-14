@@ -1,4 +1,5 @@
 ﻿using MultiCommDashboardData.Storage;
+using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -13,6 +14,11 @@ namespace MultiCommDashboards.UserControls {
 
         public UC_VerticalSlider(InputControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize there
+        }
+
+
+        public override void SetAsAddDummy() {
+            this.gridAdd.Show();
         }
 
 
@@ -31,6 +37,7 @@ namespace MultiCommDashboards.UserControls {
         protected override void OnValueChanged(double newValue) {
             this.lblValue.Content = newValue.ToString();
         }
+
 
         private void OnConstruction() {
             this.lblValue.Content = "";

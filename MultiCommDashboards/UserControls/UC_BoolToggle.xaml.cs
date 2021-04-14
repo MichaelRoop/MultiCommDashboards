@@ -1,6 +1,7 @@
 ﻿using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
 using System;
+using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -20,6 +21,11 @@ namespace MultiCommDashboards.UserControls {
 
         public UC_BoolToggle(InputControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize there
+        }
+
+
+        public override void SetAsAddDummy() {
+            this.gridAdd.Show();
         }
 
 

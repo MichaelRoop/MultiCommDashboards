@@ -74,6 +74,20 @@ namespace MultiCommDashboards.UserControls {
             for (int i = 0; i < OUTPUTS_ROWS_NUM_V; i++) {
                 this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(this.grdOutputsNumVertical, i, OUTPUTS_COLS_NUM_V));
             }
+
+
+            // Set the dummy objects as Add
+            this.inBool0.SetAsAddDummy();
+            this.inBool1.SetAsAddDummy();
+            this.inBool2.SetAsAddDummy();
+
+            this.inHSlider0.SetAsAddDummy();
+            this.inHSlider1.SetAsAddDummy();
+            this.inHSlider2.SetAsAddDummy();
+
+            this.inVSlider0.SetAsAddDummy();
+            this.inVSlider1.SetAsAddDummy();
+
         }
 
 

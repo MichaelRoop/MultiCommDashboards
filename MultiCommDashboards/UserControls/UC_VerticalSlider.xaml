@@ -12,8 +12,13 @@
              HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="2"
              mc:Ignorable="d"  Margin="1" Background="White"
              >
-
-    <Border x:Name="mainBorder">
+    <Grid Margin="0">
+        <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".5"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+            <customButtons:UC_RoundIconButton Style="{StaticResource IconButton}"  IsEnabled="False"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}"  Width="40" Height="40"/>
+        </Grid>
+        <Border x:Name="mainBorder">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -63,4 +68,5 @@
             </Border>
         </Grid>
     </Border>
+    </Grid>
 </local:UC_InputBase>
