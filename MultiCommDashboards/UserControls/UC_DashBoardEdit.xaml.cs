@@ -22,9 +22,9 @@ namespace MultiCommDashboards.UserControls {
         //private static int INPUTS_ROWS_BOOL = 3;
         //private static int INPUTS_ROWS_NUM_H = 3;
         //private static int INPUTS_ROWS_NUM_V = 2;
-        private static int INPUTS_COLS_BOOL = 6;
-        private static int INPUTS_COLS_NUM_H = 4;
-        private static int INPUTS_COLS_NUM_V = 10;
+        //private static int INPUTS_COLS_BOOL = 6;
+        //private static int INPUTS_COLS_NUM_H = 4;
+        //private static int INPUTS_COLS_NUM_V = 10;
 
 
         private static int OUTPUTS_ROWS_BOOL = 4;
@@ -78,7 +78,7 @@ namespace MultiCommDashboards.UserControls {
             this.inBools.Add(this.inBool2);
             for (int i = 0; i < this.inBools.Count; i++) {
                 this.inBools[i].Row = i;
-                this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(this.inBools[i], this.grdInputsBool, INPUTS_COLS_BOOL));
+                this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(this.inBools[i], this.grdInputsBool));
             }
         }
 
@@ -89,7 +89,7 @@ namespace MultiCommDashboards.UserControls {
             this.inNumericH.Add(this.inHSlider2);
             for (int i = 0; i < this.inNumericH.Count; i++) {
                 this.inNumericH[i].Row = i;
-                this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(this.inNumericH[i], this.grdInputsNumHorizontal, INPUTS_COLS_NUM_H));
+                this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(this.inNumericH[i], this.grdInputsNumHorizontal));
             }
         }
 
@@ -99,7 +99,7 @@ namespace MultiCommDashboards.UserControls {
             this.inNumericV.Add(this.inVSlider1);
             for (int i = 0; i < this.inNumericV.Count; i++) {
                 this.inNumericV[i].Row = i;
-                this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(this.inNumericV[i], this.grdInputsNumVertical, INPUTS_COLS_NUM_V));
+                this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(this.inNumericV[i], this.grdInputsNumVertical));
             }
         }
 

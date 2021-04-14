@@ -40,8 +40,8 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public InputBuilder(UC_InputBase triggerControl, Grid grid, int maxColumns) {
-            this.Init(triggerControl, grid, maxColumns);
+        public InputBuilder(UC_InputBase triggerControl, Grid grid) {
+            this.Init(triggerControl, grid);
         }
 
 
@@ -83,13 +83,14 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void Init(UC_InputBase triggerControl, Grid grid, int maxColumns) {
+        public void Init(UC_InputBase triggerControl, Grid grid) {
             //this.Reset();
             this.triggerControl = triggerControl;
             this.triggerControl.SetAsAddDummy();
             this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
             this.grid = grid;
-            this.max = maxColumns;
+            // The 0 column is reserved for the trigger Control
+            this.max = this.grid.ColumnDefinitions.Count - 1;
 
             //this.grid.Drop += Grid_Drop;
             //this.grid.AllowDrop = true;
