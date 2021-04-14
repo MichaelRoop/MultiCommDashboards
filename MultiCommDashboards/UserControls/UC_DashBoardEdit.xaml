@@ -23,8 +23,6 @@
             <Label Content="Outputs" Style="{StaticResource NameLabelCenter}" />
         </DockPanel>
 
-
-
         <!-- Outputs - Bool and Horizontal  -->
         <Grid Grid.Row="1" Grid.Column="0"  >
             <Grid.RowDefinitions>
@@ -52,19 +50,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
-                <Border Grid.Row="0" Grid.Column="0" x:Name="brdOutputBool_0" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_BoolProgress x:Name="outBoolProgress0"/>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="0" x:Name="brdOutputBool_1" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_BoolProgress x:Name="outBoolProgress1"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0" x:Name="brdOutputBool_2" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_BoolProgress x:Name="outBoolProgress2"/>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="0" x:Name="brdOutputBool_3" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_BoolProgress x:Name="outBoolProgress3"/>
-                </Border>
+                <local:UC_BoolProgress x:Name="outBoolProgress0" Grid.Row="0" Grid.Column="0"/>
+                <local:UC_BoolProgress x:Name="outBoolProgress1" Grid.Row="1" Grid.Column="0"/>
+                <local:UC_BoolProgress x:Name="outBoolProgress2" Grid.Row="2" Grid.Column="0"/>
+                <local:UC_BoolProgress x:Name="outBoolProgress3" Grid.Row="3" Grid.Column="0"/>
             </Grid>
             
             <!-- Horizontal numeric outputs -->
@@ -84,24 +73,12 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" x:Name="brdOutputHNum_0" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_HorizontalProgressBar x:Name="outHProgress0"/>
-                </Border>
-                <Border Grid.Row="1" Grid.Column="0" x:Name="brdOutputHNum_1" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_HorizontalProgressBar x:Name="outHProgress1"/>
-                </Border>
-                <Border Grid.Row="2" Grid.Column="0" x:Name="brdOutputHNum_2" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_HorizontalProgressBar x:Name="outHProgress2"/>
-                </Border>
-                <Border Grid.Row="3" Grid.Column="0" x:Name="brdOutputHNum_3" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_HorizontalProgressBar x:Name="outHProgress3"/>
-                </Border>
-                <Border Grid.Row="4" Grid.Column="0" x:Name="brdOutputHNum_4" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_HorizontalProgressBar x:Name="outHProgress4"/>
-                </Border>
-                <Border Grid.Row="5" Grid.Column="0" x:Name="brdOutputHNum_5" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                    <local:UC_HorizontalProgressBar x:Name="outHProgress5"/>
-                </Border>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress0" Grid.Row="0" Grid.Column="0"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress1" Grid.Row="1" Grid.Column="0"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress2" Grid.Row="2" Grid.Column="0"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress3" Grid.Row="3" Grid.Column="0"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress4" Grid.Row="4" Grid.Column="0"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress5" Grid.Row="5" Grid.Column="0"/>
             </Grid>
         </Grid>
 
@@ -125,19 +102,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
-            <Border Grid.Row="0" Grid.Column="0" x:Name="brdOutputVNum_0" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                <local:UC_VerticalProgressBar x:Name="outVProgress0"/>
-            </Border>
-            <Border Grid.Row="1" Grid.Column="0" x:Name="brdOutputVNum_1" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                <local:UC_VerticalProgressBar x:Name="outVProgress1"/>
-            </Border>
-            <Border Grid.Row="2" Grid.Column="0" x:Name="brdOutputVNum_2" MouseLeftButtonUp="mouseLeftButtonUpOutput" >
-                <local:UC_VerticalProgressBar x:Name="outVProgress2"/>
-            </Border>
-
-
-
+            <local:UC_VerticalProgressBar x:Name="outVProgress0" Grid.Row="0" Grid.Column="0"/>
+            <local:UC_VerticalProgressBar x:Name="outVProgress1" Grid.Row="1" Grid.Column="0"/>
+            <local:UC_VerticalProgressBar x:Name="outVProgress2" Grid.Row="2" Grid.Column="0"/>
         </Grid>
 
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">

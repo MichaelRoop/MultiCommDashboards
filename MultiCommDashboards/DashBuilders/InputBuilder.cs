@@ -47,8 +47,7 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         private bool Add() {
-            if (this.nextColumn <= max) {
-
+            if (this.nextColumn <= this.max) {
                 this.testId++;
                 UC_InputBase bt = new T() {
                     Column = nextColumn,

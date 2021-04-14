@@ -15,7 +15,7 @@ namespace MultiCommDashboards.DashBuilders {
         private int nextColumn = 1;
         private int max = 1;
         private Grid grid;
-        private int row = 0;
+        UC_OutputBase triggerControl = null;
 
         // bogus test id
         private byte testId = 0;
@@ -48,20 +48,20 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public OutputBuilder(Grid grid, int row, int maxColumns) {
-            this.Init(grid, row, maxColumns);
+        public OutputBuilder(int row, UC_OutputBase triggerControl, Grid grid) {
+            this.Init(row, triggerControl, grid);
         }
 
         #endregion
 
         #region Public
 
-        public bool Add() {
-            if (this.nextColumn <= max) {
+        private bool Add() {
+            if (this.nextColumn <= this.max) {
                 this.testId++;
                 UC_OutputBase bt = new T() {
                     Column = nextColumn,
-                    Row = this.row,
+                    Row = this.triggerControl.Row,
                 };
 
                 // TODO Here open the Dialog for the ID and name, and data type if not bool
@@ -74,7 +74,7 @@ namespace MultiCommDashboards.DashBuilders {
                     bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeUInt8, 0, 255);
                 }
 
-                Grid.SetRow(bt, this.row);
+                Grid.SetRow(bt, this.triggerControl.Row);
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);
                 bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
@@ -86,15 +86,25 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void Init(Grid grid, int row, int maxColumns) {
-            this.Reset();
+        public void Init(int row, UC_OutputBase triggerControl, Grid grid) {
+            //this.Reset();
+            this.triggerControl = triggerControl;
+            this.triggerControl.Row = row;
+            this.triggerControl.Column = 0;
+            this.triggerControl.SetAsAddDummy();
+            this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
             this.grid = grid;
-            this.row = row;
-            this.max = maxColumns;
+            // The 0 column is reserved for the trigger Control
+            this.max = this.grid.ColumnDefinitions.Count - 1;
         }
 
 
         public void Reset() {
+            if (this.triggerControl != null) {
+                // Need to disconnect?
+                this.triggerControl.MouseLeftButtonUp -= this.dummyMouseLeftButtonUp;
+            }
+
             foreach (T control in this.Controls) {
                 control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
             }
@@ -124,6 +134,11 @@ namespace MultiCommDashboards.DashBuilders {
             if (this.nextColumn < 1) {
                 this.nextColumn = 1;
             }
+        }
+
+
+        private void dummyMouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
+            this.Add();
         }
 
         #endregion
