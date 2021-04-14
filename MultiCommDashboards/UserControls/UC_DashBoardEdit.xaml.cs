@@ -33,6 +33,22 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
+        public DashboardConfiguration GetConfig() {
+            // TODO - have the name saved and loaded
+            DashboardConfiguration config = new DashboardConfiguration() {
+                Name = "Test config name"
+            };
+
+            this.BuildConfig(this.inputsBool, config);
+            this.BuildConfig(this.inputsHNum, config);
+            this.BuildConfig(this.inputsVNum, config);
+            this.BuildConfig(this.outputsBool, config);
+            this.BuildConfig(this.outputsHNum, config);
+            this.BuildConfig(this.outputsVNum, config);
+            return config;
+        }
+
+
         private void InitBoolInputs() {
             this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(0, this.inBool0, this.grdInputsBool));
             this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(1, this.inBool1, this.grdInputsBool));
@@ -78,38 +94,19 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public DashboardConfiguration GetConfig() {
-            DashboardConfiguration config = new DashboardConfiguration() {
-                Name = "Test config name"
-            };
-
-            // Inputs
-            foreach (var inputs in this.inputsBool) {
-                inputs.BuildConfig(config);
+        private void BuildConfig<T>(List< InputBuilder<T> > inputs, DashboardConfiguration config) where T:UC_InputBase, new() {
+            foreach (var input in inputs) {
+                input.BuildConfig(config);
             }
-            foreach (var inputs in this.inputsHNum) {
-                inputs.BuildConfig(config);
-            }
-            foreach (var inputs in this.inputsVNum) {
-                inputs.BuildConfig(config);
-            }
-
-
-            // Outputs
-            foreach (var outputs in this.outputsBool) {
-                outputs.BuildConfig(config);
-            }
-
-            foreach (var outputs in this.outputsHNum) {
-                outputs.BuildConfig(config);
-            }
-
-            foreach (var outputs in this.outputsVNum) {
-                outputs.BuildConfig(config);
-            }
-
-            return config;
         }
+
+
+        private void BuildConfig<T>(List<OutputBuilder<T>> outputs, DashboardConfiguration config) where T : UC_OutputBase, new() {
+            foreach (var output in outputs) {
+                output.BuildConfig(config);
+            }
+        }
+
 
     }
 }
