@@ -23,7 +23,6 @@ namespace MultiCommDashboards.UserControls {
 
         protected override void DoInit() {
             InitializeComponent();
-            this.lbIdTxt.Content = this.Id.ToString();
             this.lbIdNameTxt.Content = this.IOName;
             this.sbProgress.Minimum = this.Minimum;
             this.sbProgress.Maximum = this.Maximum;

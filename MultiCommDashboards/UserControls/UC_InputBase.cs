@@ -79,6 +79,8 @@ namespace MultiCommDashboards.UserControls {
         public virtual void SetAsAddDummy() {
         }
 
+        public abstract void SetSliderEnabled(bool tf);
+
         /// <summary>Sets the action to raise when the value changes</summary>
         /// <param name="sendAction">The send action</param>
         public void SetSendAction(Action<byte, BinaryMsgDataType, double> sendAction) {

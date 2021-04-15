@@ -84,6 +84,7 @@ namespace MultiCommDashboards.DashBuilders {
                     Column = nextColumn,
                     Row = this.triggerControl.Row,
                 };
+                bt.SetSliderEnabled(false);
 
                 // TODO Here open the Dialog for the ID and name, and data type if not bool
                 if (typeof(T) == typeof(UC_BoolToggle)) {
@@ -105,8 +106,6 @@ namespace MultiCommDashboards.DashBuilders {
                 //bt.MouseMove += Bt_MouseMove;
                 //bt.AllowDrop = true;
                 return true;
-
-
 
             }
             return false;

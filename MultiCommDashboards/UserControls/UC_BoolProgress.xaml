@@ -8,7 +8,7 @@
              xmlns:customButtons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
              xmlns:customSliders="clr-namespace:WpfCustomControlLib.Core.Sliders;assembly=WpfCustomControlLib.Core"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
-             mc:Ignorable="d" Margin="1" Background="White">
+             mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="100">
     <Grid>
         <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".6"
           VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   >
@@ -21,14 +21,8 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <DockPanel Grid.Row="0" Margin="0,2" HorizontalAlignment="Center">
-                <Label x:Name="lbId" Content="{Binding Source={x:Static helpers:TxtBinder.Id}}" FontSize="14"
-                   Style="{Binding Source={StaticResource NameLabelLeft}}" Margin="3,0,0,0" Padding="0" />
-                <Label Content=":"  Style="{Binding Source={StaticResource NameLabelRight}}" FontSize="14"
-                   Margin="0" Padding="0" VerticalAlignment="Center" />
-                <Label x:Name="lbIdTxt" Content="0"  Padding="0" Margin="2,0,0,0" FontSize="14"
-                   Style="{Binding Source={StaticResource NameLabelRight}}"  />
                 <Label x:Name="lbIdNameTxt" Content="My Name"  Style="{Binding Source={StaticResource NameLabelRight}}" 
-                   Margin="5,0,0,0" Padding="0" FontSize="14" />
+                   Margin="5,0,0,0" Padding="0" FontSize="14" HorizontalAlignment="Center" />
             </DockPanel>
             <Border Grid.Row="1" Padding="0" Margin="0" Style="{StaticResource brd075}" HorizontalAlignment="Stretch" Width="30">
                 <Grid HorizontalAlignment="Stretch">

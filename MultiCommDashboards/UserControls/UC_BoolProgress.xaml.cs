@@ -25,7 +25,6 @@ namespace MultiCommDashboards.UserControls {
 
         protected override void DoInit() {
             this.InitializeComponent();
-            this.lbIdTxt.Content = this.Id.ToString();
             this.lbIdNameTxt.Content = this.IOName;
             // Force it bool every time
             this.DataType = BinaryMsgDataType.typeBool;

@@ -9,57 +9,35 @@
              xmlns:customSliders="clr-namespace:WpfCustomControlLib.Core.Sliders;assembly=WpfCustomControlLib.Core"
              xmlns:userControl="clr-namespace:WpfUserControlLib;assembly=WpfUserControlLib"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
-             HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="2"
+             Padding="2" Height="130"
              mc:Ignorable="d"  Margin="1" Background="White"
              >
-    <Grid Margin="0">
+    <Grid Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".5"
             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
             <customButtons:UC_RoundIconButton Style="{StaticResource IconButton}"  IsEnabled="False"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}"  Width="40" Height="40"/>
         </Grid>
-        <Border x:Name="mainBorder">
-        <Grid>
+        <Grid HorizontalAlignment="Stretch" >
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom"  >
+            <DockPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch"  >
+                <DockPanel.LayoutTransform>
+                    <RotateTransform Angle="-90"/>
+                </DockPanel.LayoutTransform>
                 <Label x:Name="lbIdNameTxt" Content="My Name" Padding="0"  HorizontalAlignment="Center"
-                       Style="{Binding Source={StaticResource NameLabelCenter}}" Margin="0" >
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-
-                <Label x:Name="lbIdTxt" Content="0" HorizontalAlignment="Center" Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0,5,0,0" Padding="0" >
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-
-                <Label Content=":"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0,0,2,0" >
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label x:Name="lbId" Content="{Binding Source={x:Static helpers:TxtBinder.Id}}" HorizontalAlignment="Center"
-                   Style="{Binding Source={StaticResource NameLabelLeft}}" Margin="0,0,0,3" Padding="0">
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-
-            </StackPanel>
-            <Border Grid.Row="0" Grid.Column="1"  Style="{ StaticResource brd075}" Padding="0" Margin="3,0,0,0">
-                <Slider x:Name="sliderNumeric" Padding="0"
-                    Style="{StaticResource MyVeritcalSliderStyle}" />
+                       Style="{Binding Source={StaticResource NameLabelCenter}}" Margin="0" />
+            </DockPanel>
+            <Border Grid.Row="0" Grid.Column="1"   Style="{ StaticResource brd075}" Padding="0" Margin="3,0,0,0" 
+                    VerticalAlignment="Stretch">
+                <Slider x:Name="sliderNumeric" Padding="0" Style="{StaticResource MyVeritcalSliderStyle}" 
+                         VerticalAlignment="Center" Height="150" />
             </Border>
 
             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource brd075}" Margin="0" Padding="0">
@@ -67,6 +45,5 @@
                         Padding="0" Margin="0" Content="0" HorizontalContentAlignment="Center" />
             </Border>
         </Grid>
-    </Border>
     </Grid>
 </local:UC_InputBase>

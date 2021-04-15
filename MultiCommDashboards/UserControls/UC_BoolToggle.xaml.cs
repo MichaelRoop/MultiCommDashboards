@@ -29,6 +29,11 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
+        public override void SetSliderEnabled(bool tf) {
+            this.boolSlider.IsEnabled = tf;
+        }
+
+
         public override void SetTrueFalseTranslators(Func<bool, string> func) {
             this.translateTrueFalseFunc = func;
         }
@@ -36,7 +41,6 @@ namespace MultiCommDashboards.UserControls {
 
         protected override void DoInit() {
             InitializeComponent();
-            this.lbIdTxt.Content = this.Id.ToString();
             this.lbIdNameTxt.Content = this.IOName;
             // Force it bool every time
             this.DataType = BinaryMsgDataType.typeBool;
@@ -57,9 +61,6 @@ namespace MultiCommDashboards.UserControls {
             return trueFalse.ToString();
         }
 
-
-        private void OnConstruction() {
-        }
 
     }
 }

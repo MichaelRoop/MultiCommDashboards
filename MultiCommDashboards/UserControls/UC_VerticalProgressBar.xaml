@@ -8,7 +8,7 @@
              xmlns:customButtons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
              xmlns:customSliders="clr-namespace:WpfCustomControlLib.Core.Sliders;assembly=WpfCustomControlLib.Core"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
-             HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="2"
+             HorizontalAlignment="Stretch" VerticalAlignment="Top" Padding="2" Height="100"
              mc:Ignorable="d"  Margin="1" Background="White"
              >
     <Border x:Name="mainBorder">
@@ -19,43 +19,18 @@
                 IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}"  Width="40" Height="40"/>
             </Grid>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom"  >
-                    <Label x:Name="lbIdNameTxt" Content="My Name" Padding="0"  HorizontalAlignment="Center"
-                       Style="{Binding Source={StaticResource NameLabelCenter}}" Margin="0" >
-                        <Label.LayoutTransform>
-                            <RotateTransform Angle="-90"/>
-                        </Label.LayoutTransform>
-                    </Label>
-
-                    <Label x:Name="lbIdTxt" Content="0" HorizontalAlignment="Center" Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0,5,0,0" Padding="0" >
-                        <Label.LayoutTransform>
-                            <RotateTransform Angle="-90"/>
-                        </Label.LayoutTransform>
-                    </Label>
-
-                    <Label Content=":"  Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0,0,2,0" >
-                        <Label.LayoutTransform>
-                            <RotateTransform Angle="-90"/>
-                        </Label.LayoutTransform>
-                    </Label>
-                    <Label x:Name="lbId" Content="{Binding Source={x:Static helpers:TxtBinder.Id}}" HorizontalAlignment="Center"
-                   Style="{Binding Source={StaticResource NameLabelLeft}}" Margin="0,0,0,0" Padding="0">
-                        <Label.LayoutTransform>
-                            <RotateTransform Angle="-90"/>
-                        </Label.LayoutTransform>
-                    </Label>
-
+                <StackPanel Grid.Column="0" >
+                    <StackPanel.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </StackPanel.LayoutTransform>
+                    <Label x:Name="lbIdNameTxt" Content="My Name" Padding="0"  
+                       Style="{Binding Source={StaticResource NameLabelCenter}}" Margin="0" />
                 </StackPanel>
-                <Border Grid.Row="0" Grid.Column="1"  Style="{ StaticResource brd075}" Padding="0" Margin="3,0,0,0">
-                    <!--<Slider x:Name="sliderNumeric" Padding="0" Style="{StaticResource MyVeritcalSliderStyle}" />-->
+                <Border Grid.Column="1"  Style="{ StaticResource brd075}" Padding="0" Margin="3,0,0,0">
                     <Grid HorizontalAlignment="Stretch">
                         <ProgressBar  x:Name="sbProgress" Style="{StaticResource ioProgressBarHorizontal}" Value="500" Minimum="0" Maximum="100"/>
                         <TextBlock Text="{Binding ElementName=sbProgress, Path=Value, StringFormat={}{0:0}}" 

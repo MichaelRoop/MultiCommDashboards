@@ -24,7 +24,7 @@
         </DockPanel>
 
         <!-- Outputs - Bool and Horizontal  -->
-        <Grid Grid.Row="1" Grid.Column="0"  >
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
@@ -118,7 +118,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="White">
+            <Grid Grid.Row="0" x:Name="grdInputsBool" Background="White" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
@@ -139,7 +139,7 @@
             <local:UC_BoolToggle x:Name="inBool2" Grid.Row="2" Grid.Column="0"/>
             </Grid>
 
-            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White">
+            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -160,7 +160,7 @@
         </Grid>
 
         <!-- Inputs - Vertical  -->
-        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White">
+        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
