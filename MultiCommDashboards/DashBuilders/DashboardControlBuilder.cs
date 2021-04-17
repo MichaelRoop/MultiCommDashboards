@@ -1,9 +1,10 @@
-﻿using MultiCommDashboardData.Storage;
+﻿using CommunicationStack.Net.Enumerations;
+using MultiCommDashboardData.Storage;
 using MultiCommDashboards.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace MultiCommDashboards.DashBuilders {
 
@@ -110,18 +111,28 @@ namespace MultiCommDashboards.DashBuilders {
                 T control = new T();
                 control.Column = nextColumn;
                 control.Row = row;
+                control.SetEditState(true);
 
                 //---------------------------------------------------
                 // TODO REMOVE - REPLACE WITH DIALOG
                 DashboardControlDataModel dm = control.StorageInfo;
                 dm.IOName = string.Format("{0}{1}", this.nameBase, count);
+                if (dm.DataType != BinaryMsgDataType.typeBool) {
+                    dm.Minimum = 0;
+                    dm.Maximum = 255;
+                    dm.SendAtStep = 1;
+                }
+
+
                 control.Update(dm);
+                count++;
                 //---------------------------------------------------
 
                 Grid.SetRow(control, row);
                 Grid.SetColumn(control, nextColumn);
                 this.grid.Children.Add(control);
-                control.MouseLeftButtonUp += this.controlMouseLeftButtonUp;
+                control.DeleteRequest += this.deleteRequest;
+                control.EditRequest += this.editRequest;
                 this.Controls.Add(control);
                 nextColumn++;
                 return true;
@@ -158,39 +169,36 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        /// <summary>When user clicks on one of the objects in the Editor</summary>
-        private void controlMouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
+        private void editRequest(object sender, EventArgs e) {
             T control = sender as T;
             if (control != null) {
-                if (!this.ProcessClick(control)) {
-                    control.MouseLeftButtonUp -= this.controlMouseLeftButtonUp;
-                    this.Controls.Remove(control);
-                    this.grid.Children.Remove(control);
-
-                    // change the column in each of the list and reset in grid
-                    for (int i = 0; i < this.Controls.Count; i++) {
-                        control = this.Controls[i];
-                        control.Column = i + COLUMN_OFFSET;
-                        Grid.SetColumn(control, control.Column);
-                    }
-
-                    this.nextColumn--;
-                    if (this.nextColumn < COLUMN_OFFSET) {
-                        this.nextColumn = COLUMN_OFFSET;
-                    }
-                }
+                App.ShowMsgTitle(control.IOName, "Request Edit");
             }
         }
 
 
-        private bool ProcessClick(T control) {
-            //---------------------------------------------------
-            // TODO This is where we would launch the edit dialogs with edit or delete options
-            
-            //---------------------------------------------------
-            // False means delete
-            return false;
+        private void deleteRequest(object sender, EventArgs e) {
+            T control = sender as T;
+            if (control != null) {
+                control.DeleteRequest -= this.deleteRequest;
+                control.EditRequest -= this.editRequest;
+                this.Controls.Remove(control);
+                this.grid.Children.Remove(control);
+
+                // change the column in each of the list and reset in grid
+                for (int i = 0; i < this.Controls.Count; i++) {
+                    control = this.Controls[i];
+                    control.Column = i + COLUMN_OFFSET;
+                    Grid.SetColumn(control, control.Column);
+                }
+
+                this.nextColumn--;
+                if (this.nextColumn < COLUMN_OFFSET) {
+                    this.nextColumn = COLUMN_OFFSET;
+                }
+            }
         }
+
 
         #endregion
 

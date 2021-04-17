@@ -3,6 +3,7 @@ using CommunicationStack.Net.Enumerations;
 using LogUtils.Net;
 using MultiCommDashboardData.Storage;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MultiCommDashboards.UserControls {
@@ -56,6 +57,14 @@ namespace MultiCommDashboards.UserControls {
         }
 
         #endregion
+
+        #region IDashboardControl events
+
+        public event EventHandler DeleteRequest;
+        public event EventHandler EditRequest;
+
+        #endregion
+
 
         #region Constructors
 
@@ -139,6 +148,7 @@ namespace MultiCommDashboards.UserControls {
             this.DoInit();
         }
 
+        public abstract void SetEditState(bool onOff);
 
 
         #endregion
@@ -161,6 +171,26 @@ namespace MultiCommDashboards.UserControls {
                     this.log.Exception(9999, "DispatchDisplay", "", ex);
                 }
             });
+        }
+
+
+        protected void deleteClick(object sender, RoutedEventArgs e) {
+            try {
+                this.DeleteRequest?.Invoke(this, new EventArgs());
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "deleteClick", "", ex);
+            }
+        }
+
+
+        protected void editClick(object sender, RoutedEventArgs e) {
+            try {
+                this.EditRequest?.Invoke(this, new EventArgs());
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "editClick", "", ex);
+            }
         }
 
         #endregion

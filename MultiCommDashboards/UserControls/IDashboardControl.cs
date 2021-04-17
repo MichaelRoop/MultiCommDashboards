@@ -3,6 +3,7 @@ using MultiCommDashboardData.Storage;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -36,6 +37,15 @@ namespace MultiCommDashboards.UserControls {
         /// <summary>Update the fields with the new data</summary>
         /// <param name="dataModel">The data model with new values</param>
         void Update(DashboardControlDataModel dataModel);
+
+        /// <summary>Bring up overlay allowing delete and edit in the editor</summary>
+        /// <param name="onOff"></param>
+        void SetEditState(bool onOff);
+
+
+        event EventHandler DeleteRequest;
+        event EventHandler EditRequest;
+
 
     }
 }

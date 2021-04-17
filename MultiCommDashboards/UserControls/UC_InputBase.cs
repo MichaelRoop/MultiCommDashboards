@@ -58,6 +58,13 @@ namespace MultiCommDashboards.UserControls {
 
         #endregion
 
+        #region IDashboardControl events
+
+        public event EventHandler DeleteRequest;
+        public event EventHandler EditRequest;
+
+        #endregion
+
         #region Constructors
 
         public UC_InputBase() {
@@ -72,7 +79,8 @@ namespace MultiCommDashboards.UserControls {
 
         #region Public
 
-        public abstract void SetSliderEnabled(bool tf);
+        // Make abstract
+        public abstract void SetEditState(bool onOff);
 
 
         /// <summary>Sets the action to raise when the value changes</summary>
@@ -113,6 +121,26 @@ namespace MultiCommDashboards.UserControls {
             }
             catch (Exception ex) {
                 this.log.Exception(9999, "OnSliderActionChanged", "", ex);
+            }
+        }
+
+
+        protected void deleteClick(object sender, RoutedEventArgs e) {
+            try {
+                this.DeleteRequest?.Invoke(this, new EventArgs());
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "deleteClick", "", ex);
+            }
+        }
+
+
+        protected void editClick(object sender, RoutedEventArgs e) {
+            try {
+                this.EditRequest?.Invoke(this, new EventArgs());
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "editClick", "", ex);
             }
         }
 

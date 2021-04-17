@@ -1,5 +1,5 @@
 ﻿using MultiCommDashboardData.Storage;
-using WpfHelperClasses.Core;
+using System.Windows;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -9,6 +9,8 @@ namespace MultiCommDashboards.UserControls {
         public UC_HorizontalSlider() : base() {
             InitializeComponent();
             this.OnConstruction();
+            this.btnDelete.Click += this.deleteClick;
+            this.btnEdit.Click += this.editClick;
         }
 
 
@@ -17,8 +19,8 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public override void SetSliderEnabled(bool tf) {
-            this.sliderNumeric.IsEnabled = tf;
+        public override void SetEditState(bool onOff) {
+            this.gridEdit.Visibility = onOff ? Visibility.Visible : Visibility.Collapsed;
         }
 
 

@@ -1,6 +1,6 @@
 ﻿using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
-using WpfHelperClasses.Core;
+using System.Windows;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -10,11 +10,18 @@ namespace MultiCommDashboards.UserControls {
         public UC_BoolProgress() {
             InitializeComponent();
             this.sbProgress.Value = 0;
+            this.btnDelete.Click += this.deleteClick;
+            this.btnEdit.Click += this.editClick;
         }
 
 
         public UC_BoolProgress(DashboardControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize() there
+        }
+
+
+        public override void SetEditState(bool onOff) {
+            this.gridEdit.Visibility = onOff ? Visibility.Visible : Visibility.Collapsed;
         }
 
 

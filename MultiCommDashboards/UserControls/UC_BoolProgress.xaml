@@ -10,6 +10,15 @@
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
              mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="71">
     <Grid>
+        <Grid x:Name="gridEdit" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".7"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <customButtons:UC_RoundIconButton x:Name="btnEdit" Style="{StaticResource RoundIconButton}"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.EDIT}}"  Width="25" Height="25" Margin="2" IconPadding="3"/>
+                <customButtons:UC_RoundIconButton x:Name="btnDelete" Style="{StaticResource  RoundIconButton}"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.DELETE}}"  Width="25" Height="25" Margin="2" IconPadding="2"/>
+            </DockPanel>
+        </Grid>
         <Grid HorizontalAlignment="Center" MinWidth="100">
             <Grid.RowDefinitions>
                 <RowDefinition />

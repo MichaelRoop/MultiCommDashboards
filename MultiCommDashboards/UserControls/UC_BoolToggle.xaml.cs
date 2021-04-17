@@ -1,6 +1,7 @@
 ﻿using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
 using System;
+using System.Windows;
 using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.UserControls {
@@ -11,16 +12,21 @@ namespace MultiCommDashboards.UserControls {
         public UC_BoolToggle() : base() {
             InitializeComponent();
             this.boolSlider.ValueChanged += this.controlsValueChangedHandler;
+            this.btnDelete.Click += this.deleteClick;
+            this.btnEdit.Click += this.editClick;
         }
 
+        private void BtnDelete_Click(object sender, RoutedEventArgs e) {
+            throw new NotImplementedException();
+        }
 
         public UC_BoolToggle(DashboardControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize there
         }
 
 
-        public override void SetSliderEnabled(bool tf) {
-            this.boolSlider.IsEnabled = tf;
+        public override void SetEditState(bool onOff) {
+            this.gridEdit.Visibility = onOff ? Visibility.Visible : Visibility.Collapsed;
         }
 
 
@@ -37,5 +43,6 @@ namespace MultiCommDashboards.UserControls {
 
         protected override void OnValueChanged(double newValue) {
         }
+
     }
 }
