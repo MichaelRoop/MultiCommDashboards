@@ -106,14 +106,8 @@ namespace MultiCommDashboards.DashBuilders {
                 this.grid.Children.Add(bt);
                 bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
                 this.Controls.Add(bt);
-                this.grid.InvalidateVisual();
                 nextColumn++;
-
-                // TODO - turn on if I can ever figure out where it is dropped
-                //bt.MouseMove += Bt_MouseMove;
-                //bt.AllowDrop = true;
                 return true;
-
             }
             return false;
         }
@@ -140,7 +134,6 @@ namespace MultiCommDashboards.DashBuilders {
                 Grid.SetColumn(control, control.Column);
             }
 
-            this.grid.InvalidateVisual();
             this.nextColumn--;
             if (this.nextColumn < COLUMN_OFFSET) {
                 this.nextColumn = COLUMN_OFFSET;

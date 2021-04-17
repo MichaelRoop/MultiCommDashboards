@@ -71,20 +71,20 @@ namespace MultiCommDashboards.UserControls {
 
 
         private void InitBoolOutputs() {
-            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(0, this.outBoolProgress0, this.grdOutputsBool));
-            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(1, this.outBoolProgress1, this.grdOutputsBool));
-            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(2, this.outBoolProgress2, this.grdOutputsBool));
-            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(3, this.outBoolProgress3, this.grdOutputsBool));
+            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(this.btnOutBool0, this.grdOutputsBool));
+            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(this.btnOutBool1, this.grdOutputsBool));
+            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(this.btnOutBool2, this.grdOutputsBool));
+            this.outputsBool.Add(new OutputBuilder<UC_BoolProgress>(this.btnOutBool3, this.grdOutputsBool));
         }
 
 
         private void InitHorizontalOutputs() {
-            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(0, this.outHProgress0, this.grdOutputsNumHorizontal));
-            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(1, this.outHProgress1, this.grdOutputsNumHorizontal));
-            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(2, this.outHProgress2, this.grdOutputsNumHorizontal));
-            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(3, this.outHProgress3, this.grdOutputsNumHorizontal));
-            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(4, this.outHProgress4, this.grdOutputsNumHorizontal));
-            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(5, this.outHProgress5, this.grdOutputsNumHorizontal));
+            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH0, this.grdOutputsNumHorizontal));
+            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH1, this.grdOutputsNumHorizontal));
+            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH2, this.grdOutputsNumHorizontal));
+            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH3, this.grdOutputsNumHorizontal));
+            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH4, this.grdOutputsNumHorizontal));
+            this.outputsHNum.Add(new OutputBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH5, this.grdOutputsNumHorizontal));
         }
 
 
