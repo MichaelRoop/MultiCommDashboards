@@ -49,11 +49,16 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <local:UC_BoolProgress x:Name="outBoolProgress0" Grid.Row="0" Grid.Column="0"/>
-                <local:UC_BoolProgress x:Name="outBoolProgress1" Grid.Row="1" Grid.Column="0"/>
-                <local:UC_BoolProgress x:Name="outBoolProgress2" Grid.Row="2" Grid.Column="0"/>
-                <local:UC_BoolProgress x:Name="outBoolProgress3" Grid.Row="3" Grid.Column="0"/>
+                <Label x:Name="lblOutBool" Grid.Row="0" Grid.Column="0" Content="{Binding Source={x:Static helpers:TxtBinder.Digital}}"/>
+                <DockPanel  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                    <local:UC_BoolProgress Visibility="Hidden"/>
+                    <local:UC_BoolProgress x:Name="outBoolProgress0"/>
+                </DockPanel>
+                <local:UC_BoolProgress x:Name="outBoolProgress1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"/>
+                <local:UC_BoolProgress x:Name="outBoolProgress2" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"/>
+                <local:UC_BoolProgress x:Name="outBoolProgress3" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"/>
             </Grid>
             
             <!-- Horizontal numeric outputs -->
@@ -72,13 +77,15 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <local:UC_HorizontalProgressBar x:Name="outHProgress0" Grid.Row="0" Grid.Column="0"/>
-                <local:UC_HorizontalProgressBar x:Name="outHProgress1" Grid.Row="1" Grid.Column="0"/>
-                <local:UC_HorizontalProgressBar x:Name="outHProgress2" Grid.Row="2" Grid.Column="0"/>
-                <local:UC_HorizontalProgressBar x:Name="outHProgress3" Grid.Row="3" Grid.Column="0"/>
-                <local:UC_HorizontalProgressBar x:Name="outHProgress4" Grid.Row="4" Grid.Column="0"/>
-                <local:UC_HorizontalProgressBar x:Name="outHProgress5" Grid.Row="5" Grid.Column="0"/>
+                <Label x:Name="lblOutProgress" Grid.Row="0" Grid.Column="0" Content="{Binding Source={x:Static helpers:TxtBinder.Analog}}"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress0" Grid.Row="0" Grid.Column="1"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress1" Grid.Row="1" Grid.Column="1"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress2" Grid.Row="2" Grid.Column="1"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress3" Grid.Row="3" Grid.Column="1"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress4" Grid.Row="4" Grid.Column="1"/>
+                <local:UC_HorizontalProgressBar x:Name="outHProgress5" Grid.Row="5" Grid.Column="1"/>
             </Grid>
         </Grid>
 
@@ -102,9 +109,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <local:UC_VerticalProgressBar x:Name="outVProgress0" Grid.Row="0" Grid.Column="0"/>
+            <!--<local:UC_VerticalProgressBar x:Name="outVProgress0" Grid.Row="0" Grid.Column="0"/>
             <local:UC_VerticalProgressBar x:Name="outVProgress1" Grid.Row="1" Grid.Column="0"/>
-            <local:UC_VerticalProgressBar x:Name="outVProgress2" Grid.Row="2" Grid.Column="0"/>
+            <local:UC_VerticalProgressBar x:Name="outVProgress2" Grid.Row="2" Grid.Column="0"/>-->
         </Grid>
 
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
@@ -126,17 +133,26 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <local:UC_BoolToggle x:Name="inBool0" Grid.Row="0" Grid.Column="0" />
-            <local:UC_BoolToggle x:Name="inBool1" Grid.Row="1" Grid.Column="0" />
-            <local:UC_BoolToggle x:Name="inBool2" Grid.Row="2" Grid.Column="0"/>
+                <Label x:Name="lblInDigi0" Grid.Row="0" Grid.Column="0" 
+                       Style="{StaticResource NameLabelLeft}" Content="{Binding Source={x:Static helpers:TxtBinder.Digital}}" />
+
+                <DockPanel Grid.Row="0" Grid.Column="1" >
+                <local:UC_BoolToggle HorizontalAlignment="Right" Visibility="Hidden" />
+                <local:UC_BoolToggle x:Name="inBool0" HorizontalAlignment="Right" />
+                </DockPanel>
+                
+                <local:UC_BoolToggle x:Name="inBool1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" />
+                <local:UC_BoolToggle x:Name="inBool2" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"/>
             </Grid>
 
             <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White" HorizontalAlignment="Left">
@@ -151,16 +167,23 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <local:UC_HorizontalSlider x:Name="inHSlider0" Grid.Row="0" Grid.Column="0"/>
-                <local:UC_HorizontalSlider x:Name="inHSlider1" Grid.Row="1" Grid.Column="0"/>
-                <local:UC_HorizontalSlider x:Name="inHSlider2" Grid.Row="2" Grid.Column="0"/>
+                <Label x:Name="lblInAnalog0" Grid.Row="0" Grid.Column="0" 
+                       Style="{StaticResource NameLabelLeft}" Content="{Binding Source={x:Static helpers:TxtBinder.Analog}}" />
+
+
+
+                <local:UC_HorizontalSlider x:Name="inHSlider0" Grid.Row="0" Grid.Column="1"/>
+                <local:UC_HorizontalSlider x:Name="inHSlider1" Grid.Row="1" Grid.Column="1"/>
+                <local:UC_HorizontalSlider x:Name="inHSlider2" Grid.Row="2" Grid.Column="1"/>
             </Grid>
 
         </Grid>
 
         <!-- Inputs - Vertical  -->
-        <Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White" HorizontalAlignment="Left">
+        
+        <!--<Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -181,7 +204,7 @@
             </Grid.ColumnDefinitions>
             <local:UC_VerticalSlider x:Name="inVSlider0" Grid.Row="0" Grid.Column="0"/>
             <local:UC_VerticalSlider x:Name="inVSlider1" Grid.Row="1" Grid.Column="0"/>
-        </Grid>
+        </Grid>-->
         
         
     </Grid>

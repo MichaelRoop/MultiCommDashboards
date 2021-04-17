@@ -24,7 +24,7 @@
                 <Label x:Name="lbIdNameTxt" Content="My Name"  Style="{Binding Source={StaticResource NameLabelRight}}" 
                    Margin="5,0,0,0" Padding="0" FontSize="14" HorizontalAlignment="Center" />
             </DockPanel>
-            <Border Grid.Row="1" Padding="0" Margin="0" Style="{StaticResource brd075}" HorizontalAlignment="Stretch" Width="30">
+            <Border Grid.Row="1" Padding="0" Margin="0,0,0,2" Style="{StaticResource brd075}" HorizontalAlignment="Stretch" Width="30">
                 <Grid HorizontalAlignment="Stretch">
                     <ProgressBar  x:Name="sbProgress" Style="{StaticResource ioProgressBarHorizontal}" Value="1" Minimum="0" Maximum="1" />
                 </Grid>

@@ -36,7 +36,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!-- Bool outputs -->
-            <Grid Grid.Row="0" x:Name="grdOutputsBool" Background="White">
+            <Grid Grid.Row="0" x:Name="grdOutputsBool" HorizontalAlignment="Left" Background="Black">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
@@ -58,7 +58,7 @@
             </Grid>
 
             <!-- Horizontal numeric outputs -->
-            <Grid Grid.Row="1" x:Name="grdOutputsNumHorizontal" Background="White">
+            <Grid Grid.Row="1" x:Name="grdOutputsNumHorizontal" HorizontalAlignment="Left" Background="Black">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -132,7 +132,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal">
+            <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />

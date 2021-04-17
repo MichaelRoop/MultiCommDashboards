@@ -20,11 +20,14 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         // Always start at column 1. 0 reserved for Add
-        private int nextColumn = 1;
+        private int nextColumn = COLUMN_OFFSET;
         private int max = 1;
         private Grid grid;
         private UC_OutputBase triggerControl = null;
         private OutputType outType = OutputType.Undefined;
+        /// <summary>Column 0 has label, 1 has dummy object</summary>
+        private const int COLUMN_OFFSET = 2;
+
 
         // bogus test id
         private byte testId = 0;
@@ -42,7 +45,7 @@ namespace MultiCommDashboards.DashBuilders {
                 foreach (var control in Controls) {
                     // Note. All the columns are over by 1 since 0 is occupied by event dummy
                     OutputControlDataModel dm = control.StorageInfo;
-                    dm.Column -= 1;
+                    dm.Column -= COLUMN_OFFSET;
                     list.Add(dm);
                 }
                 return list;
@@ -104,8 +107,7 @@ namespace MultiCommDashboards.DashBuilders {
             this.triggerControl.SetAsAddDummy();
             this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
             this.grid = grid;
-            // The 0 column is reserved for the trigger Control
-            this.max = this.grid.ColumnDefinitions.Count - 1;
+            this.max = this.grid.ColumnDefinitions.Count - COLUMN_OFFSET;
         }
 
 
@@ -113,7 +115,7 @@ namespace MultiCommDashboards.DashBuilders {
             foreach (var control in Controls) {
                 // Note. All the columns are over by 1 since 0 is occupied by event dummy
                 OutputControlDataModel dm = control.StorageInfo;
-                dm.Column -= 1;
+                dm.Column -= COLUMN_OFFSET;
                 switch (this.outType) {
                     case OutputType.Undefined:
                         break;
@@ -157,14 +159,14 @@ namespace MultiCommDashboards.DashBuilders {
             // change the column in each of the list and reset in grid
             for (int i = 0; i < this.Controls.Count; i++) {
                 control = this.Controls[i];
-                control.Column = i + 1; // Skip column where dummy is
+                control.Column = i + COLUMN_OFFSET;
                 Grid.SetColumn(control, control.Column);
             }
 
             this.grid.InvalidateVisual();
             this.nextColumn--;
-            if (this.nextColumn < 1) {
-                this.nextColumn = 1;
+            if (this.nextColumn < COLUMN_OFFSET) {
+                this.nextColumn = COLUMN_OFFSET;
             }
         }
 

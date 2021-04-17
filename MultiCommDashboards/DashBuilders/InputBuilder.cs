@@ -21,6 +21,8 @@ namespace MultiCommDashboards.DashBuilders {
         private List<UC_InputBase> Controls { get; set; } = new List<UC_InputBase>();
         private UC_InputBase triggerControl = null;
         private InputType inType = InputType.Undefined;
+        /// <summary>Column 0 has label, 1 has dummy object</summary>
+        private const int COLUMN_OFFSET = 2;
 
         public List<InputControlDataModel> DataModels {
             get {
@@ -36,8 +38,8 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        // Always start at column 1. 0 reserved for Add
-        private int nextColumn = 1;
+        // Always start at column 2
+        private int nextColumn = COLUMN_OFFSET;
         private int max = 1;
         private Grid grid;
 
@@ -57,9 +59,8 @@ namespace MultiCommDashboards.DashBuilders {
 
         public void BuildConfig(DashboardConfiguration config) {
             foreach (var control in Controls) {
-                // Note. All the columns are over by 1 since 0 is occupied by event dummy
                 InputControlDataModel dm = control.StorageInfo;
-                dm.Column -= 1;
+                dm.Column -= COLUMN_OFFSET;
                 switch (this.inType) {
                     case InputType.Undefined:
                         break;
@@ -120,8 +121,7 @@ namespace MultiCommDashboards.DashBuilders {
             this.triggerControl.SetAsAddDummy();
             this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
             this.grid = grid;
-            // The 0 column is reserved for the trigger Control
-            this.max = this.grid.ColumnDefinitions.Count - 1;
+            this.max = this.grid.ColumnDefinitions.Count - COLUMN_OFFSET;
 
             //this.grid.Drop += Grid_Drop;
             //this.grid.AllowDrop = true;
@@ -139,7 +139,7 @@ namespace MultiCommDashboards.DashBuilders {
                 control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
             }
             this.Controls.Clear();
-            this.nextColumn = 1;
+            this.nextColumn = COLUMN_OFFSET;
         }
 
 
@@ -157,14 +157,14 @@ namespace MultiCommDashboards.DashBuilders {
             // change the column in each of the list and reset in grid
             for (int i = 0; i < this.Controls.Count; i++) {
                 control = this.Controls[i];
-                control.Column = i + 1; // Skip column where dummy is
+                control.Column = i + COLUMN_OFFSET;
                 Grid.SetColumn(control, control.Column);
             }
 
             this.grid.InvalidateVisual();
             this.nextColumn--;
-            if (this.nextColumn < 1) {
-                this.nextColumn = 1;
+            if (this.nextColumn < COLUMN_OFFSET) {
+                this.nextColumn = COLUMN_OFFSET;
             }
         }
 

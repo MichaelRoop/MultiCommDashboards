@@ -25,11 +25,11 @@ namespace MultiCommDashboards.UserControls {
 
             this.InitBoolInputs();
             this.InitHorizontalInputs();
-            this.InitVerticalInputs();
+            //this.InitVerticalInputs();
             
             this.InitBoolOutputs();
             this.InitHorizontalOutputs();
-            this.InitVerticalOutputs();
+            //this.InitVerticalOutputs();
         }
 
 
@@ -63,10 +63,10 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        private void InitVerticalInputs() {
-            this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(0, this.inVSlider0, this.grdInputsNumVertical));
-            this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(1, this.inVSlider1, this.grdInputsNumVertical));
-        }
+        //private void InitVerticalInputs() {
+        //    this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(0, this.inVSlider0, this.grdInputsNumVertical));
+        //    this.inputsVNum.Add(new InputBuilder<UC_VerticalSlider>(1, this.inVSlider1, this.grdInputsNumVertical));
+        //}
 
 
         private void InitBoolOutputs() {
@@ -87,11 +87,11 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        private void InitVerticalOutputs() {
-            this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(0, this.outVProgress0, this.grdOutputsNumVertical));
-            this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(1, this.outVProgress1, this.grdOutputsNumVertical));
-            this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(2, this.outVProgress2, this.grdOutputsNumVertical));
-        }
+        //private void InitVerticalOutputs() {
+        //    this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(0, this.outVProgress0, this.grdOutputsNumVertical));
+        //    this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(1, this.outVProgress1, this.grdOutputsNumVertical));
+        //    this.outputsVNum.Add(new OutputBuilder<UC_VerticalProgressBar>(2, this.outVProgress2, this.grdOutputsNumVertical));
+        //}
 
 
         private void BuildConfig<T>(List< InputBuilder<T> > inputs, DashboardConfiguration config) where T:UC_InputBase, new() {
