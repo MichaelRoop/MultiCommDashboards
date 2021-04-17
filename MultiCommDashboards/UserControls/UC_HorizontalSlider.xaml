@@ -11,11 +11,6 @@
              mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="144">
 
     <Grid HorizontalAlignment="Center">
-        <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".5"
-            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
-            <customButtons:UC_RoundIconButton Style="{StaticResource IconButton}"  IsEnabled="False"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}"  Width="40" Height="40"/>
-        </Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />

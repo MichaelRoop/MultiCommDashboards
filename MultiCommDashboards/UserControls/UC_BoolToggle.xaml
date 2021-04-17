@@ -13,13 +13,19 @@
              mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="71"
              >
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".6"
-          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   >
-            <!--<Path Width="35" Height="35" Canvas.Left="19" Canvas.Top="19" Stretch="Fill" Fill="Black" Opacity="1"
-                  Data="F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z "/>-->
-            <customButtons:UC_RoundIconButton Style="{StaticResource IconButton}" IsEnabled="False"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}"  Width="40" Height="40"/>
+        <Grid x:Name="gridEdit" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".7"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <customButtons:UC_RoundIconButton Style="{StaticResource RoundIconButton}"  IsEnabled="False"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.EDIT}}"  Width="25" Height="25" Margin="2" IconPadding="3"/>
+                <customButtons:UC_RoundIconButton Style="{StaticResource  RoundIconButton}"  IsEnabled="False"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.DELETE}}"  Width="25" Height="25" Margin="2" IconPadding="2"/>
+            </DockPanel>
+            
         </Grid>
+
+
+
         <Grid HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition/>

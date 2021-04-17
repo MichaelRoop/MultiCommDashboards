@@ -13,11 +13,6 @@
              >
     <Border x:Name="mainBorder">
         <Grid>
-            <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".6"
-          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   >
-                <customButtons:UC_RoundIconButton Style="{StaticResource IconButton}" IsEnabled="False"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}"  Width="40" Height="40"/>
-            </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
