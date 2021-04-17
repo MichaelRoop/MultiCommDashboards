@@ -50,16 +50,17 @@ namespace MultiCommDashboards.UserControls {
 
 
         private void InitBoolInputs() {
-            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(0, this.inBool0, this.grdInputsBool));
-            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(1, this.inBool1, this.grdInputsBool));
-            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(2, this.inBool2, this.grdInputsBool));
+            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(this.btnInBool0, this.grdInputsBool));
+            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(this.btnInBool1, this.grdInputsBool));
+            this.inputsBool.Add(new InputBuilder<UC_BoolToggle>(this.btnInBool2, this.grdInputsBool));
         }
 
 
         private void InitHorizontalInputs() {
-            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(0, this.inHSlider0, this.grdInputsNumHorizontal));
-            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(1, this.inHSlider1, this.grdInputsNumHorizontal));
-            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(2, this.inHSlider2, this.grdInputsNumHorizontal));
+            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(this.btnInAnalog0, this.grdInputsNumHorizontal));
+            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(this.btnInAnalog1, this.grdInputsNumHorizontal));
+            this.inputsHNum.Add(new InputBuilder<UC_HorizontalSlider>(this.btnInAnalog2, this.grdInputsNumHorizontal));
+
         }
 
 

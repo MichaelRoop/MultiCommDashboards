@@ -51,7 +51,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="lblOutBool" Grid.Row="0" Grid.Column="0" Content="{Binding Source={x:Static helpers:TxtBinder.Digital}}"/>
+                <Label x:Name="lblOutBool" Grid.Row="0" Grid.Column="0" 
+                       Style="{StaticResource NameLabelLeft}"
+                       Content="{Binding Source={x:Static helpers:TxtBinder.Digital}}"/>
                 <DockPanel  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
                     <local:UC_BoolProgress Visibility="Hidden"/>
                     <local:UC_BoolProgress x:Name="outBoolProgress0"/>
@@ -60,7 +62,7 @@
                 <local:UC_BoolProgress x:Name="outBoolProgress2" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"/>
                 <local:UC_BoolProgress x:Name="outBoolProgress3" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"/>
             </Grid>
-            
+
             <!-- Horizontal numeric outputs -->
             <Grid Grid.Row="1" x:Name="grdOutputsNumHorizontal" Background="White">
                 <Grid.RowDefinitions>
@@ -79,7 +81,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="lblOutProgress" Grid.Row="0" Grid.Column="0" Content="{Binding Source={x:Static helpers:TxtBinder.Analog}}"/>
+                <Label x:Name="lblOutProgress" Grid.Row="0" Grid.Column="0" 
+                       Style="{StaticResource NameLabelLeft}"
+                       Content="{Binding Source={x:Static helpers:TxtBinder.Analog}}"/>
                 <local:UC_HorizontalProgressBar x:Name="outHProgress0" Grid.Row="0" Grid.Column="1"/>
                 <local:UC_HorizontalProgressBar x:Name="outHProgress1" Grid.Row="1" Grid.Column="1"/>
                 <local:UC_HorizontalProgressBar x:Name="outHProgress2" Grid.Row="2" Grid.Column="1"/>
@@ -127,9 +131,9 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" x:Name="grdInputsBool" Background="White" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="52" />
+                    <RowDefinition Height="Auto" MinHeight="52"/>
+                    <RowDefinition Height="Auto" MinHeight="52" />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -141,25 +145,23 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-                <Label x:Name="lblInDigi0" Grid.Row="0" Grid.Column="0" 
-                       Style="{StaticResource NameLabelLeft}" Content="{Binding Source={x:Static helpers:TxtBinder.Digital}}" />
-
-                <DockPanel Grid.Row="0" Grid.Column="1" >
-                <local:UC_BoolToggle HorizontalAlignment="Right" Visibility="Hidden" />
-                <local:UC_BoolToggle x:Name="inBool0" HorizontalAlignment="Right" />
-                </DockPanel>
-                
-                <local:UC_BoolToggle x:Name="inBool1" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" />
-                <local:UC_BoolToggle x:Name="inBool2" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblInDigi0" Grid.Row="0" Grid.Column="0" Style="{StaticResource NameLabelLeft}" 
+                       Content="{Binding Source={x:Static helpers:TxtBinder.Digital}}"  />
+                <buttons:UC_RoundIconButton Grid.Row="0" Grid.Column="1" x:Name="btnInBool0" Margin="10,0" Width="30" Height="30"
+                        Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
+                <buttons:UC_RoundIconButton Grid.Row="1" Grid.Column="1" x:Name="btnInBool1" Margin="5" Width="30" Height="30"  
+                        Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
+                <buttons:UC_RoundIconButton Grid.Row="2" Grid.Column="1" x:Name="btnInBool2" Margin="5" Width="30" Height="30"
+                        Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
             </Grid>
 
             <Grid Grid.Row="1" x:Name="grdInputsNumHorizontal" Background="White" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" MinHeight="52"/>
+                    <RowDefinition Height="Auto" MinHeight="52" />
+                    <RowDefinition Height="Auto" MinHeight="52"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -172,17 +174,18 @@
                 <Label x:Name="lblInAnalog0" Grid.Row="0" Grid.Column="0" 
                        Style="{StaticResource NameLabelLeft}" Content="{Binding Source={x:Static helpers:TxtBinder.Analog}}" />
 
-
-
-                <local:UC_HorizontalSlider x:Name="inHSlider0" Grid.Row="0" Grid.Column="1"/>
-                <local:UC_HorizontalSlider x:Name="inHSlider1" Grid.Row="1" Grid.Column="1"/>
-                <local:UC_HorizontalSlider x:Name="inHSlider2" Grid.Row="2" Grid.Column="1"/>
+                <buttons:UC_RoundIconButton Grid.Row="0" Grid.Column="1" x:Name="btnInAnalog0" Margin="5" Width="30" Height="30"
+                        Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
+                <buttons:UC_RoundIconButton Grid.Row="1" Grid.Column="1" x:Name="btnInAnalog1" Margin="5" Width="30" Height="30"  
+                        Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
+                <buttons:UC_RoundIconButton Grid.Row="2" Grid.Column="1" x:Name="btnInAnalog2" Margin="5" Width="30" Height="30"
+                        Style="{StaticResource   RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
             </Grid>
 
         </Grid>
 
         <!-- Inputs - Vertical  -->
-        
+
         <!--<Grid Grid.Row="3" Grid.Column="1" x:Name="grdInputsNumVertical" Background="White" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -205,7 +208,7 @@
             <local:UC_VerticalSlider x:Name="inVSlider0" Grid.Row="0" Grid.Column="0"/>
             <local:UC_VerticalSlider x:Name="inVSlider1" Grid.Row="1" Grid.Column="0"/>
         </Grid>-->
-        
-        
+
+
     </Grid>
 </UserControl>

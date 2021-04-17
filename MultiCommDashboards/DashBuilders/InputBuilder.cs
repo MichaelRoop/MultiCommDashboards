@@ -2,13 +2,17 @@
 using MultiCommDashboardData.Storage;
 using MultiCommDashboards.UserControls;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.DashBuilders {
 
 
     public class InputBuilder<T>  where T : UC_InputBase, new() {
+
+        #region Data
 
         private enum InputType {
             Undefined,
@@ -18,44 +22,48 @@ namespace MultiCommDashboards.DashBuilders {
         };
 
 
-        private List<UC_InputBase> Controls { get; set; } = new List<UC_InputBase>();
-        private UC_InputBase triggerControl = null;
-        private InputType inType = InputType.Undefined;
-        /// <summary>Column 0 has label, 1 has dummy object</summary>
+        // Always start at column 2, 0 for Digital label, 1 for Add button
         private const int COLUMN_OFFSET = 2;
-
-        public List<InputControlDataModel> DataModels {
-            get {
-                List<InputControlDataModel> list = new List<InputControlDataModel>();
-                foreach (var control in Controls) {
-                    // Note. All the columns are over by 1 since 0 is occupied by event dummy
-                    InputControlDataModel dm = control.StorageInfo;
-                    dm.Column -= 1;
-                    list.Add(dm);
-                }
-                return list;
-            }
-        }
-
-
-        // Always start at column 2
         private int nextColumn = COLUMN_OFFSET;
         private int max = 1;
         private Grid grid;
+        private Button triggerControl = null;
+        private InputType inType = InputType.Undefined;
+        private List<UC_InputBase> Controls = new List<UC_InputBase>();
 
         // bogus test id
         private byte testId = 0;
 
+        #endregion
+
+        #region Properties
+
+        //public List<InputControlDataModel> DataModels {
+        //    get {
+        //        List<InputControlDataModel> list = new List<InputControlDataModel>();
+        //        foreach (var control in Controls) {
+        //            InputControlDataModel dm = control.StorageInfo;
+        //            dm.Column -= COLUMN_OFFSET;
+        //            list.Add(dm);
+        //        }
+        //        return list;
+        //    }
+        //}
+
+        #endregion
+
+        #region Constructors
 
         public InputBuilder() {
             this.SetType();
         }
 
 
-        public InputBuilder(int row, UC_InputBase triggerControl, Grid grid) : this() {
-            this.Init(row, triggerControl, grid);
+        public InputBuilder(Button triggerControl, Grid grid) : this() {
+            this.Init(triggerControl, grid);
         }
 
+        #endregion
 
         public void BuildConfig(DashboardConfiguration config) {
             foreach (var control in Controls) {
@@ -78,29 +86,31 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        private bool Add() {
+        private bool Add(int row) {
             if (this.nextColumn <= this.max) {
                 this.testId++;
                 UC_InputBase bt = new T() {
                     Column = nextColumn,
-                    Row = this.triggerControl.Row,
+                    Row = row,
                 };
                 bt.SetSliderEnabled(false);
 
-                // TODO Here open the Dialog for the ID and name, and data type if not bool
+                //// TODO Here open the Dialog for the ID and name, and data type if not bool
                 if (typeof(T) == typeof(UC_BoolToggle)) {
                     // TODO - Dialog for bool
                     bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeBool, 1, 0, 1);
-                }else {
+                }
+                else {
                     // TODO - Dialog for others
                     bt.Init(this.testId, string.Format("DigiIO_{0}", this.testId), BinaryMsgDataType.typeUInt8, 1, 0, 255);
                 }
 
-                Grid.SetRow(bt, this.triggerControl.Row);
+                Grid.SetRow(bt, row);
                 Grid.SetColumn(bt, nextColumn);
                 this.grid.Children.Add(bt);
                 bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
                 this.Controls.Add(bt);
+                this.grid.InvalidateVisual();
                 nextColumn++;
 
                 // TODO - turn on if I can ever figure out where it is dropped
@@ -113,13 +123,10 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void Init(int row, UC_InputBase triggerControl, Grid grid) {
+        public void Init(Button triggerControl, Grid grid) {
             //this.Reset();
             this.triggerControl = triggerControl;
-            this.triggerControl.Row = row;
-            this.triggerControl.Column = 0;
-            this.triggerControl.SetAsAddDummy();
-            this.triggerControl.MouseLeftButtonUp += this.dummyMouseLeftButtonUp;
+            this.triggerControl.Click += triggerControl_Click;
             this.grid = grid;
             this.max = this.grid.ColumnDefinitions.Count - COLUMN_OFFSET;
 
@@ -128,23 +135,26 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void Reset() {
-            if (this.triggerControl != null) {
-                // Need to disconnect?
-                this.triggerControl.MouseLeftButtonUp -= this.dummyMouseLeftButtonUp;
+        //public void Reset() {
+        //    if (this.triggerControl != null) {
+        //        // Need to disconnect?
+        //        this.triggerControl.Click += triggerControl_Click;
+        //    }
+
+        //    //Would need to add the trigger event also
+        //    foreach (T control in this.Controls) {
+        //        control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
+        //    }
+        //    this.Controls.Clear();
+        //    this.nextColumn = COLUMN_OFFSET;
+        //}
+
+
+        private void triggerControl_Click(object sender, RoutedEventArgs e) {
+            if (sender is Button) {
+                Button btn = (Button)sender;
+                this.Add(Grid.GetRow(btn));
             }
-
-            //Would need to add the trigger event also
-            foreach (T control in this.Controls) {
-                control.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
-            }
-            this.Controls.Clear();
-            this.nextColumn = COLUMN_OFFSET;
-        }
-
-
-        private void dummyMouseLeftButtonUp(object sender, MouseButtonEventArgs args) {
-            this.Add();
         }
 
 
@@ -178,9 +188,7 @@ namespace MultiCommDashboards.DashBuilders {
             else if (typeof(T) == typeof(UC_VerticalSlider)) {
                 this.inType = InputType.Vertical;
             }
-
         }
-
 
 
         #region Drag drop experiments

@@ -39,18 +39,18 @@ namespace MultiCommDashboards.DashBuilders {
         private List<UC_OutputBase> Controls { get; set; } = new List<UC_OutputBase>();
 
 
-        public List<OutputControlDataModel> DataModels {
-            get {
-                List<OutputControlDataModel> list = new List<OutputControlDataModel>();
-                foreach (var control in Controls) {
-                    // Note. All the columns are over by 1 since 0 is occupied by event dummy
-                    OutputControlDataModel dm = control.StorageInfo;
-                    dm.Column -= COLUMN_OFFSET;
-                    list.Add(dm);
-                }
-                return list;
-            }
-        }
+        //public List<OutputControlDataModel> DataModels {
+        //    get {
+        //        List<OutputControlDataModel> list = new List<OutputControlDataModel>();
+        //        foreach (var control in Controls) {
+        //            // Note. All the columns are over by 1 since 0 is occupied by event dummy
+        //            OutputControlDataModel dm = control.StorageInfo;
+        //            dm.Column -= COLUMN_OFFSET;
+        //            list.Add(dm);
+        //        }
+        //        return list;
+        //    }
+        //}
 
         #endregion
 
