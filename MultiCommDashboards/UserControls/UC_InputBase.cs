@@ -104,10 +104,6 @@ namespace MultiCommDashboards.UserControls {
         protected abstract void DoInit();
         protected abstract void OnValueChanged(double newValue);
 
-        public virtual void SetTrueFalseTranslators(Func<bool, string> func) {
-            // Only used for bool data values
-        }
-
         #endregion
 
         #region Protected

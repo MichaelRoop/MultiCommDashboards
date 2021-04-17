@@ -42,6 +42,10 @@ namespace MultiCommDashboards.WpfHelpers {
 
         // new
         public static string Preview { get { return "Preview"; } }
+        public static string Digital { get { return "Digital"; } }
+        public static string Analog { get { return "Analog"; } }
+        public static string Outputs { get { return "Outputs"; } }
+        public static string Inputs { get { return "Inputs"; } }
 
 
 

@@ -10,7 +10,7 @@
              xmlns:userControl="clr-namespace:WpfUserControlLib;assembly=WpfUserControlLib"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-             mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="100"
+             mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="71"
              >
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".6"
@@ -20,26 +20,17 @@
             <customButtons:UC_RoundIconButton Style="{StaticResource IconButton}" IsEnabled="False"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}"  Width="40" Height="40"/>
         </Grid>
-        <Grid HorizontalAlignment="Center">
+        <Grid HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <DockPanel Grid.Row="0">
                 <Label x:Name="lbIdNameTxt" Content="My Name"  FontSize="14" HorizontalAlignment="Center"
                    Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0"  />
             </DockPanel>
-            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource brd075}" Padding="0" Margin="0">
-                <customSliders:UC_SliderBool x:Name="boolSlider" Style="{StaticResource BoolSliderStyle}" />
-            </Border>
-
-            <Border Grid.Row="1"  Grid.Column="3" BorderBrush="{StaticResource CommonBlue}" BorderThickness=".5" Margin="0" Padding="0">
-                <Label  x:Name="lblValue" Style="{StaticResource NameLabelCenter }" FontSize="14"
-                    Padding="0" Content="False" Width="50" HorizontalContentAlignment="Center" />
+            <Border Grid.Row="1" Style="{StaticResource brd075}" Padding="0" Margin="0">
+                <customSliders:UC_SliderBool x:Name="boolSlider" Style="{StaticResource BoolSliderStyle}"  />
             </Border>
         </Grid>
     </Grid>

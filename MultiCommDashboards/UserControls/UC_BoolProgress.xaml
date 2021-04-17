@@ -8,7 +8,7 @@
              xmlns:customButtons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
              xmlns:customSliders="clr-namespace:WpfCustomControlLib.Core.Sliders;assembly=WpfCustomControlLib.Core"
              BorderBrush="{Binding Source={StaticResource CommonBlue}}" BorderThickness=".5"
-             mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="100">
+             mc:Ignorable="d" Margin="1" Background="White" Height="50" Width="71">
     <Grid>
         <Grid x:Name="gridAdd" Panel.ZIndex="10000" Visibility="Collapsed" Background="White" Opacity=".6"
           VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   >
@@ -27,8 +27,6 @@
             <Border Grid.Row="1" Padding="0" Margin="0" Style="{StaticResource brd075}" HorizontalAlignment="Stretch" Width="30">
                 <Grid HorizontalAlignment="Stretch">
                     <ProgressBar  x:Name="sbProgress" Style="{StaticResource ioProgressBarHorizontal}" Value="1" Minimum="0" Maximum="1" />
-                    <TextBlock Text="{Binding ElementName=sbProgress, Path=Value, StringFormat={}{0:0}}" 
-                           Style="{StaticResource ioProgressBarHorizontalText}"/>
                 </Grid>
             </Border>
         </Grid>

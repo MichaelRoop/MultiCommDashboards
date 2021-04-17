@@ -83,7 +83,6 @@ namespace MultiCommDashboards.WindowObjs {
 
         private void InitControls() {
             this.sliderBool.SetSendAction(this.sendAction);
-            this.sliderBool.SetTrueFalseTranslators(this.translateTrueFalseFunc);
             this.sliderBool.Init(10, "IO 1 LED", BinaryMsgDataType.typeBool, 1, 0, 1);
 
             this.numericSlider.SetSendAction(this.sendAction);
@@ -93,10 +92,6 @@ namespace MultiCommDashboards.WindowObjs {
         #endregion
 
         #region Actions to pass to the sliders
-
-        private string translateTrueFalseFunc(bool trueFalse) {
-            return DI.W.GetText(trueFalse ? MsgCode.True : MsgCode.False);
-        }
 
 
         private void sendAction(byte id, BinaryMsgDataType dataType, double value) {

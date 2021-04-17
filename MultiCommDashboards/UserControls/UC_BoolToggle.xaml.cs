@@ -13,8 +13,6 @@ namespace MultiCommDashboards.UserControls {
 
         public UC_BoolToggle() : base() {
             InitializeComponent();
-            this.translateTrueFalseFunc = this.DefaultTrueFalseTranlator;
-            this.lblValue.Content = "";
             this.boolSlider.ValueChanged += this.controlsValueChangedHandler;
         }
 
@@ -34,11 +32,6 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public override void SetTrueFalseTranslators(Func<bool, string> func) {
-            this.translateTrueFalseFunc = func;
-        }
-
-
         protected override void DoInit() {
             InitializeComponent();
             this.lbIdNameTxt.Content = this.IOName;
@@ -46,21 +39,11 @@ namespace MultiCommDashboards.UserControls {
             this.DataType = BinaryMsgDataType.typeBool;
             this.Minimum = 0;
             this.Maximum = 1;
-            this.translateTrueFalseFunc = this.DefaultTrueFalseTranlator;
-            this.lblValue.Content = this.translateTrueFalseFunc(false);
             this.boolSlider.ValueChanged += this.controlsValueChangedHandler;
         }
 
 
         protected override void OnValueChanged(double newValue) {
-            this.lblValue.Content = this.translateTrueFalseFunc(newValue != 0);
         }
-
-
-        private string DefaultTrueFalseTranlator(bool trueFalse) {
-            return trueFalse.ToString();
-        }
-
-
     }
 }
