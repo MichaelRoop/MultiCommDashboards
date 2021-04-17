@@ -8,22 +8,14 @@ namespace MultiCommDashboards.UserControls {
     /// <summary>Interaction logic for UC_BoolToggle.xaml</summary>
     public partial class UC_BoolToggle : UC_InputBase {
 
-        private Func<bool, string> translateTrueFalseFunc = null;
-
-
         public UC_BoolToggle() : base() {
             InitializeComponent();
             this.boolSlider.ValueChanged += this.controlsValueChangedHandler;
         }
 
 
-        public UC_BoolToggle(InputControlDataModel data) : base(data) {
+        public UC_BoolToggle(DashboardControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize there
-        }
-
-
-        public override void SetAsAddDummy() {
-            this.gridAdd.Show();
         }
 
 

@@ -2,6 +2,7 @@
 using CommunicationStack.Net.BinaryMsgs;
 using CommunicationStack.Net.Enumerations;
 using LanguageFactory.Net.data;
+using MultiCommDashboardData.Storage;
 using MultiCommDashboards.DashBuilders;
 using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.UserControls;
@@ -83,10 +84,26 @@ namespace MultiCommDashboards.WindowObjs {
 
         private void InitControls() {
             this.sliderBool.SetSendAction(this.sendAction);
-            this.sliderBool.Init(10, "IO 1 LED", BinaryMsgDataType.typeBool, 1, 0, 1);
+            DashboardControlDataModel bDataModel = new DashboardControlDataModel() {
+                Id = 10,
+                IOName = "IO 1 LED",
+                DataType = BinaryMsgDataType.typeBool,
+                SendAtStep = 1,
+                Minimum = 0,
+                Maximum = 1,
+            };
+            this.sliderBool.Update(bDataModel);
 
             this.numericSlider.SetSendAction(this.sendAction);
-            this.numericSlider.Init(12, "IO 3 PWM", BinaryMsgDataType.typeUInt8, 1, 0, 254);
+            DashboardControlDataModel nDataModel = new DashboardControlDataModel() {
+                Id = 12,
+                IOName = "IO 3 PWM",
+                DataType = BinaryMsgDataType.typeUInt8,
+                SendAtStep = 1,
+                Minimum = 0,
+                Maximum = 254,
+            };
+            this.numericSlider.Update(nDataModel);
         }
 
         #endregion

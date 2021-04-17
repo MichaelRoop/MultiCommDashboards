@@ -12,13 +12,8 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public UC_HorizontalSlider(InputControlDataModel data) : base(data) {
+        public UC_HorizontalSlider(DashboardControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize there
-        }
-
-
-        public override void SetAsAddDummy() {
-            this.gridAdd.Show();
         }
 
 

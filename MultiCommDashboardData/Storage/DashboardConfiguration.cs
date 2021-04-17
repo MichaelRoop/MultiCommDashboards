@@ -7,13 +7,13 @@ namespace MultiCommDashboardData.Storage {
     public class DashboardConfiguration {
 
         public string Name { get; set; } = string.Empty;
-        public List<InputControlDataModel> InputsBool { get; set; } = new List<InputControlDataModel>();
-        public List<InputControlDataModel> InputsNumericHorizontal { get; set; } = new List<InputControlDataModel>();
-        public List<InputControlDataModel> InputsNumericVertical { get; set; } = new List<InputControlDataModel>();
+        public List<DashboardControlDataModel> InputsBool { get; set; } = new List<DashboardControlDataModel>();
+        public List<DashboardControlDataModel> InputsNumericHorizontal { get; set; } = new List<DashboardControlDataModel>();
+        public List<DashboardControlDataModel> InputsNumericVertical { get; set; } = new List<DashboardControlDataModel>();
 
-        public List<OutputControlDataModel> OutputsBool { get; set; } = new List<OutputControlDataModel>();
-        public List<OutputControlDataModel> OutputsNumericHorizontal { get; set; } = new List<OutputControlDataModel>();
-        public List<OutputControlDataModel> OutputsNumericVertical { get; set; } = new List<OutputControlDataModel>();
+        public List<DashboardControlDataModel> OutputsBool { get; set; } = new List<DashboardControlDataModel>();
+        public List<DashboardControlDataModel> OutputsNumericHorizontal { get; set; } = new List<DashboardControlDataModel>();
+        public List<DashboardControlDataModel> OutputsNumericVertical { get; set; } = new List<DashboardControlDataModel>();
 
     }
 }

@@ -11,13 +11,8 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public UC_VerticalProgressBar(OutputControlDataModel data) : base(data) {
+        public UC_VerticalProgressBar(DashboardControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize there
-        }
-
-
-        public override void SetAsAddDummy() {
-            this.gridAdd.Show();
         }
 
 

@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace MultiCommDashboards.UserControls {
 
-    public abstract class UC_InputBase : UserControl {
+    public abstract class UC_InputBase : UserControl, IDashboardControl {
 
         #region Data
 
@@ -41,9 +41,9 @@ namespace MultiCommDashboards.UserControls {
         /// <summary>Column location in grid</summary>
         public int Column { get; set; } = 0;
 
-        public InputControlDataModel StorageInfo {
+        public DashboardControlDataModel StorageInfo {
             get {
-                return new InputControlDataModel() {
+                return new DashboardControlDataModel() {
                     Id = this.Id,
                     IOName = this.IOName,
                     DataType = this.DataType,
@@ -56,8 +56,6 @@ namespace MultiCommDashboards.UserControls {
             }
         }
 
-
-
         #endregion
 
         #region Constructors
@@ -66,20 +64,16 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public UC_InputBase(InputControlDataModel data) {
-            this.Init(data.Id, data.IOName, data.DataType, data.SendAtStep, data.Minimum, data.Maximum);
-            this.Row = data.Row;
-            this.Column = data.Column;
+        public UC_InputBase(DashboardControlDataModel data) {
+            this.Update(data);
         }
 
         #endregion
 
         #region Public
 
-        public virtual void SetAsAddDummy() {
-        }
-
         public abstract void SetSliderEnabled(bool tf);
+
 
         /// <summary>Sets the action to raise when the value changes</summary>
         /// <param name="sendAction">The send action</param>
@@ -87,15 +81,19 @@ namespace MultiCommDashboards.UserControls {
             this.sendAction = sendAction;
         }
 
-        public void Init(byte id, string name, BinaryMsgDataType dataType, double step, double min, double max) {
-            this.Id = id;
-            this.IOName = name;
-            this.DataType = dataType;
-            this.SendAtStep = step;
-            this.Minimum = min;
-            this.Maximum = max;
+
+        public void Update(DashboardControlDataModel dataModel) {
+            this.Id = dataModel.Id;
+            this.IOName = dataModel.IOName;
+            this.DataType = dataModel.DataType;
+            this.SendAtStep = dataModel.SendAtStep;
+            this.Minimum = dataModel.Minimum;
+            this.Maximum = dataModel.Maximum;
+            this.Row = dataModel.Row;
+            this.Column = dataModel.Column;
             this.DoInit();
         }
+
 
         #endregion
 

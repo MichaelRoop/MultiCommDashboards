@@ -13,13 +13,8 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public UC_BoolProgress(OutputControlDataModel data) : base(data) {
+        public UC_BoolProgress(DashboardControlDataModel data) : base(data) {
             // The base initializes variables and calls the DoInit. Initialize() there
-        }
-
-
-        public override void SetAsAddDummy() {
-            this.gridAdd.Show();
         }
 
 

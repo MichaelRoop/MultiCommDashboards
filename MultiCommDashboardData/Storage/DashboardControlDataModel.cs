@@ -2,7 +2,7 @@
 
 namespace MultiCommDashboardData.Storage {
 
-    public class OutputControlDataModel {
+    public class DashboardControlDataModel {
 
         #region Properties
 
@@ -20,6 +20,9 @@ namespace MultiCommDashboardData.Storage {
         /// <summary>Maximum value for this control</summary>
         public double Maximum { get; set; } = 0;
 
+        /// <summary>At what tick step interval is data to be sent</summary>
+        public double SendAtStep { get; set; } = 0;
+
         /// <summary>Row location in grid</summary>
         public int Row { get; set; } = 0;
 
@@ -27,6 +30,7 @@ namespace MultiCommDashboardData.Storage {
         public int Column { get; set; } = 0;
 
         #endregion
+
 
 
     }
