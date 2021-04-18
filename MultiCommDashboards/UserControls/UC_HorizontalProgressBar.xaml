@@ -24,9 +24,9 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <DockPanel Grid.Row="0" Margin="0,2">
-                <Label x:Name="lbIdNameTxt" Content="My Name"  Style="{Binding Source={StaticResource NameLabelRight}}" 
-                   Margin="5,0,0,0" Padding="0" FontSize="14" HorizontalAlignment="Center"/>
+            <DockPanel Grid.Row="0">
+                <TextBlock x:Name="txtName" Text="My Name"  FontSize="14" HorizontalAlignment="Left"  Margin="5,0,2,0"
+                   Style="{Binding Source={StaticResource  TxtBlockLeft}}" TextTrimming="CharacterEllipsis"  />
             </DockPanel>
             <Border Grid.Row="1" Padding="0" Margin="0" Style="{StaticResource brd075}" HorizontalAlignment="Stretch">
                 <Grid HorizontalAlignment="Stretch">

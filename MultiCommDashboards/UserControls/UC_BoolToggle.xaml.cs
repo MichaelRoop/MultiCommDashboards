@@ -32,7 +32,7 @@ namespace MultiCommDashboards.UserControls {
 
         protected override void DoInit() {
             InitializeComponent();
-            this.lbIdNameTxt.Content = this.IOName;
+            this.txtName.Text = this.IOName;
             // Force it bool every time
             this.DataType = BinaryMsgDataType.typeBool;
             this.Minimum = 0;

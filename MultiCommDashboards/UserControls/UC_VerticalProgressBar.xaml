@@ -31,8 +31,8 @@
                     <StackPanel.LayoutTransform>
                         <RotateTransform Angle="-90"/>
                     </StackPanel.LayoutTransform>
-                    <Label x:Name="lbIdNameTxt" Content="My Name" Padding="0"  
-                       Style="{Binding Source={StaticResource NameLabelCenter}}" Margin="0" />
+                    <TextBlock x:Name="txtName" Text="My Name"  FontSize="14" HorizontalAlignment="Left" Margin="0"
+                   Style="{Binding Source={StaticResource  TxtBlockLeft}}" TextTrimming="CharacterEllipsis"  />
                 </StackPanel>
                 <Border Grid.Column="1"  Style="{ StaticResource brd075}" Padding="0" Margin="3,0,0,0">
                     <Grid HorizontalAlignment="Stretch">

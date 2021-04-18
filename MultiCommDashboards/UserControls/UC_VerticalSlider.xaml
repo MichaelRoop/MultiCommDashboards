@@ -35,8 +35,8 @@
                 <DockPanel.LayoutTransform>
                     <RotateTransform Angle="-90"/>
                 </DockPanel.LayoutTransform>
-                <Label x:Name="lbIdNameTxt" Content="My Name" Padding="0"  HorizontalAlignment="Center"
-                       Style="{Binding Source={StaticResource NameLabelCenter}}" Margin="0" />
+                <TextBlock x:Name="txtName" Text="My Name"  FontSize="14" HorizontalAlignment="Left" Margin="2,0"
+                   Style="{Binding Source={StaticResource  TxtBlockLeft}}" TextTrimming="CharacterEllipsis"  />
             </DockPanel>
             <Border Grid.Row="0" Grid.Column="1"   Style="{ StaticResource brd075}" Padding="0" Margin="3,0,0,0" 
                     VerticalAlignment="Stretch">

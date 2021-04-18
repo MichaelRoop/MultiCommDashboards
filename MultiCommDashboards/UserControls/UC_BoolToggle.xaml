@@ -28,8 +28,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <DockPanel Grid.Row="0">
-                <Label x:Name="lbIdNameTxt" Content="My Name"  FontSize="14" HorizontalAlignment="Center"
-                   Style="{Binding Source={StaticResource NameLabelRight}}" Margin="0" Padding="0"  />
+                <TextBlock x:Name="txtName" Text="My Name"  FontSize="14" HorizontalAlignment="Left"
+                   Style="{Binding Source={StaticResource  TxtBlockLeft}}" TextTrimming="CharacterEllipsis"  />
             </DockPanel>
             <Border Grid.Row="1" Style="{StaticResource brd075}" Padding="0" Margin="0">
                 <customSliders:UC_SliderBool x:Name="boolSlider" Style="{StaticResource BoolSliderStyle}"  />

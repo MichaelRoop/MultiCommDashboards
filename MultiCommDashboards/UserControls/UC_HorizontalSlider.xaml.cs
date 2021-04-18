@@ -26,7 +26,7 @@ namespace MultiCommDashboards.UserControls {
 
         protected override void DoInit() {
             InitializeComponent();
-            this.lbIdNameTxt.Content = this.IOName;
+            this.txtName.Text = this.IOName;
             this.sliderNumeric.TickFrequency = this.SendAtStep;
             this.sliderNumeric.Minimum = this.Minimum;
             this.sliderNumeric.Maximum = this.Maximum;
