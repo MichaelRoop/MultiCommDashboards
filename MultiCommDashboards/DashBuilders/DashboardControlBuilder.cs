@@ -120,6 +120,7 @@ namespace MultiCommDashboards.DashBuilders {
                 if (dm.DataType != BinaryMsgDataType.typeBool) {
                     dm.Minimum = 0;
                     dm.Maximum = 255;
+                    dm.DataType = BinaryMsgDataType.typeUInt8;
                     dm.SendAtStep = 1;
                 }
 
@@ -132,7 +133,6 @@ namespace MultiCommDashboards.DashBuilders {
                 Grid.SetColumn(control, nextColumn);
                 this.grid.Children.Add(control);
                 control.DeleteRequest += this.deleteRequest;
-                control.EditRequest += this.editRequest;
                 this.Controls.Add(control);
                 nextColumn++;
                 return true;
@@ -169,19 +169,10 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        private void editRequest(object sender, EventArgs e) {
-            T control = sender as T;
-            if (control != null) {
-                App.ShowMsgTitle(control.IOName, "Request Edit");
-            }
-        }
-
-
         private void deleteRequest(object sender, EventArgs e) {
             T control = sender as T;
             if (control != null) {
                 control.DeleteRequest -= this.deleteRequest;
-                control.EditRequest -= this.editRequest;
                 this.Controls.Remove(control);
                 this.grid.Children.Remove(control);
 

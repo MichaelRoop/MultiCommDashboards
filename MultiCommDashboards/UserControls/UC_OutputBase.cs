@@ -2,6 +2,7 @@
 using CommunicationStack.Net.Enumerations;
 using LogUtils.Net;
 using MultiCommDashboardData.Storage;
+using MultiCommDashboards.WindowObjs.Configs;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -61,7 +62,6 @@ namespace MultiCommDashboards.UserControls {
         #region IDashboardControl events
 
         public event EventHandler DeleteRequest;
-        public event EventHandler EditRequest;
 
         #endregion
 
@@ -186,7 +186,8 @@ namespace MultiCommDashboards.UserControls {
 
         protected void editClick(object sender, RoutedEventArgs e) {
             try {
-                this.EditRequest?.Invoke(this, new EventArgs());
+                // TODO Sub this with the edit box eventually
+                DashboardControlView.ShowBox(this, this.StorageInfo);
             }
             catch (Exception ex) {
                 this.log.Exception(9999, "editClick", "", ex);

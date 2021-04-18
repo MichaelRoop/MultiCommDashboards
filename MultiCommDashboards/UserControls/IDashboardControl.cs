@@ -44,7 +44,6 @@ namespace MultiCommDashboards.UserControls {
 
 
         event EventHandler DeleteRequest;
-        event EventHandler EditRequest;
 
 
     }

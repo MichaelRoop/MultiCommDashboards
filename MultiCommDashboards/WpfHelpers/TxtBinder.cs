@@ -34,10 +34,16 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string Connect { get { return GetTxt(MsgCode.connect); } }
         public static string DataType { get { return GetTxt(MsgCode.DataType); } }
         public static string Disconnect { get { return GetTxt(MsgCode.Disconnect); } }
+        public static string Edit { get { return GetTxt(MsgCode.Edit); } }
+        public static string Exit { get { return GetTxt(MsgCode.exit); } }
+        public static string Max { get { return GetTxt(MsgCode.Max); } }
+        public static string Min { get { return GetTxt(MsgCode.Min); } }
         public static string Name { get { return GetTxt(MsgCode.Name); } }
         public static string Select { get { return GetTxt(MsgCode.select); } }
         public static string Send { get { return GetTxt(MsgCode.send); } }
         public static string Id { get { return GetTxt(MsgCode.Id); } }
+
+
 
 
         // new
@@ -46,6 +52,9 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string Analog { get { return "Analog"; } }
         public static string Outputs { get { return "Outputs"; } }
         public static string Inputs { get { return "Inputs"; } }
+        public static string Step { get { return "Step"; } }
+        public static string Row { get { return "Row"; } }
+        public static string Column { get { return "Column"; } }
 
 
 
@@ -53,7 +62,6 @@ namespace MultiCommDashboards.WpfHelpers {
 
         //public static string Save { get { return GetTxt(MsgCode.save); } }
         //public static string Copy { get { return GetTxt(MsgCode.copy); } }
-        //public static string Exit { get { return GetTxt(MsgCode.exit); } }
         //public static string OK { get { return GetTxt(MsgCode.Ok); } }
         //public static string Yes { get { return GetTxt(MsgCode.yes); } }
         //public static string No { get { return GetTxt(MsgCode.no); } }
@@ -106,7 +114,6 @@ namespace MultiCommDashboards.WpfHelpers {
         //public static string LogText { get { return GetTxt(MsgCode.Log); } }
         //public static string Support { get { return GetTxt(MsgCode.Support); } }
         //public static string Ethernet { get { return GetTxt(MsgCode.Ethernet); } }
-        //public static string Edit { get { return GetTxt(MsgCode.Edit); } }
         //public static string Create { get { return GetTxt(MsgCode.Create); } }
         //public static string Clear { get { return GetTxt(MsgCode.Clear); } }
         //public static string ResetAll { get { return GetTxt(MsgCode.ResetAll); } }
