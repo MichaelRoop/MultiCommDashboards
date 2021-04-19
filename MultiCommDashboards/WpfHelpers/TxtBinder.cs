@@ -39,6 +39,7 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string Max { get { return GetTxt(MsgCode.Max); } }
         public static string Min { get { return GetTxt(MsgCode.Min); } }
         public static string Name { get { return GetTxt(MsgCode.Name); } }
+        public static string Save { get { return GetTxt(MsgCode.save); } }
         public static string Select { get { return GetTxt(MsgCode.select); } }
         public static string Send { get { return GetTxt(MsgCode.send); } }
         public static string Id { get { return GetTxt(MsgCode.Id); } }
@@ -60,7 +61,6 @@ namespace MultiCommDashboards.WpfHelpers {
 
         #endregion
 
-        //public static string Save { get { return GetTxt(MsgCode.save); } }
         //public static string Copy { get { return GetTxt(MsgCode.copy); } }
         //public static string OK { get { return GetTxt(MsgCode.Ok); } }
         //public static string Yes { get { return GetTxt(MsgCode.yes); } }

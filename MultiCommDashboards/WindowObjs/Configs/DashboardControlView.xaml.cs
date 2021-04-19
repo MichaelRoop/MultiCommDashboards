@@ -10,7 +10,7 @@ namespace MultiCommDashboards.WindowObjs.Configs {
     /// <summary>Interaction logic for DashboardControlView.xaml</summary>
     public partial class DashboardControlView : Window {
 
-        UserControl callingUserControl = null;
+        private UserControl callingUserControl = null;
 
 
         public static void ShowBox(UserControl parent, DashboardControlDataModel dm) {
