@@ -111,15 +111,6 @@ namespace MultiCommDashboards.WindowObjs.Configs {
 
         private void txtId_PreviewTextInput(object sender, TextCompositionEventArgs e) {
             var textBox = sender as TextBox;
-            // Use SelectionStart property to find the caret position.
-            // Insert the previewed text into the existing text in the textbox.
-            //if (String.IsNullOrWhiteSpace(e.Text)) {
-            //    App.ShowErrMsg("Space");
-            //    e.Handled = true;
-            //    return;
-            //}
-
-
             string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
 
             //byte b;
@@ -128,10 +119,18 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             //    App.ShowErrMsg("Range 0-255");
             //}
 
-            fullText.IsByte(() => { }, (re) => {
-                e.Handled = true;
-                App.ShowErrMsg(string.Format("Ooops, range {0}-{1}", re.Min, re.Max));
-            });
+            //fullText.IsByte(() => { }, (re) => {
+            //    e.Handled = true;
+            //    App.ShowErrMsg(string.Format("Ooops, range {0}-{1}", re.Min, re.Max));
+            //});
+
+
+            BinaryMsgDataType.typeUInt8.Validate(fullText, () => { },
+                (range) => {
+                    e.Handled = true;
+                    App.ShowErrMsg(string.Format("Ooopsy, range {0}-{1}", range.Min, range.Max));
+
+                });
 
 
 
