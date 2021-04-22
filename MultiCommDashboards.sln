@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluetoothRFCommUWP", "..\Sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunicationStack.Net", "..\SharedNetLibs\CommunicationStack.Net\CommunicationStack.Net.csproj", "{190B81E9-EC20-4E39-9823-3423CBDD588A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariousUtils.Net", "..\SharedNetLibs\VariousUtils\VariousUtils.Net.csproj", "{8BE844EA-CCC6-4772-9EEA-36ADC1F73E73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{190B81E9-EC20-4E39-9823-3423CBDD588A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{190B81E9-EC20-4E39-9823-3423CBDD588A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{190B81E9-EC20-4E39-9823-3423CBDD588A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE844EA-CCC6-4772-9EEA-36ADC1F73E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE844EA-CCC6-4772-9EEA-36ADC1F73E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE844EA-CCC6-4772-9EEA-36ADC1F73E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE844EA-CCC6-4772-9EEA-36ADC1F73E73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

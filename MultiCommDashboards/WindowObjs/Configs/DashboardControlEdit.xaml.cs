@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VariousUtils.Net;
 using WpfCustomControlLib.Core.Helpers;
 using WpfHelperClasses.Core;
 
@@ -119,13 +120,18 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             //}
 
 
-            var fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+            string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
 
-            byte b;
-            e.Handled = !Byte.TryParse(fullText, out b);
-            if (e.Handled) {
-                App.ShowErrMsg("Range 0-255");
-            }
+            //byte b;
+            //e.Handled = !Byte.TryParse(fullText, out b);
+            //if (e.Handled) {
+            //    App.ShowErrMsg("Range 0-255");
+            //}
+
+            fullText.IsByte(() => { }, (re) => {
+                e.Handled = true;
+                App.ShowErrMsg(string.Format("Ooops, range {0}-{1}", re.Min, re.Max));
+            });
 
 
 
