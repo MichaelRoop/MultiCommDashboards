@@ -38,7 +38,10 @@ namespace MultiCommDashboards.UserControls {
             var textBox = sender as TextBox;
             // Insert new character at proposed index
             string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
-            DI.W.Validate(this.dataType, fullText, App.ShowErrMsg);
+            DI.W.Validate(this.dataType, fullText, (err) => {
+                e.Handled = true;
+                App.ShowErrMsg(err);
+            });
         }
 
     }
