@@ -1,6 +1,7 @@
 ﻿using BluetoothCommon.Net;
 using ChkUtils.Net.ErrObjects;
 using CommunicationStack.Net.BinaryMsgs;
+using CommunicationStack.Net.Enumerations;
 using LanguageFactory.Net.data;
 using LanguageFactory.Net.interfaces;
 using LanguageFactory.Net.Messaging;
@@ -86,6 +87,24 @@ namespace MultiCommDashboardWrapper.Interfaces {
 
         void GetSettings(Action<SettingsDataModel> onSuccess, OnErr onError);
         void SaveSettings(SettingsDataModel settings, Action onSuccess, OnErr onError);
+
+        #endregion
+
+        #region General
+
+        /// <summary>Validate entry of data for control</summary>
+        /// <param name="dataType">The current data type</param>
+        /// <param name="value">The proposed value</param>
+        /// <param name="onError">Raised if value is invalid for data type</param>
+        void Validate(BinaryMsgDataType dataType, string value, OnErr onError);
+
+
+        /// <summary>Validate entry of data for control</summary>
+        /// <param name="dataType">The current data type</param>
+        /// <param name="value">The proposed value</param>
+        /// <param name="onSuccess">Raised on valid value for data type</param>
+        /// <param name="onError">Raised if value is invalid for data type</param>
+        void Validate(BinaryMsgDataType dataType, string value, Action onSuccess, OnErr onError);
 
         #endregion
 

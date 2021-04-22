@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="MultiCommDashboards.UserControls.UC_NumericEditBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MultiCommDashboards.UserControls"
+             xmlns:helpers="clr-namespace:MultiCommDashboards.WpfHelpers"
+             xmlns:buttons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
+             xmlns:UC_Custom="clr-namespace:WpfUserControlLib;assembly=WpfUserControlLib"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid>
+        <TextBox x:Name="txtValue" Style="{StaticResource  TxtBoxRight}" 
+                   PreviewTextInput="txtValue_PreviewTextInput" PreviewKeyDown="txtValue_PreviewKeyDown" />
+    </Grid>
+</UserControl>

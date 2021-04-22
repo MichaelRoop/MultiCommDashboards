@@ -1,5 +1,6 @@
 ﻿using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
+using MultiCommDashboards.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -46,10 +47,13 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             this.DataModel = dm;
             InitializeComponent();
 
-            this.SetFieldValue(this.txtId, dm.Id);
+            this.SetFieldValue(this.txtId, dm.Id, BinaryMsgDataType.typeUInt8);
+
+
             this.SetFieldValue(this.txtName, dm.IOName);
             // TODO - set as drop box
             this.txtDataType.Text = dm.DataType.ToStr();
+
             this.SetFieldValue(this.txtMin, dm.Minimum);
             this.SetFieldValue(this.txtMax, dm.Maximum);
             this.SetFieldValue(this.txtStep, dm.SendAtStep);
@@ -89,13 +93,13 @@ namespace MultiCommDashboards.WindowObjs.Configs {
         private void btnSave_Click(object sender, RoutedEventArgs e) {
             // TODO validate and set the property
 
-            byte b;
-            if (Byte.TryParse(this.txtId.Text, out b)) {
-                this.DataModel.Id = b;
-            }
-            else {
-                App.ShowErrMsg("Range 0-255");
-            }
+            //byte b;
+            //if (Byte.TryParse(this.txtId.Text, out b)) {
+            //    this.DataModel.Id = b;
+            //}
+            //else {
+            //    App.ShowErrMsg("Range 0-255");
+            //}
 
 
 
@@ -109,46 +113,54 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             txt.Text = obj.ToString();
         }
 
-        private void txtId_PreviewTextInput(object sender, TextCompositionEventArgs e) {
-            var textBox = sender as TextBox;
-            string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
 
-            //byte b;
-            //e.Handled = !Byte.TryParse(fullText, out b);
-            //if (e.Handled) {
-            //    App.ShowErrMsg("Range 0-255");
-            //}
-
-            //fullText.IsByte(() => { }, (re) => {
-            //    e.Handled = true;
-            //    App.ShowErrMsg(string.Format("Ooops, range {0}-{1}", re.Min, re.Max));
-            //});
-
-
-            BinaryMsgDataType.typeUInt8.Validate(fullText, () => { },
-                (range) => {
-                    e.Handled = true;
-                    App.ShowErrMsg(string.Format("Ooopsy, range {0}-{1}", range.Min, range.Max));
-
-                });
-
-
-
-            //double val;
-            //// If parsing is successful, set Handled to false
-            //e.Handled = !double.TryParse(fullText,
-            //                             NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
-            //                             CultureInfo.InvariantCulture,
-            //                             out val);
+        private void SetFieldValue(UC_NumericEditBox txt, object obj, BinaryMsgDataType dataType) {
+            txt.Text = obj.ToString();
+            txt.SetDataType(dataType);
         }
 
-        private void keyDownFilter(object sender, KeyEventArgs e) {
-            // Filter out any unwanted that do not show up in the preview Text input
-            if (e.Key == Key.Space) {
-                e.Handled = true;
-                return;
-            }
-        }
+
+
+        //private void txtId_PreviewTextInput(object sender, TextCompositionEventArgs e) {
+        //    var textBox = sender as TextBox;
+        //    string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+
+        //    //byte b;
+        //    //e.Handled = !Byte.TryParse(fullText, out b);
+        //    //if (e.Handled) {
+        //    //    App.ShowErrMsg("Range 0-255");
+        //    //}
+
+        //    //fullText.IsByte(() => { }, (re) => {
+        //    //    e.Handled = true;
+        //    //    App.ShowErrMsg(string.Format("Ooops, range {0}-{1}", re.Min, re.Max));
+        //    //});
+
+
+        //    BinaryMsgDataType.typeUInt8.Validate(fullText, () => { },
+        //        (range) => {
+        //            e.Handled = true;
+        //            App.ShowErrMsg(string.Format("Ooopsy, range {0}-{1}", range.Min, range.Max));
+
+        //        });
+
+
+
+        //    //double val;
+        //    //// If parsing is successful, set Handled to false
+        //    //e.Handled = !double.TryParse(fullText,
+        //    //                             NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
+        //    //                             CultureInfo.InvariantCulture,
+        //    //                             out val);
+        //}
+
+        //private void keyDownFilter(object sender, KeyEventArgs e) {
+        //    // Filter out any unwanted that do not show up in the preview Text input
+        //    if (e.Key == Key.Space) {
+        //        e.Handled = true;
+        //        return;
+        //    }
+        //}
 
     }
 }
