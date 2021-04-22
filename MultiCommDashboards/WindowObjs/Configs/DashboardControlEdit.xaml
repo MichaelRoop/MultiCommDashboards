@@ -48,9 +48,6 @@
         <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource TxtBlockLeft}" 
                    Text="{Binding Source={x:Static helpers:TxtBinder.Column}}"/>
 
-        <!--<TextBox Grid.Row="0" Grid.Column="1" x:Name="txtId" Style="{StaticResource  TxtBoxRight}" 
-                   Text="xxx" PreviewTextInput="txtId_PreviewTextInput" PreviewKeyDown="keyDownFilter" />-->
-
         <controls:UC_NumericEditBox Grid.Row="0" Grid.Column="1" x:Name="txtId"  />
 
 
@@ -59,16 +56,12 @@
         <!-- TODO THIS WILL BECOME DROP DOWN FOR NUMERICS -->
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDataType" Style="{StaticResource TxtBoxRight}" 
                    Text="xxx"/>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtMin" Style="{StaticResource TxtBoxRight}" 
-                   Text="xxx"/>
-        <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtMax" Style="{StaticResource TxtBoxRight}" 
-                   Text="xxx"/>
-        <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtStep" Style="{StaticResource TxtBoxRight}" 
-                   Text="xxx"/>
-        <TextBox Grid.Row="6" Grid.Column="1" x:Name="txtRow" Style="{StaticResource TxtBoxRight}" 
-                   Text="xxx"/>
-        <TextBox Grid.Row="7" Grid.Column="1" x:Name="txtColum" Style="{StaticResource TxtBoxRight}" 
-                   Text="xxx"/>
+
+        <controls:UC_NumericEditBox Grid.Row="3" Grid.Column="1" x:Name="txtMin" />
+        <controls:UC_NumericEditBox Grid.Row="4" Grid.Column="1" x:Name="txtMax"/>
+        <controls:UC_NumericEditBox Grid.Row="5" Grid.Column="1" x:Name="txtStep" />
+        <Label Grid.Row="6" Grid.Column="1" x:Name="lblRow" Style="{StaticResource NameLabelRight}" />
+        <Label Grid.Row="7" Grid.Column="1" x:Name="lblColum" Style="{StaticResource NameLabelRight}" />
 
 
 

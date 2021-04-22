@@ -48,17 +48,16 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             InitializeComponent();
 
             this.SetFieldValue(this.txtId, dm.Id, BinaryMsgDataType.typeUInt8);
-
-
-            this.SetFieldValue(this.txtName, dm.IOName);
-            // TODO - set as drop box
+            this.txtName.Text = dm.IOName;
+            // TODO - set as drop box. If bool freeze drop box
             this.txtDataType.Text = dm.DataType.ToStr();
 
-            this.SetFieldValue(this.txtMin, dm.Minimum);
-            this.SetFieldValue(this.txtMax, dm.Maximum);
-            this.SetFieldValue(this.txtStep, dm.SendAtStep);
-            this.SetFieldValue(this.txtRow, dm.Row);
-            this.SetFieldValue(this.txtColum, dm.Column);
+            this.SetFieldValue(this.txtMin, dm.Minimum, dm.DataType);
+            this.SetFieldValue(this.txtMax, dm.Maximum, dm.DataType);
+            this.SetFieldValue(this.txtStep, dm.SendAtStep, dm.DataType);
+            this.lblRow.Content = dm.Row;
+            this.lblColum.Content = dm.Column;
+
             if (dm.DataType == BinaryMsgDataType.typeBool) {
                 this.rowMin.Height = new GridLength(0);
                 this.rowMax.Height = new GridLength(0);
@@ -93,6 +92,9 @@ namespace MultiCommDashboards.WindowObjs.Configs {
         private void btnSave_Click(object sender, RoutedEventArgs e) {
             // TODO validate and set the property
 
+            // less to check for bool?
+
+
             //byte b;
             //if (Byte.TryParse(this.txtId.Text, out b)) {
             //    this.DataModel.Id = b;
@@ -118,49 +120,6 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             txt.Text = obj.ToString();
             txt.SetDataType(dataType);
         }
-
-
-
-        //private void txtId_PreviewTextInput(object sender, TextCompositionEventArgs e) {
-        //    var textBox = sender as TextBox;
-        //    string fullText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
-
-        //    //byte b;
-        //    //e.Handled = !Byte.TryParse(fullText, out b);
-        //    //if (e.Handled) {
-        //    //    App.ShowErrMsg("Range 0-255");
-        //    //}
-
-        //    //fullText.IsByte(() => { }, (re) => {
-        //    //    e.Handled = true;
-        //    //    App.ShowErrMsg(string.Format("Ooops, range {0}-{1}", re.Min, re.Max));
-        //    //});
-
-
-        //    BinaryMsgDataType.typeUInt8.Validate(fullText, () => { },
-        //        (range) => {
-        //            e.Handled = true;
-        //            App.ShowErrMsg(string.Format("Ooopsy, range {0}-{1}", range.Min, range.Max));
-
-        //        });
-
-
-
-        //    //double val;
-        //    //// If parsing is successful, set Handled to false
-        //    //e.Handled = !double.TryParse(fullText,
-        //    //                             NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
-        //    //                             CultureInfo.InvariantCulture,
-        //    //                             out val);
-        //}
-
-        //private void keyDownFilter(object sender, KeyEventArgs e) {
-        //    // Filter out any unwanted that do not show up in the preview Text input
-        //    if (e.Key == Key.Space) {
-        //        e.Handled = true;
-        //        return;
-        //    }
-        //}
 
     }
 }
