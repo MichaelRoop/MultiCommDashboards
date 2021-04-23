@@ -45,14 +45,14 @@ namespace MultiCommDashboards.UserControls {
             foreach (var dataModel in config.OutputsNumericHorizontal) {
                 this.InitItem(new UC_HorizontalProgressBar(dataModel), this.grdOutputsNumHorizontal);
             }
-            this.txtName.Text = config.Name;
+            this.txtName.Text = config.Display;
         }
 
 
         public DashboardConfiguration GetConfig() {
             // TODO - Validate the name?
             DashboardConfiguration config = new DashboardConfiguration() {
-                Name = this.txtName.Text,
+                Display = this.txtName.Text,
             };
 
             this.BuildInConfig(this.inputsBool, config);

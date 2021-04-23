@@ -75,6 +75,7 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             this.CenterToParent(this.callingUserControl);
         }
 
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
             if (this.DataModel.DataType != BinaryMsgDataType.typeBool) {
                 this.cbDataType.SelectionChanged -= this.dataTypeChanged;

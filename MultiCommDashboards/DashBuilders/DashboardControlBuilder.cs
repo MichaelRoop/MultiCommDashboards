@@ -18,10 +18,8 @@ namespace MultiCommDashboards.DashBuilders {
             Undefined,
             InBool,
             InHorizontal,
-            InVertical,
             OutBool,
             OutHorizontal,
-            OutVertical,
         };
 
         // Always start at column 2, 0 for Digital label, 1 for Add button
@@ -66,17 +64,11 @@ namespace MultiCommDashboards.DashBuilders {
                     case  ControlType.OutHorizontal:
                         config.OutputsNumericHorizontal.Add(dm);
                         break;
-                    case ControlType.OutVertical:
-                        config.OutputsNumericVertical.Add(dm);
-                        break;
                     case ControlType.InBool:
                         config.InputsBool.Add(dm);
                         break;
                     case ControlType.InHorizontal:
                         config.InputsNumericHorizontal.Add(dm);
-                        break;
-                    case ControlType.InVertical:
-                        config.InputsNumericVertical.Add(dm);
                         break;
                 }
             }
@@ -150,10 +142,6 @@ namespace MultiCommDashboards.DashBuilders {
                 this.nameBase = "Num In:";
                 this.controlType = ControlType.InHorizontal;
             }
-            else if (typeof(T) == typeof(UC_VerticalSlider)) {
-                this.nameBase = "";
-                this.controlType = ControlType.InVertical;
-            }
             else if (typeof(T) == typeof(UC_BoolProgress)) {
                 this.nameBase = "Dig Out:";
                 this.controlType = ControlType.OutBool;
@@ -161,10 +149,6 @@ namespace MultiCommDashboards.DashBuilders {
             else if (typeof(T) == typeof(UC_HorizontalProgressBar)) {
                 this.nameBase = "Num Out:";
                 this.controlType = ControlType.OutHorizontal;
-            }
-            else if (typeof(T) == typeof(UC_VerticalProgressBar)) {
-                this.nameBase = "";
-                this.controlType = ControlType.OutVertical;
             }
         }
 

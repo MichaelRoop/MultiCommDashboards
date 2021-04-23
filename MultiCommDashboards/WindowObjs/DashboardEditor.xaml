@@ -32,6 +32,11 @@
                 Content="{Binding Source={x:Static helpers:TxtBinder.Preview}}"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
                 Click="btnPreview_Click"/>
+            <customControls:UC_IconButton x:Name="btnSave"  
+                Style="{StaticResource TextIconButton}"  
+                Content="{Binding Source={x:Static helpers:TxtBinder.Save}}"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
+                Click="btnSave_Click"/>
 
         </DockPanel>
     </Grid>

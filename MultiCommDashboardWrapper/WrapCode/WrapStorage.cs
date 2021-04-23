@@ -1,4 +1,5 @@
 ﻿using MultiCommDashboardData.Storage;
+using MultiCommDashboardData.StorageIndex;
 using MultiCommDashboardWrapper.Interfaces;
 using StorageFactory.Net.interfaces;
 using System;
@@ -18,12 +19,13 @@ namespace MultiCommDashboardWrapper.WrapCode {
         private readonly string SETTINGS_DIR = "Settings";
         private readonly string SETTINGS_FILE = "MultiCommDashboardSettings.txt";
 
-        //private readonly string WIFI_CRED_DIR = "WifiCredentials";
-        //private readonly string WIFI_CRED_INDEX_FILE = "WifiCredIndex.txt";
+        private readonly string CONFIGURATIONS_DIR = "DashboardConfigs";
+        private readonly string CONFIGURATIONS_INDEX_FILE = "DashboardConfigsIndex.txt";
 
         // Storage members
         private IStorageManagerFactory _storageFactory = null;
         private IStorageManager<SettingsDataModel> _settings = null;
+        private IIndexedStorageManager<DashboardConfiguration, DashboardConfigIndexExtraInfo> __dashboardConfigs = null;
 
         #endregion
 
@@ -49,6 +51,19 @@ namespace MultiCommDashboardWrapper.WrapCode {
                 return this._settings;
             }
         }
+
+
+        private IIndexedStorageManager<DashboardConfiguration, DashboardConfigIndexExtraInfo> Configurations {
+            get {
+                if (this.__dashboardConfigs == null) {
+                    this.__dashboardConfigs =
+                        this.StorageFactory.GetIndexedManager<DashboardConfiguration, DashboardConfigIndexExtraInfo>(
+                            this.DirPath(this.CONFIGURATIONS_DIR), this.CONFIGURATIONS_INDEX_FILE);
+                }
+                return this.__dashboardConfigs;
+            }
+        }
+
 
         #endregion
 

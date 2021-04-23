@@ -18,27 +18,14 @@ namespace MultiCommDashboardWrapper.StorageFactories {
         public IIndexedStorageManager<TData, TIndexExtraInfo> GetIndexedManager<TData, TIndexExtraInfo>()
             where TData : class
             where TIndexExtraInfo : class {
-            // TODO
-            //if (typeof(TData).Name == typeof(TerminatorDataModel).Name) {
-            //    return this.set.Terminators as IIndexedStorageManager<TData, TIndexExtraInfo>;
-            //}
+
+            if (typeof(TData).Name == typeof(DashboardConfiguration).Name) {
+                return this.set.Configurations as IIndexedStorageManager<TData, TIndexExtraInfo>;
+            }
             //else if (typeof(TData).Name == typeof(ScriptDataModel).Name) {
             //    return this.set.Scripts as IIndexedStorageManager<TData, TIndexExtraInfo>;
             //}
-            //else if (typeof(TData).Name == typeof(WifiCredentialsDataModel).Name) {
-            //    return this.set.WifiCred as IIndexedStorageManager<TData, TIndexExtraInfo>;
-            //}
-            //else if (typeof(TData).Name == typeof(SerialDeviceInfo).Name) {
-            //    return this.set.Serial as IIndexedStorageManager<TData, TIndexExtraInfo>;
-            //}
-            //else if (typeof(TData).Name == typeof(EthernetParams).Name) {
-            //    return this.set.Ethernet as IIndexedStorageManager<TData, TIndexExtraInfo>;
-            //}
-            //else if (typeof(TData).Name == typeof(BLECommandSetDataModel).Name) {
-            //    return this.set.BLECommands as IIndexedStorageManager<TData, TIndexExtraInfo>;
-            //}
-            //// Add others
-
+            // Add others
             return null;
         }
 

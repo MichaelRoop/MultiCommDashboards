@@ -7,7 +7,9 @@ using LanguageFactory.Net.data;
 using LanguageFactory.Net.interfaces;
 using LanguageFactory.Net.Messaging;
 using MultiCommDashboardData.Storage;
+using MultiCommDashboardData.StorageIndex;
 using MultiCommDashboardWrapper.DataModels;
+using StorageFactory.Net.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -90,6 +92,14 @@ namespace MultiCommDashboardWrapper.Interfaces {
 
         void GetSettings(Action<SettingsDataModel> onSuccess, OnErr onError);
         void SaveSettings(SettingsDataModel settings, Action onSuccess, OnErr onError);
+
+        #endregion
+
+        #region Dasboard configurations
+
+        void CreateConfiguration(DashboardConfiguration data, Action<IIndexItem<DashboardConfigIndexExtraInfo>> onSuccess, OnErr onError);
+
+        void CreateOrSaveConfiguration(DashboardConfiguration data, Action onSuccess, OnErr onError);
 
         #endregion
 

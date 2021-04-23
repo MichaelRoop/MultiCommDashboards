@@ -34,10 +34,6 @@ namespace MultiCommDashboards.UserControls {
                 this.InitItem(new UC_HorizontalSlider(dataModel), this.grdInputsNumHorizontal);
             }
 
-            foreach (var dataModel in config.InputsNumericVertical) {
-                this.InitItem(new UC_VerticalSlider(dataModel), this.grdInputsNumVertical);
-            }
-
             // Outputs
             foreach (var dataModel in config.OutputsBool) {
                 this.InitItem(new UC_BoolProgress(dataModel), this.grdOutputsBool);
@@ -45,10 +41,6 @@ namespace MultiCommDashboards.UserControls {
 
             foreach (var dataModel in config.OutputsNumericHorizontal) {
                 this.InitItem(new UC_HorizontalProgressBar(dataModel), this.grdOutputsNumHorizontal);
-            }
-
-            foreach (var dataModel in config.OutputsNumericVertical) {
-                this.InitItem(new UC_VerticalProgressBar(dataModel), this.grdOutputsNumVertical);
             }
         }
 
