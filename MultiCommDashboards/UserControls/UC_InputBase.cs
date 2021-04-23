@@ -137,11 +137,7 @@ namespace MultiCommDashboards.UserControls {
 
         protected void editClick(object sender, RoutedEventArgs e) {
             try {
-                // TODO Sub this with the edit box eventually
-                //DashboardControlView.ShowBox(this, this.StorageInfo);
-
                 this.Update(DashboardControlEdit.ShowBox(this, this.StorageInfo));
-
             }
             catch (Exception ex) {
                 this.log.Exception(9999, "editClick", "", ex);

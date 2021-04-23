@@ -2,7 +2,6 @@
 using MultiCommDashboardData.Storage;
 using System;
 using System.Windows;
-using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.UserControls {
 

@@ -1,20 +1,12 @@
-﻿using CommunicationStack.Net.Enumerations;
+﻿using CommunicationStack.Net.DataModels;
+using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
+using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.UserControls;
-using System;
+using MultiCommDashboardWrapper.DataModels;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using VariousUtils.Net;
 using WpfCustomControlLib.Core.Helpers;
 using WpfHelperClasses.Core;
 
@@ -23,13 +15,15 @@ namespace MultiCommDashboards.WindowObjs.Configs {
     /// <summary>DashboardControlEdit.xaml</summary>
     public partial class DashboardControlEdit : Window {
 
-        private DashboardControlDataModel copy = new DashboardControlDataModel();
         private UserControl callingUserControl = null;
-        //https://stackoverflow.com/questions/1268552/how-do-i-get-a-textbox-to-only-accept-numeric-input-in-wpf
-        private static readonly Regex REGEX_UINT = new Regex("[^0-9]+");
-        private static readonly Regex REGEX_INT = new Regex("[^0-9-]+");
-        private static readonly Regex REGEX_FLOAT = new Regex("[^0-9.-]+");
-        private Regex currentRegex = REGEX_UINT;
+        ////https://stackoverflow.com/questions/1268552/how-do-i-get-a-textbox-to-only-accept-numeric-input-in-wpf
+        //private static readonly Regex REGEX_UINT = new Regex("[^0-9]+");
+        //private static readonly Regex REGEX_INT = new Regex("[^0-9-]+");
+        //private static readonly Regex REGEX_FLOAT = new Regex("[^0-9.-]+");
+        //private Regex currentRegex = REGEX_UINT;
+
+        private List<BinaryMsgDataTypeDisplay> typeList = BinaryMsgDataTypeDisplay.TypeList;
+        private BinaryMsgDataType currentDataType = BinaryMsgDataType.tyepUndefined;
 
         public DashboardControlDataModel DataModel { get; set; } = new DashboardControlDataModel();
 
@@ -43,30 +37,32 @@ namespace MultiCommDashboards.WindowObjs.Configs {
 
         public DashboardControlEdit(UserControl parent, DashboardControlDataModel dm) {
             this.callingUserControl = parent;
-            this.copy = dm;
             this.DataModel = dm;
             InitializeComponent();
 
-            this.SetFieldValue(this.txtId, dm.Id, BinaryMsgDataType.typeUInt8);
-            this.txtName.Text = dm.IOName;
-            // TODO - set as drop box. If bool freeze drop box
-            this.txtDataType.Text = dm.DataType.ToStr();
+            this.SetFieldValue(this.txtId, this.DataModel.Id, BinaryMsgDataType.typeUInt8);
+            this.txtName.Text = this.DataModel.IOName;
+            this.cbDataType.ItemsSource = this.typeList;
+            this.cbDataType.SelectedItem = this.typeList.Find(x => x.DataType == this.DataModel.DataType);
+            this.currentDataType = this.DataModel.DataType;
 
-            this.SetFieldValue(this.txtMin, dm.Minimum, dm.DataType);
-            this.SetFieldValue(this.txtMax, dm.Maximum, dm.DataType);
-            this.SetFieldValue(this.txtStep, dm.SendAtStep, dm.DataType);
-            this.lblRow.Content = dm.Row;
-            this.lblColum.Content = dm.Column;
+            this.SetFieldValue(this.txtMin, this.DataModel.Minimum, this.DataModel.DataType);
+            this.SetFieldValue(this.txtMax, this.DataModel.Maximum, this.DataModel.DataType);
+            this.SetFieldValue(this.txtStep, this.DataModel.SendAtStep, this.DataModel.DataType);
+            this.lblRow.Content = this.DataModel.Row;
+            this.lblColum.Content = this.DataModel.Column;
 
-            if (dm.DataType == BinaryMsgDataType.typeBool) {
+            if (this.DataModel.DataType == BinaryMsgDataType.typeBool) {
                 this.rowMin.Height = new GridLength(0);
                 this.rowMax.Height = new GridLength(0);
                 this.rowStep.Height = new GridLength(0);
+                this.cbDataType.IsEnabled = false;
+            }
+            else {
+                this.cbDataType.SelectionChanged += this.dataTypeChanged;
             }
         }
 
-        // TODO - change regex on the data type drop down change.
-        // Affects min, max, step
 
         public override void OnApplyTemplate() {
             this.BindMouseDownToCustomTitleBar();
@@ -80,7 +76,9 @@ namespace MultiCommDashboards.WindowObjs.Configs {
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-
+            if (this.DataModel.DataType != BinaryMsgDataType.typeBool) {
+                this.cbDataType.SelectionChanged -= this.dataTypeChanged;
+            }
         }
 
 
@@ -90,24 +88,23 @@ namespace MultiCommDashboards.WindowObjs.Configs {
 
 
         private void btnSave_Click(object sender, RoutedEventArgs e) {
-            // TODO validate and set the property
-
-            // less to check for bool?
-
-
-            //byte b;
-            //if (Byte.TryParse(this.txtId.Text, out b)) {
-            //    this.DataModel.Id = b;
-            //}
-            //else {
-            //    App.ShowErrMsg("Range 0-255");
-            //}
-
-
-
-
-
-            this.Close();
+            DI.W.ValidateEditValues(new RawConfigValues() {
+                Id = this.txtId.Text,
+                Name = this.txtName.Text,
+                DataType = this.currentDataType,
+                Min = this.txtMin.Text,
+                Max = this.txtMax.Text,
+                Step = this.txtStep.Text,
+            }, 
+            (validated) => {
+                this.DataModel.Id = validated.Id;
+                this.DataModel.IOName = validated.IOName;
+                this.DataModel.DataType = this.currentDataType;
+                this.DataModel.Minimum = validated.Minimum;
+                this.DataModel.Maximum = validated.Maximum;
+                this.DataModel.SendAtStep = validated.SendAtStep;
+                this.Close();
+            }, App.ShowErrMsg);
         }
 
 
@@ -120,6 +117,19 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             txt.Text = obj.ToString();
             txt.SetDataType(dataType);
         }
+
+
+        private void dataTypeChanged(object sender, SelectionChangedEventArgs e) {
+            DI.W.GetRange(
+                this.cbDataType.SelectedItem as BinaryMsgDataTypeDisplay, 
+                range => {
+                    this.txtStep.Text = "1";
+                    this.txtMin.Text = range.Min;
+                    this.txtMax.Text = range.Max;
+                    this.currentDataType = (this.cbDataType.SelectedItem as BinaryMsgDataTypeDisplay).DataType;
+                }, App.ShowErrMsg);
+        }
+
 
     }
 }

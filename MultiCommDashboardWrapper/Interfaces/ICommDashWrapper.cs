@@ -1,14 +1,17 @@
 ﻿using BluetoothCommon.Net;
 using ChkUtils.Net.ErrObjects;
 using CommunicationStack.Net.BinaryMsgs;
+using CommunicationStack.Net.DataModels;
 using CommunicationStack.Net.Enumerations;
 using LanguageFactory.Net.data;
 using LanguageFactory.Net.interfaces;
 using LanguageFactory.Net.Messaging;
 using MultiCommDashboardData.Storage;
+using MultiCommDashboardWrapper.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using VariousUtils.Net;
 
 namespace MultiCommDashboardWrapper.Interfaces {
 
@@ -105,6 +108,20 @@ namespace MultiCommDashboardWrapper.Interfaces {
         /// <param name="onSuccess">Raised on valid value for data type</param>
         /// <param name="onError">Raised if value is invalid for data type</param>
         void Validate(BinaryMsgDataType dataType, string value, Action onSuccess, OnErr onError);
+
+
+        /// <summary>Validate the group of values before saving</summary>
+        /// <param name="values">The set of values to validate</param>
+        /// <param name="onSuccess">Raised on success with completed data model</param>
+        /// <param name="onError">Raised on error</param>
+        void ValidateEditValues(RawConfigValues values, Action<ValidatedConfigValues> onSuccess, OnErr onError);
+        
+        
+        /// <summary>Get range values as string for display</summary>
+        /// <param name="dataType">The message data type</param>
+        /// <param name="onSuccess">Raised on success with range</param>
+        /// <param name="onError">Raised on error</param>
+        void GetRange(BinaryMsgDataTypeDisplay dataType, Action<NumericRange> onSuccess, OnErr onError);
 
         #endregion
 

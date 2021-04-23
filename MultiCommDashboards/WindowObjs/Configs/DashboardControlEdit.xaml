@@ -47,23 +47,21 @@
                    Text="{Binding Source={x:Static helpers:TxtBinder.Row}}"/>
         <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource TxtBlockLeft}" 
                    Text="{Binding Source={x:Static helpers:TxtBinder.Column}}"/>
-
         <controls:UC_NumericEditBox Grid.Row="0" Grid.Column="1" x:Name="txtId"  />
-
-
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtName" Style="{StaticResource TxtBoxRight}" 
-                   Text="xxx"/>
-        <!-- TODO THIS WILL BECOME DROP DOWN FOR NUMERICS -->
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtDataType" Style="{StaticResource TxtBoxRight}" 
-                   Text="xxx"/>
-
+        
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtName" Style="{StaticResource TxtBoxRight}" />
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cbDataType"  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Display}" Style="{StaticResource TxtBlockLeft}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <controls:UC_NumericEditBox Grid.Row="3" Grid.Column="1" x:Name="txtMin" />
         <controls:UC_NumericEditBox Grid.Row="4" Grid.Column="1" x:Name="txtMax"/>
         <controls:UC_NumericEditBox Grid.Row="5" Grid.Column="1" x:Name="txtStep" />
         <Label Grid.Row="6" Grid.Column="1" x:Name="lblRow" Style="{StaticResource NameLabelRight}" />
         <Label Grid.Row="7" Grid.Column="1" x:Name="lblColum" Style="{StaticResource NameLabelRight}" />
-
-
 
         <DockPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <buttons:UC_IconButton  x:Name="btnCancel" 
