@@ -26,10 +26,33 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
+        /// <summary>Initialize the editor with existing configuration</summary>
+        /// <param name="config"></param>
+        public void Init(DashboardConfiguration config) {
+            foreach (var dataModel in config.InputsBool) {
+                this.InitItem(new UC_BoolToggle(dataModel), this.grdInputsBool);
+            }
+
+            foreach (var dataModel in config.InputsNumericHorizontal) {
+                this.InitItem(new UC_HorizontalSlider(dataModel), this.grdInputsNumHorizontal);
+            }
+
+            // Outputs
+            foreach (var dataModel in config.OutputsBool) {
+                this.InitItem(new UC_BoolProgress(dataModel), this.grdOutputsBool);
+            }
+
+            foreach (var dataModel in config.OutputsNumericHorizontal) {
+                this.InitItem(new UC_HorizontalProgressBar(dataModel), this.grdOutputsNumHorizontal);
+            }
+            this.txtName.Text = config.Name;
+        }
+
+
         public DashboardConfiguration GetConfig() {
-            // TODO - have the name saved and loaded
+            // TODO - Validate the name?
             DashboardConfiguration config = new DashboardConfiguration() {
-                Name = "Test config name"
+                Name = this.txtName.Text,
             };
 
             this.BuildInConfig(this.inputsBool, config);
@@ -85,6 +108,22 @@ namespace MultiCommDashboards.UserControls {
                 output.BuildConfig(config);
             }
         }
+
+
+        private void InitItem(UC_InputBase input, Grid grid) {
+            Grid.SetRow(input, input.Row);
+            Grid.SetColumn(input, input.Column);
+            grid.Children.Add(input);
+        }
+
+
+        private void InitItem(UC_OutputBase input, Grid grid) {
+            // TODO - register to receive. subscribe
+            Grid.SetRow(input, input.Row);
+            Grid.SetColumn(input, input.Column);
+            grid.Children.Add(input);
+        }
+
 
     }
 }

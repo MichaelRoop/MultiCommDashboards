@@ -12,15 +12,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="2"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="250"/>
-            <ColumnDefinition MinWidth="150"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <Label Content="Outputs" Style="{StaticResource NameLabelCenter}" />
+
+        <DockPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Background="Black"/>
+
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Label x:Name="lbName" Content="Outputs" Style="{StaticResource NameLabelCenter}" />
+            <TextBox x:Name="txtName" Text="XXX" Style="{StaticResource TxtBoxRight}" />
         </DockPanel>
 
         <!-- Outputs - Bool and Horizontal  -->
@@ -100,8 +105,19 @@
             </Grid>
         </Grid>
 
+
+        <DockPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Label Content="Outputs" Style="{StaticResource NameLabelCenter}" >
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="-90"/>
+                </Label.LayoutTransform>
+            </Label>
+        </DockPanel>
+
+
+
         <!-- Outputs - Vertical  -->
-        <Grid Grid.Row="1" Grid.Column="1" x:Name="grdOutputsNumVertical" Background="White">
+        <!--<Grid Grid.Row="1" Grid.Column="1" x:Name="grdOutputsNumVertical" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -120,13 +136,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <!--<local:UC_VerticalProgressBar x:Name="outVProgress0" Grid.Row="0" Grid.Column="0"/>
+            --><!--<local:UC_VerticalProgressBar x:Name="outVProgress0" Grid.Row="0" Grid.Column="0"/>
             <local:UC_VerticalProgressBar x:Name="outVProgress1" Grid.Row="1" Grid.Column="0"/>
-            <local:UC_VerticalProgressBar x:Name="outVProgress2" Grid.Row="2" Grid.Column="0"/>-->
-        </Grid>
+            <local:UC_VerticalProgressBar x:Name="outVProgress2" Grid.Row="2" Grid.Column="0"/>--><!--
+        </Grid>-->
 
-        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <Label Content="Inputs" Style="{StaticResource NameLabelCenter}"/>
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" Background="Black">
+            <!--<Label Content="Inputs" Style="{StaticResource NameLabelCenter}"/>-->
         </DockPanel>
 
 
@@ -190,6 +206,16 @@
             </Grid>
 
         </Grid>
+
+        <DockPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Label Content="Inputs" Style="{StaticResource NameLabelCenter}" >
+                <Label.LayoutTransform>
+                    <RotateTransform Angle="-90"/>
+                </Label.LayoutTransform>
+            </Label>
+        </DockPanel>
+
+
 
         <!-- Inputs - Vertical  -->
 
