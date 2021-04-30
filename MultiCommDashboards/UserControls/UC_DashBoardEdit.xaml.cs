@@ -66,15 +66,12 @@ namespace MultiCommDashboards.UserControls {
         private void InitBoolInputs() {
             this.inputsBool.Add(new DashboardControlBuilder<UC_BoolToggle>(this.btnInBool0, this.grdInputsBool));
             this.inputsBool.Add(new DashboardControlBuilder<UC_BoolToggle>(this.btnInBool1, this.grdInputsBool));
-            this.inputsBool.Add(new DashboardControlBuilder<UC_BoolToggle>(this.btnInBool2, this.grdInputsBool));
         }
 
 
         private void InitHorizontalInputs() {
             this.inputsHNum.Add(new DashboardControlBuilder<UC_HorizontalSlider>(this.btnInAnalog0, this.grdInputsNumHorizontal));
             this.inputsHNum.Add(new DashboardControlBuilder<UC_HorizontalSlider>(this.btnInAnalog1, this.grdInputsNumHorizontal));
-            this.inputsHNum.Add(new DashboardControlBuilder<UC_HorizontalSlider>(this.btnInAnalog2, this.grdInputsNumHorizontal));
-
         }
 
 
