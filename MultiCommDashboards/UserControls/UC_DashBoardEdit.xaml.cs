@@ -92,7 +92,6 @@ namespace MultiCommDashboards.UserControls {
             this.outputsHNum.Add(new DashboardControlBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH2, this.grdOutputsNumHorizontal));
             this.outputsHNum.Add(new DashboardControlBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH3, this.grdOutputsNumHorizontal));
             this.outputsHNum.Add(new DashboardControlBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH4, this.grdOutputsNumHorizontal));
-            this.outputsHNum.Add(new DashboardControlBuilder<UC_HorizontalProgressBar>(this.btnOutAnalogH5, this.grdOutputsNumHorizontal));
         }
 
 

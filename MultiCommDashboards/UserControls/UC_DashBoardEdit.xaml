@@ -55,6 +55,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="lblOutBool" Grid.Row="0" Grid.Column="0" 
                        Style="{StaticResource NameLabelLeft}"
@@ -77,9 +78,10 @@
                     <RowDefinition Height="Auto" MinHeight="52"/>
                     <RowDefinition Height="Auto" MinHeight="52"/>
                     <RowDefinition Height="Auto" MinHeight="52"/>
-                    <RowDefinition Height="Auto" MinHeight="52"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -99,8 +101,6 @@
                 <buttons:UC_RoundIconButton Grid.Row="3" Grid.Column="1" x:Name="btnOutAnalogH3" Margin="10,0" Width="30" Height="30"
                         Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
                 <buttons:UC_RoundIconButton Grid.Row="4" Grid.Column="1" x:Name="btnOutAnalogH4" Margin="10,0" Width="30" Height="30"
-                        Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
-                <buttons:UC_RoundIconButton Grid.Row="5" Grid.Column="1" x:Name="btnOutAnalogH5" Margin="10,0" Width="30" Height="30"
                         Style="{StaticResource  RoundIconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
             </Grid>
         </Grid>
