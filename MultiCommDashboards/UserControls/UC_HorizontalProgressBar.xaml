@@ -31,7 +31,7 @@
             <Border Grid.Row="1" Padding="0" Margin="0" Style="{StaticResource brd075}" HorizontalAlignment="Stretch">
                 <Grid HorizontalAlignment="Stretch">
                     <ProgressBar  x:Name="sbProgress" Style="{StaticResource ioProgressBarHorizontal}" Value="500" Minimum="0" Maximum="100"/>
-                    <TextBlock Text="{Binding ElementName=sbProgress, Path=Value, StringFormat={}{0:0}}" 
+                    <TextBlock x:Name="txtProgress" Text="{Binding ElementName=sbProgress, Path=Value, StringFormat={}{0:0}}" 
                            Style="{StaticResource ioProgressBarHorizontalText}"/>
                 </Grid>
             </Border>

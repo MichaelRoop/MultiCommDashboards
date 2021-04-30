@@ -29,7 +29,7 @@
         </DockPanel>
 
         <!-- Outputs - Bool and Horizontal  -->
-        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  >
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>
@@ -117,7 +117,7 @@
 
 
         <!-- Inputs - Bool and Horizontal  -->
-        <Grid Grid.Row="3" Grid.Column="0" >
+        <Grid Grid.Row="3" Grid.Column="0"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"/>

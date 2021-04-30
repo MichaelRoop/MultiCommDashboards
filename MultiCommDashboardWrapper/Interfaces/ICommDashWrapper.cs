@@ -39,6 +39,8 @@ namespace MultiCommDashboardWrapper.Interfaces {
         event EventHandler<BinaryMsgUInt32> MsgEventUInt32;
         event EventHandler<BinaryMsgFloat32> MsgEventFloat32;
 
+        event EventHandler<BinaryMsgMinData> OutputData_BT;
+
         #endregion
 
         #region Properties

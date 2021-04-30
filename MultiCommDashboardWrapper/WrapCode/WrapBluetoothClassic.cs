@@ -8,6 +8,7 @@ using MultiCommDashboardWrapper.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MultiCommDashboardWrapper.WrapCode {
 
@@ -125,6 +126,16 @@ namespace MultiCommDashboardWrapper.WrapCode {
 
         private void BTStack_BytesReceivedHandler(object sender, byte[] data) {
             this.ParseBinaryMsgData(data);
+
+            Task.Run(() => {
+                try {
+                    this.ParseBinaryMsgData(data, Enumerations.ConnectionType.BluetoothClassic);
+                }
+                catch (Exception ex) {
+                    this.log.Exception(9999, "BTStack_BytesReceivedHandler", "", ex);
+                }
+            });
+
         }
 
         private void BT_ConnectedHander(object sender, bool e) {

@@ -1,4 +1,5 @@
 ﻿using MultiCommDashboardData.Storage;
+using System;
 using System.Windows;
 
 namespace MultiCommDashboards.UserControls {
@@ -35,6 +36,9 @@ namespace MultiCommDashboards.UserControls {
 
         protected override void DoDisplay(double value) {
             this.sbProgress.Value = value;
+            if (this.Precision > 0) {
+                this.txtProgress.Text = Math.Round(this.sbProgress.Value, this.Precision).ToString();
+            }
         }
 
     }

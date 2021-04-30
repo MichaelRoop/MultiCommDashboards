@@ -27,6 +27,9 @@ namespace MultiCommDashboards.UserControls {
         /// <summary>The data type represented by the control</summary>
         public BinaryMsgDataType DataType { get; set; } = BinaryMsgDataType.tyepUndefined;
 
+        /// <summary>To change the format of displayed data</summary>
+        public int Precision { get; set; } = 0;
+
         /// <summary>Minimum value for this control</summary>
         public double Minimum { get; set; } = 0;
 
@@ -48,6 +51,7 @@ namespace MultiCommDashboards.UserControls {
                     Id = this.Id,
                     IOName = this.IOName,
                     DataType = this.DataType,
+                    Precision = this.Precision,
                     Minimum = this.Minimum,
                     Maximum = this.Maximum,
                     SendAtStep = this.SendAtStep,
@@ -79,60 +83,21 @@ namespace MultiCommDashboards.UserControls {
         #endregion
 
         #region Public
-        // todo some way to process data in
 
         public bool IsMine(byte id) {
             return this.Id == id;
         }
 
-        public void Process(BinaryMsgBool msg) {
-            if (IsMine(msg.Id)) {
-                this.DispatchDisplay(msg.Value == 0 ? 0 : 1);
-            }
-        }
 
-        public void Process(BinaryMsgInt8 msg) {
-            if (IsMine(msg.Id)) {
-                this.DispatchDisplay(msg.Value);
+        /// <summary>Display data if for this object</summary>
+        /// <param name="data">The minimal data id and value as double</param>
+        /// <returns></returns>
+        public bool Process(BinaryMsgMinData data) {
+            if (this.IsMine(data.MsgId)) {
+                this.DispatchDisplay(data.MsgValue);
+                return true;
             }
-        }
-
-        public void Process(BinaryMsgInt16 msg) {
-            if (IsMine(msg.Id)) {
-                this.DispatchDisplay(msg.Value);
-            }
-        }
-
-        public void Process(BinaryMsgInt32 msg) {
-            if (IsMine(msg.Id)) {
-                this.DispatchDisplay(msg.Value);
-            }
-        }
-
-
-        public void Process(BinaryMsgUInt8 msg) {
-            if (IsMine(msg.Id)) {
-                this.DispatchDisplay(msg.Value);
-            }
-        }
-
-        public void Process(BinaryMsgUInt16 msg) {
-            if (IsMine(msg.Id)) {
-                this.DispatchDisplay(msg.Value);
-            }
-        }
-
-        public void Process(BinaryMsgUInt32 msg) {
-            if (IsMine(msg.Id)) {
-                this.DispatchDisplay(msg.Value);
-            }
-        }
-
-        public void Process(BinaryMsgFloat32 msg) {
-            if (IsMine(msg.Id)) {
-                // Check if we need to round precision
-                this.DispatchDisplay(msg.Value);
-            }
+            return false;
         }
 
 
@@ -140,6 +105,7 @@ namespace MultiCommDashboards.UserControls {
             this.Id = dataModel.Id;
             this.IOName = dataModel.IOName;
             this.DataType = dataModel.DataType;
+            this.Precision = dataModel.Precision;
             this.SendAtStep = dataModel.SendAtStep;
             this.Minimum = dataModel.Minimum;
             this.Maximum = dataModel.Maximum;

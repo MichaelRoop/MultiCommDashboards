@@ -3,6 +3,8 @@ using ChkUtils.Net.ErrObjects;
 using CommunicationStack.Net.BinaryMsgs;
 using CommunicationStack.Net.Enumerations;
 using LanguageFactory.Net.Messaging;
+using MultiCommDashboardWrapper.DataModels;
+using MultiCommDashboardWrapper.Enumerations;
 using MultiCommDashboardWrapper.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,6 +26,10 @@ namespace MultiCommDashboardWrapper.WrapCode {
         public event EventHandler<BinaryMsgFloat32> MsgEventFloat32;
 
 
+        public event EventHandler<BinaryMsgMinData> OutputData_BT;
+        
+
+
         private void RaiseIfException(ErrReport report) {
             if (report.Code != 0) {
                 WrapErr.ToErrReport(9999, "Error raising unexpected exception event", () => {
@@ -32,6 +38,77 @@ namespace MultiCommDashboardWrapper.WrapCode {
             }
         }
 
+
+        private void ParseBinaryMsgData(byte[] data, ConnectionType connectType) {
+            ErrReport report;
+            WrapErr.ToErrReport(out report, 9999, "Failure parse binary msg packet", () => {
+                // Comm Binary stack just sends back packet with start and end delimiters. Validate here
+
+                BinaryMsgMinData minData = null;
+                if (data.IsValidMsg()) {
+                    switch (data.GetDataType()) {
+                        case BinaryMsgDataType.typeBool:
+                            minData = data.ToBoolMsg().ToMinimumData();
+                            break;
+
+                        case BinaryMsgDataType.typeInt8:
+                            minData = data.ToInt8Msg().ToMinimumData();
+                            break;
+                        case BinaryMsgDataType.typeInt16:
+                            minData = data.ToInt16Msg().ToMinimumData();
+                            break;
+                        case BinaryMsgDataType.typeInt32:
+                            minData = data.ToInt32Msg().ToMinimumData();
+                            break;
+
+                        case BinaryMsgDataType.typeUInt8:
+                            minData = data.ToUInt8Msg().ToMinimumData();
+                            break;
+                        case BinaryMsgDataType.typeUInt16:
+                            minData = data.ToUInt16Msg().ToMinimumData();
+                            break;
+                        case BinaryMsgDataType.typeUInt32:
+                            minData = data.ToUInt32Msg().ToMinimumData();
+                            break;
+
+                        case BinaryMsgDataType.typeFloat32:
+                            minData = data.ToFloat32Msg().ToMinimumData();
+                            break;
+                        case BinaryMsgDataType.tyepUndefined:
+                        case BinaryMsgDataType.typeInvalid:
+                            // Already checked with IsValidMsg
+                            break;
+                    }
+
+                    if (minData != null) {
+                        switch (connectType) {
+                            case ConnectionType.BluetoothClassic:
+                                this.RaiseOuput_Bluetooth(minData);
+                                break;
+                            default:
+                                // TODO - error
+                                break;
+                        }
+                    }
+                    else {
+                        // TODO Error
+                    }
+
+                }
+                else {
+                    // TODO Raise error
+                }
+            });
+            this.RaiseIfException(report);
+        }
+
+        private void RaiseOuput_Bluetooth(BinaryMsgMinData data) {
+            ErrReport report;
+            WrapErr.ToErrReport(out report, 9999, "Failure on RaiseMsg", () => {
+                this.OutputData_BT?.Invoke(this, data);
+            });
+            this.RaiseIfException(report);
+        }
 
 
         private void ParseBinaryMsgData(byte[] data) {

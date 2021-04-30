@@ -24,11 +24,10 @@ namespace MultiCommDashboards.WindowObjs {
         public MainWindow() {
             InitializeComponent();
             DI.W.BT_Connected += W_BT_Connected;
-            DI.W.MsgEventFloat32 += W_MsgEventFloat32;
+            //DI.W.MsgEventFloat32 += W_MsgEventFloat32;
+            DI.W.OutputData_BT += W_OutputData_BT;
             DI.W.SetLanguage(LangCode.Spanish, App.ShowErrMsg);
             this.InitControls();
-            //this.bool0.Init(this.grdBool, 0, 10);
-            //this.bool1.Init(this.grdBool, 1, 10);
         }
 
 
@@ -37,11 +36,23 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
-        private void W_MsgEventFloat32(object sender, BinaryMsgFloat32 e) {
+        //private void W_MsgEventFloat32(object sender, BinaryMsgFloat32 e) {
+        //    this.Dispatcher.Invoke(() => {
+        //        this.txtInput.Text = e.Value.ToString();
+        //    });
+        //}
+
+        private void W_OutputData_BT(object sender, BinaryMsgMinData e) {
             this.Dispatcher.Invoke(() => {
-                this.txtInput.Text = e.Value.ToString();
+                LogUtils.Net.Log.Error(8, "MainWindow", "W_OutputData_BT", e.MsgValue.ToString());
+
+                this.numericOutput.Process(e);
+                this.temperature.Process(e);
             });
+
         }
+
+
 
 
         private void W_BT_Connected(object sender, bool ok) {
@@ -99,11 +110,33 @@ namespace MultiCommDashboards.WindowObjs {
                 Id = 12,
                 IOName = "IO 3 PWM",
                 DataType = BinaryMsgDataType.typeUInt8,
-                SendAtStep = 1,
+                SendAtStep = 10,
                 Minimum = 0,
-                Maximum = 254,
+                Maximum = 255,
             };
             this.numericSlider.Update(nDataModel);
+
+
+            DashboardControlDataModel out1 = new DashboardControlDataModel() {
+                Id = 12,
+                IOName = "output ID 12",
+                DataType = BinaryMsgDataType.typeUInt8,
+                Minimum = 0,
+                Maximum = 255,
+            };
+            this.numericOutput.Update(out1);
+
+            DashboardControlDataModel out2 = new DashboardControlDataModel() {
+                Id = 20,
+                IOName = "Temp ID:20",
+                DataType = BinaryMsgDataType.typeFloat32,
+                Precision = 2,
+                Minimum = -10,
+                Maximum = 100,
+            };
+            this.temperature.Update(out2);
+
+
         }
 
         #endregion

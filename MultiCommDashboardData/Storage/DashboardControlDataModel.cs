@@ -14,6 +14,9 @@ namespace MultiCommDashboardData.Storage {
         /// <summary>The data type represented by the control</summary>
         public BinaryMsgDataType DataType { get; set; } = BinaryMsgDataType.tyepUndefined;
 
+        /// <summary>To change the format of displayed data</summary>
+        public int Precision { get; set; } = 0;
+
         /// <summary>Minimum value for this control</summary>
         public double Minimum { get; set; } = 0;
 

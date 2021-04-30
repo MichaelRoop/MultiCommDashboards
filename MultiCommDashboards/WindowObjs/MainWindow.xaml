@@ -42,17 +42,20 @@
                 IconSource="{Binding Source={x:Static helpers:IconBinder.SEND}}"                                   
                 Click="btnSend_Click"/>
             </DockPanel>
-            <TextBox x:Name="txtInput" Text="XXXX" HorizontalAlignment="Center" Margin="30" FontSize="16" />
+            <!--<TextBox x:Name="txtInput" Text="XXXX" HorizontalAlignment="Center" Margin="30" FontSize="16" />-->
+            <controls:UC_HorizontalProgressBar x:Name="temperature"/>
 
-            <DockPanel HorizontalAlignment="Center">
+
+            <!--<DockPanel HorizontalAlignment="Center">
                 <controls:UC_ValueDisplay/>
-            </DockPanel>
+            </DockPanel>-->
 
             <controls:UC_BoolToggle x:Name="sliderBool"/>
             <controls:UC_HorizontalSlider x:Name="numericSlider"/>
+            <controls:UC_HorizontalProgressBar x:Name="numericOutput"/>
         </StackPanel>
 
-            <controls:UC_VerticalSlider x:Name="vSlider1" Grid.Column="1" />
+        <!--<controls:UC_VerticalSlider x:Name="vSlider1" Grid.Column="1" />-->
 
 
         <!--<Grid Grid.Row="1" x:Name="grdBool" Background="Wheat" >
