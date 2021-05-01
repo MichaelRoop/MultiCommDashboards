@@ -42,6 +42,7 @@ namespace MultiCommDashboards.UserControls {
 
         private void OnConstruction() {
             this.lblValue.Content = "";
+            this.sliderNumeric.ValueChanged -= this.controlsValueChangedHandler;
             this.sliderNumeric.ValueChanged += this.controlsValueChangedHandler;
         }
 

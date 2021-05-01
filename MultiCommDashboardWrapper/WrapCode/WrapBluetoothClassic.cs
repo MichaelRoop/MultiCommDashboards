@@ -100,6 +100,7 @@ namespace MultiCommDashboardWrapper.WrapCode {
         public void BTSend(byte[] msg) {
             ErrReport report;
             WrapErr.ToErrReport(out report, 20007, "Failure on BTClassicSend", () => {
+                this.log.Info("BTSend", "SendMsg");
                 this.BTStack.SendToComm(msg);
             });
             this.RaiseIfException(report);

@@ -20,10 +20,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
-
-            <DockPanel HorizontalAlignment="Center">
+            <DockPanel HorizontalAlignment="Center" Margin="10">
                 <buttons:UC_IconButton x:Name="btnConnect"  Margin="0,0,10,0" 
                 Style="{StaticResource TextIconButton}"  
                 Content="{Binding Source={x:Static helpers:TxtBinder.Connect}}"
@@ -36,55 +34,16 @@
                 IconSource="{Binding Source={x:Static helpers:IconBinder.CANCEL}}"                                   
                 Click="btnDisconnect_Click"/>
 
-                <buttons:UC_IconButton x:Name="btnSend"  Margin="0,0,10,0" 
+                <buttons:UC_IconButton x:Name="btnDashboard"  Margin="0,0,10,0" 
                 Style="{StaticResource TextIconButton}"  
-                Content="{Binding Source={x:Static helpers:TxtBinder.Send}}"
+                Content="Dashboard"
                 IconSource="{Binding Source={x:Static helpers:IconBinder.SEND}}"                                   
-                Click="btnSend_Click"/>
+                Click="btnDashboard_Click"/>
             </DockPanel>
-            <!--<TextBox x:Name="txtInput" Text="XXXX" HorizontalAlignment="Center" Margin="30" FontSize="16" />-->
-            <controls:UC_HorizontalProgressBar x:Name="temperature"/>
-
-
-            <!--<DockPanel HorizontalAlignment="Center">
-                <controls:UC_ValueDisplay/>
-            </DockPanel>-->
-
-            <controls:UC_BoolToggle x:Name="sliderBool"/>
-            <controls:UC_HorizontalSlider x:Name="numericSlider"/>
-            <controls:UC_HorizontalProgressBar x:Name="numericOutput"/>
+            <controls:UC_BoolToggle x:Name="sliderBool" Margin="5"/>
+            <controls:UC_HorizontalSlider x:Name="numericSlider" Margin="5"/>
+            <controls:UC_HorizontalProgressBar x:Name="numericOutput" Margin="5"/>
+            <controls:UC_HorizontalProgressBar x:Name="temperature" Margin="5"/>
         </StackPanel>
-
-        <!--<controls:UC_VerticalSlider x:Name="vSlider1" Grid.Column="1" />-->
-
-
-        <!--<Grid Grid.Row="1" x:Name="grdBool" Background="Wheat" >
-            <Grid.RowDefinitions>
-                <RowDefinition x:Name="boolRow0" />
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border Grid.Row="0" Grid.Column="0" x:Name="brdBool_0" Opacity=".4" MouseLeftButtonUp="brdBool_MouseLeftButtonUp" >
-                <controls:UC_BoolToggle/>
-            </Border>
-            <Border Grid.Row="1" Grid.Column="0" x:Name="brdBool_1" Opacity=".4" MouseLeftButtonUp="brdBool_MouseLeftButtonUp" >
-                <controls:UC_BoolToggle/>
-            </Border>
-        </Grid>-->
-        
     </Grid>
 </Window>

@@ -36,6 +36,7 @@ namespace MultiCommDashboards.UserControls {
             this.DataType = BinaryMsgDataType.typeBool;
             this.Minimum = 0;
             this.Maximum = 1;
+            this.boolSlider.ValueChanged -= this.controlsValueChangedHandler;
             this.boolSlider.ValueChanged += this.controlsValueChangedHandler;
         }
 

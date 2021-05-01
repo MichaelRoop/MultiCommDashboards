@@ -2,29 +2,23 @@
 using CommunicationStack.Net.BinaryMsgs;
 using CommunicationStack.Net.Enumerations;
 using LanguageFactory.Net.data;
+using LogUtils.Net;
 using MultiCommDashboardData.Storage;
-using MultiCommDashboards.DashBuilders;
 using MultiCommDashboards.DependencyInjection;
-using MultiCommDashboards.UserControls;
 using MultiCommDashboards.WindowObjs.BTWins;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace MultiCommDashboards.WindowObjs {
 
     /// <summary>Logic for MainWindow.xaml</summary>
     public partial class MainWindow : Window {
 
-        //InputBuilder<UC_BoolToggle> bool0 = new InputBuilder<UC_BoolToggle>();
-        //InputBuilder<UC_HorizontalSlider> bool1 = new InputBuilder<UC_HorizontalSlider>();
+        ClassLog log = new ClassLog("MainWindow");
 
         public MainWindow() {
             InitializeComponent();
             DI.W.BT_Connected += W_BT_Connected;
-            //DI.W.MsgEventFloat32 += W_MsgEventFloat32;
             DI.W.OutputData_BT += W_OutputData_BT;
             DI.W.SetLanguage(LangCode.Spanish, App.ShowErrMsg);
             this.InitControls();
@@ -36,23 +30,18 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
-        //private void W_MsgEventFloat32(object sender, BinaryMsgFloat32 e) {
-        //    this.Dispatcher.Invoke(() => {
-        //        this.txtInput.Text = e.Value.ToString();
-        //    });
-        //}
-
         private void W_OutputData_BT(object sender, BinaryMsgMinData e) {
             this.Dispatcher.Invoke(() => {
-                LogUtils.Net.Log.Error(8, "MainWindow", "W_OutputData_BT", e.MsgValue.ToString());
-
-                this.numericOutput.Process(e);
-                this.temperature.Process(e);
+                if (this.numericOutput.IsMine(e.MsgId)) {
+                    this.log.Error(8, "W_OutputData_BT (numeric)", e.MsgValue.ToString());
+                    this.numericOutput.Process(e);
+                }
+                if (this.temperature.IsMine(e.MsgId)) {
+                    this.log.Error(8, "W_OutputData_BT (temperature)", e.MsgValue.ToString());
+                    this.temperature.Process(e);
+                }
             });
-
         }
-
-
 
 
         private void W_BT_Connected(object sender, bool ok) {
@@ -81,12 +70,8 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
-        private void btnSend_Click(object sender, RoutedEventArgs e) {
-            //BinaryMsgBool mb = new BinaryMsgBool(10, true);
-            //DI.W.BTSend(mb.ToByteArray());
-
+        private void btnDashboard_Click(object sender, RoutedEventArgs e) {
             DashboardEditor.ShowBox(this);
-
         }
 
         #region Init Controls
@@ -110,7 +95,7 @@ namespace MultiCommDashboards.WindowObjs {
                 Id = 12,
                 IOName = "IO 3 PWM",
                 DataType = BinaryMsgDataType.typeUInt8,
-                SendAtStep = 10,
+                SendAtStep = 1,
                 Minimum = 0,
                 Maximum = 255,
             };
@@ -135,13 +120,11 @@ namespace MultiCommDashboards.WindowObjs {
                 Maximum = 100,
             };
             this.temperature.Update(out2);
-
-
         }
 
         #endregion
 
-        #region Actions to pass to the sliders
+        #region Actions to pass to the input sliders
 
 
         private void sendAction(byte id, BinaryMsgDataType dataType, double value) {
@@ -151,19 +134,28 @@ namespace MultiCommDashboards.WindowObjs {
                     DI.W.BTSend(new BinaryMsgBool(id, (value != 0)).ToByteArray());
                     break;
                 case BinaryMsgDataType.typeInt8:
-                    break;
-                case BinaryMsgDataType.typeUInt8:
-                    DI.W.BTSend(new BinaryMsgUInt8(id, (byte)value).ToByteArray());
+                    DI.W.BTSend(new BinaryMsgInt8(id, (sbyte)value).ToByteArray());
                     break;
                 case BinaryMsgDataType.typeInt16:
-                    break;
-                case BinaryMsgDataType.typeUInt16:
+                    DI.W.BTSend(new BinaryMsgInt16(id, (Int16)value).ToByteArray());
                     break;
                 case BinaryMsgDataType.typeInt32:
+                    DI.W.BTSend(new BinaryMsgInt32(id, (Int32)value).ToByteArray());
+                    break;
+
+                case BinaryMsgDataType.typeUInt8:
+                    this.log.Info("", () => string.Format("UINT8 value:{0}", value));
+                    DI.W.BTSend(new BinaryMsgUInt8(id, (byte)value).ToByteArray());
+                    break;
+                case BinaryMsgDataType.typeUInt16:
+                    DI.W.BTSend(new BinaryMsgUInt16(id, (UInt16)value).ToByteArray());
                     break;
                 case BinaryMsgDataType.typeUInt32:
+                    DI.W.BTSend(new BinaryMsgUInt32(id, (UInt32)value).ToByteArray());
                     break;
+
                 case BinaryMsgDataType.typeFloat32:
+                    DI.W.BTSend(new BinaryMsgFloat32(id, (Single)value).ToByteArray());
                     break;
                 case BinaryMsgDataType.tyepUndefined:
                 case BinaryMsgDataType.typeInvalid:
@@ -171,63 +163,7 @@ namespace MultiCommDashboards.WindowObjs {
             }
         }
 
-
-
         #endregion
-
-        //List<UC_BoolToggle> boolToggles0 = new List<UC_BoolToggle>();
-        //int boolNext = 1;
-        //int id = 0;
-
-        //private void brdBool_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-        //    if (sender is Border) {
-        //        switch ((sender as Border).Name) {
-        //            case "brdBool_0":
-        //                this.bool0.Add();
-        //                break;
-        //            case "brdBool_1":
-        //                this.bool1.Add();
-        //                break;
-        //        }
-        //    }
-
-
-
-        //    //return;
-            
-
-        //    //if (boolNext <= 10) {
-        //    //    UC_BoolToggle bt = new UC_BoolToggle();
-        //    //    id++;
-        //    //    bt.InitAsBool((byte)id, string.Format("DigiIO_{0}", id));
-        //    //    Grid.SetRow(bt, 0);
-        //    //    Grid.SetColumn(bt, boolNext);
-        //    //    this.grdBool.Children.Add(bt);
-        //    //    bt.MouseLeftButtonUp += Bt_MouseLeftButtonUp;
-        //    //    this.boolToggles0.Add(bt);
-        //    //    boolNext++;
-        //    //}
-        //}
-
-        //private void Bt_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
-        //    UC_BoolToggle bt = sender as UC_BoolToggle;
-        //    bt.MouseLeftButtonUp -= this.Bt_MouseLeftButtonUp;
-        //    this.boolToggles0.Remove(bt);
-        //    this.grdBool.Children.Remove(bt);
-        //    for (int i = 1; i < this.grdBool.Children.Count; i++) {
-        //        UC_BoolToggle b = this.grdBool.Children[i] as UC_BoolToggle;
-        //        Grid.SetColumn(b, i);
-        //    }
-
-        //    this.grdBool.InvalidateVisual();
-        //    boolNext--;
-        //    if (boolNext < 1) {
-        //        boolNext = 1;
-        //    }
-        //}
-
-
-
 
     }
 }
