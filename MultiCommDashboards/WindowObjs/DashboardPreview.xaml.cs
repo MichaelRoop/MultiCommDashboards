@@ -1,25 +1,14 @@
 ﻿using MultiCommDashboardData.Storage;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfCustomControlLib.Core.Helpers;
 using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.WindowObjs {
-    /// <summary>
-    /// Interaction logic for DashboardPreview.xaml
-    /// </summary>
-    public partial class DashboardPreview : Window {
 
+    /// <summary>DashboardPreview.xaml</summary>
+    public partial class DashboardPreview : Window {
 
         private DashboardConfiguration config = new DashboardConfiguration();
         private Window parent = null;
@@ -42,19 +31,22 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
-
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            this.ucDashboard.Init(this.config);
+            this.ucDashboard.SetAsPreview(this.config);
+            this.ucDashboard.ButtonExitEvent += this.dashboardButtonExitEvent;
             this.SizeToContent = SizeToContent.WidthAndHeight;
             this.CenterToParent(this.parent);
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e) {
 
-        }
-
-        private void btnExit_Click(object sender, RoutedEventArgs e) {
+        private void dashboardButtonExitEvent(object sender, EventArgs e) {
             this.Close();
         }
+
+
+        private void Window_Closing(object sender, CancelEventArgs e) {
+            this.ucDashboard.ButtonExitEvent -= this.dashboardButtonExitEvent;
+        }
+
     }
 }

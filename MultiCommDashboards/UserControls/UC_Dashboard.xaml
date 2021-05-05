@@ -138,11 +138,20 @@
 
 
         <!-- Check whether to put the connect in the UC or Window  -->
-        <DockPanel Grid.Row="4" x:Name="dpControls">
-            
-            
+        <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" x:Name="dpControls">
+            <customControl:UC_IconButton x:Name="btnConnect" Margin="5"
+                Content="{Binding Source={x:Static helpers:TxtBinder.Connect}}"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
+                Style="{StaticResource TextIconButton}" Click="btnConnect_Click"/>
+            <customControl:UC_IconButton x:Name="btnDisconnect" Margin="5" Visibility="Collapsed"
+                Content="{Binding Source={x:Static helpers:TxtBinder.Disconnect}}"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.CANCEL}}"                                   
+                Style="{StaticResource TextIconButton}" Click="btnDisconnect_Click"/>
+            <customControl:UC_IconButton x:Name="btnExit" Margin="5"
+                Content="{Binding Source={x:Static helpers:TxtBinder.Exit}}"
+                IconSource="{Binding Source={x:Static helpers:IconBinder.EXIT}}"                                   
+                Style="{StaticResource TextIconButton}" Click="btnExit_Click"/>
+
         </DockPanel>
-        
-        
     </Grid>
 </UserControl>

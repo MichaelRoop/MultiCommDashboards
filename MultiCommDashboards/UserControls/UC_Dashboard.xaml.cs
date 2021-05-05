@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -22,7 +23,17 @@ namespace MultiCommDashboards.UserControls {
 
         private List<UC_OutputBase> outputs = new List<UC_OutputBase>();
 
+        /// <summary>Event raised when a control value to be sent to the device</summary>
         public event EventHandler<byte[]> MsgToDevice;
+
+        /// <summary>Raised when Connect button is pressed</summary>
+        public event EventHandler ButtonConnectEvent;
+
+        /// <summary>Raised when Disconnect button is pressed</summary>
+        public event EventHandler ButtonDisconnectEvent;
+
+        /// <summary>Raised when Exit button is pressed</summary>
+        public event EventHandler ButtonExitEvent;
 
 
         public UC_Dashboard() {
@@ -30,7 +41,15 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        public void Init(DashboardConfiguration config) {
+        public void SetAsPreview(DashboardConfiguration config) {
+            this.btnConnect.Collapse();
+            this.btnDisconnect.Collapse();
+            this.spList.Collapse();
+            this.Init(config);
+        }
+
+
+        private void Init(DashboardConfiguration config) {
             foreach (var dataModel in config.InputsBool) {
                 this.InitItem(new UC_BoolToggle(dataModel), this.grdInputsBool);
             }
@@ -77,6 +96,10 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
+        /// <summary>This function is passed in to the controls so they can send their values</summary>
+        /// <param name="id">The message ID</param>
+        /// <param name="dataType">The value data type</param>
+        /// <param name="value">The value to send</param>
         private void sendAction(byte id, BinaryMsgDataType dataType, double value) {
             // TODO Can do some validation here of range
             // TODO - move to an event that the window picks up
@@ -118,5 +141,18 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
+        private void btnConnect_Click(object sender, RoutedEventArgs e) {
+            this.ButtonConnectEvent?.Invoke(this, e);
+        }
+
+
+        private void btnDisconnect_Click(object sender, RoutedEventArgs e) {
+            this.ButtonDisconnectEvent?.Invoke(this, e);
+        }
+
+
+        private void btnExit_Click(object sender, RoutedEventArgs e) {
+            this.ButtonExitEvent?.Invoke(this, e);
+        }
     }
 }
