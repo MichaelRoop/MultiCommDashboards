@@ -11,6 +11,11 @@ namespace MultiCommDashboardData.StorageIndex {
         public int AnalogOutputs { get; set; } = 0;
 
 
+        /// <summary>Default constructor required for deserialization</summary>
+        public DashboardConfigIndexExtraInfo() { 
+        }
+
+
         public DashboardConfigIndexExtraInfo(DashboardConfiguration config) {
             this.Update(config);
         }
