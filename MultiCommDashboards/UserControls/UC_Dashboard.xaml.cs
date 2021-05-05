@@ -1,19 +1,11 @@
 ﻿using CommunicationStack.Net.BinaryMsgs;
 using CommunicationStack.Net.Enumerations;
+using LogUtils.Net;
 using MultiCommDashboardData.Storage;
-using MultiCommDashboards.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.UserControls {
@@ -21,7 +13,14 @@ namespace MultiCommDashboards.UserControls {
     /// <summary>UC_Dashboard.xaml</summary>
     public partial class UC_Dashboard : UserControl {
 
+        #region Data
+
         private List<UC_OutputBase> outputs = new List<UC_OutputBase>();
+        private ClassLog log = new ClassLog("UC_Dashboard");
+
+        #endregion
+
+        #region Events
 
         /// <summary>Event raised when a control value to be sent to the device</summary>
         public event EventHandler<byte[]> MsgToDevice;
@@ -35,12 +34,18 @@ namespace MultiCommDashboards.UserControls {
         /// <summary>Raised when Exit button is pressed</summary>
         public event EventHandler ButtonExitEvent;
 
+        #endregion
+
+        #region Public
 
         public UC_Dashboard() {
             InitializeComponent();
+            this.SetDemo();
         }
 
 
+        /// <summary>When the dashboard is only used for preview on build</summary>
+        /// <param name="config">The current state of the configuration</param>
         public void SetAsPreview(DashboardConfiguration config) {
             this.btnConnect.Collapse();
             this.btnDisconnect.Collapse();
@@ -49,37 +54,121 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
+        public void SetDemo() {
+            DashboardConfiguration cfg = new DashboardConfiguration();
+            cfg.InputsNumericHorizontal.Add(this.dm(12, "Tst PWM 3", BinaryMsgDataType.typeUInt8, 5, 0, 255,1,1));
+            cfg.OutputsNumericHorizontal.Add(this.dm(12, "Feedback 12", BinaryMsgDataType.typeUInt8, 1, 0, 255,1,1));
+            cfg.OutputsNumericHorizontal.Add(this.dm(20, "Temperature", BinaryMsgDataType.typeFloat32, 1, -10, 100,1,2, 2));
+            this.Init(cfg);
+        }
+
+
+        private DashboardControlDataModel dm(
+            byte id, string name, BinaryMsgDataType dataType, double step, double min, double max, 
+            int row, int column,
+            int precision = 0) {
+            return new DashboardControlDataModel() {
+                Id = id,
+                IOName = name,
+                DataType = dataType,
+                SendAtStep = step,
+                Minimum = min,
+                Maximum = max,
+                Precision = precision,
+                Row = row,
+                Column = column,
+            };
+        }
+
+
+        /// <summary>Called when parent receives connected event from the comm</summary>
+        public void ConnectionAttemptResult(bool isConnected) {
+            this.Dispatcher.Invoke(() => {
+                try {
+                    this.gridWait.Collapse();
+                    if (isConnected) {
+                        this.btnConnect.Collapse();
+                        this.btnDisconnect.Show();
+                    }
+                }
+                catch(Exception ex) {
+                    this.log.Exception(9999, "ConnectionAttemptResult", "", ex);
+                }
+            });
+        }
+
+
+        /// <summary>Called when parent receives a disconnected event from the comm</summary>
+        public void Disconnected() {
+            this.gridWait.Collapse();
+            this.btnDisconnect.Collapse();
+            this.btnConnect.Show();
+        }
+
+
+        /// <summary>Update appropriate control with data from comm</summary>
+        /// <param name="data">The update data</param>
+        public void Update(BinaryMsgMinData data) {
+            this.Dispatcher.Invoke(() => {
+                try {
+                    foreach (var output in this.outputs) {
+                        if (output.Process(data)) {
+                            break;
+                        }
+                    }
+                    // TODO - add error processing if not found
+                }
+                catch (Exception ex) {
+                    this.log.Exception(9999, "ConnectionAttemptResult", "", ex);
+                }
+            });
+        }
+
+        #endregion
+
+        #region Button events
+
+        private void btnConnect_Click(object sender, RoutedEventArgs e) {
+            this.gridWait.Show();
+            this.ButtonConnectEvent?.Invoke(this, e);
+        }
+
+
+        private void btnDisconnect_Click(object sender, RoutedEventArgs e) {
+            this.btnDisconnect.Collapse();
+            this.btnConnect.Show();
+            this.ButtonDisconnectEvent?.Invoke(this, e);
+        }
+
+
+        private void btnExit_Click(object sender, RoutedEventArgs e) {
+            this.ButtonExitEvent?.Invoke(this, e);
+        }
+
+        #endregion
+
+
         private void Init(DashboardConfiguration config) {
             foreach (var dataModel in config.InputsBool) {
-                this.InitItem(new UC_BoolToggle(dataModel), this.grdInputsBool);
+                this.InitInput(new UC_BoolToggle(dataModel), this.grdInputsBool);
             }
 
             foreach (var dataModel in config.InputsNumericHorizontal) {
-                this.InitItem(new UC_HorizontalSlider(dataModel), this.grdInputsNumHorizontal);
+                this.InitInput(new UC_HorizontalSlider(dataModel), this.grdInputsNumHorizontal);
             }
 
             // Outputs
             foreach (var dataModel in config.OutputsBool) {
-                this.InitItem(new UC_BoolProgress(dataModel), this.grdOutputsBool);
+                this.InitOutput(new UC_BoolProgress(dataModel), this.grdOutputsBool);
             }
 
             foreach (var dataModel in config.OutputsNumericHorizontal) {
-                this.InitItem(new UC_HorizontalProgressBar(dataModel), this.grdOutputsNumHorizontal);
+                this.InitOutput(new UC_HorizontalProgressBar(dataModel), this.grdOutputsNumHorizontal);
             }
         }
 
 
-        public void Update(BinaryMsgMinData data) {
-            foreach (var output in this.outputs) {
-                if (output.Process(data)) {
-                    break;
-                }
-            }
-        }
-
-
-
-        private void InitItem(UC_InputBase input, Grid grid) {
+        private void InitInput(UC_InputBase input, Grid grid) {
             input.SetSendAction(this.sendAction);
             Grid.SetRow(input, input.Row);
             Grid.SetColumn(input, input.Column);
@@ -87,8 +176,7 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        private void InitItem(UC_OutputBase output, Grid grid) {
-            // TODO - register to receive. subscribe
+        private void InitOutput(UC_OutputBase output, Grid grid) {
             this.outputs.Add(output);
             Grid.SetRow(output, output.Row);
             Grid.SetColumn(output, output.Column);
@@ -101,7 +189,7 @@ namespace MultiCommDashboards.UserControls {
         /// <param name="dataType">The value data type</param>
         /// <param name="value">The value to send</param>
         private void sendAction(byte id, BinaryMsgDataType dataType, double value) {
-            // TODO Can do some validation here of range
+            // TODO Can do some validation here of range? should already be set in the config
             // TODO - move to an event that the window picks up
             switch (dataType) {
                 case BinaryMsgDataType.typeBool:
@@ -138,21 +226,6 @@ namespace MultiCommDashboards.UserControls {
                     // TODO - raise error
                     break;
             }
-        }
-
-
-        private void btnConnect_Click(object sender, RoutedEventArgs e) {
-            this.ButtonConnectEvent?.Invoke(this, e);
-        }
-
-
-        private void btnDisconnect_Click(object sender, RoutedEventArgs e) {
-            this.ButtonDisconnectEvent?.Invoke(this, e);
-        }
-
-
-        private void btnExit_Click(object sender, RoutedEventArgs e) {
-            this.ButtonExitEvent?.Invoke(this, e);
         }
     }
 }

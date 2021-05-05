@@ -46,7 +46,7 @@ namespace MultiCommDashboards.WindowObjs {
 
         private void W_BT_Connected(object sender, bool ok) {
             if (ok) {
-                App.ShowMsgTitle("BT", "Connected");
+                //App.ShowMsgTitle("BT", "Connected");
             }
             else {
                 App.ShowErrMsg("Failed connection");
@@ -71,7 +71,12 @@ namespace MultiCommDashboards.WindowObjs {
 
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e) {
-            DashboardEditor.ShowBox(this);
+            //DashboardEditor.ShowBox(this);
+
+
+            RunBT win = new RunBT();
+            
+            win.ShowDialog();
         }
 
         #region Init Controls
