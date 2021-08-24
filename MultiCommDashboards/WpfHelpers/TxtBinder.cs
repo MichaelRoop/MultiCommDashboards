@@ -44,7 +44,16 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string Send { get { return GetTxt(MsgCode.send); } }
         public static string Id { get { return GetTxt(MsgCode.Id); } }
 
+        public static string Author { get { return GetTxt(MsgCode.Author); } }
+        public static string Icons { get { return GetTxt(MsgCode.Icons); } }
+        public static string UserManual { get { return GetTxt(MsgCode.UserManual); } }
+        public static string Support { get { return GetTxt(MsgCode.Support); } }
 
+        public static string BuildNumber {
+            get {
+                return App.Build;
+            }
+        }
 
 
         // new
@@ -90,13 +99,10 @@ namespace MultiCommDashboards.WpfHelpers {
         //public static string Network { get { return GetTxt(MsgCode.Network); } }
         //public static string Socket { get { return GetTxt(MsgCode.Socket); } }
         //public static string Credentials { get { return GetTxt(MsgCode.Credentials); } }
-        //public static string Icons { get { return GetTxt(MsgCode.Icons); } }
         //public static string About { get { return GetTxt(MsgCode.About); } }
-        //public static string Author { get { return GetTxt(MsgCode.Author); } }
         //public static string Services { get { return GetTxt(MsgCode.Services); } }
         //public static string Service { get { return GetTxt(MsgCode.Service); } }
         //public static string Properties { get { return GetTxt(MsgCode.Properties); } }
-        //public static string UserManual { get { return GetTxt(MsgCode.UserManual); } }
         //public static string Vendor { get { return GetTxt(MsgCode.Vendor); } }
         //public static string Product { get { return GetTxt(MsgCode.Product); } }
         //public static string Default { get { return GetTxt(MsgCode.Default); } }
@@ -112,7 +118,6 @@ namespace MultiCommDashboards.WpfHelpers {
         //public static string ReadTimeout { get { return GetTxt(MsgCode.ReadTimeout); } }
         //public static string WriteTimeout { get { return GetTxt(MsgCode.WriteTimeout); } }
         //public static string LogText { get { return GetTxt(MsgCode.Log); } }
-        //public static string Support { get { return GetTxt(MsgCode.Support); } }
         //public static string Ethernet { get { return GetTxt(MsgCode.Ethernet); } }
         //public static string Create { get { return GetTxt(MsgCode.Create); } }
         //public static string Clear { get { return GetTxt(MsgCode.Clear); } }

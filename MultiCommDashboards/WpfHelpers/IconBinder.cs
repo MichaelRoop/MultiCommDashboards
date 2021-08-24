@@ -159,7 +159,6 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string MENU { get { return IconBinder.GetIconSource("icons8-menu-white-50.png"); } }
 
 
-
         private static string GetIconSource(string name) {
             // Images must be in the app\Images directory and marked as Resource
             //return string.Format(@"MultiCommDashboards;component\Images\{0}", name);

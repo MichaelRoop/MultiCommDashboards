@@ -3,6 +3,7 @@ using LanguageFactory.Net.Messaging;
 using LogUtils.Net;
 using MultiCommDashboards.DependencyInjection;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using WpfHelperClasses.Core;
 
@@ -118,6 +119,26 @@ namespace MultiCommDashboards.WindowObjs {
                 this.log.Exception(9999, "TitleBarBorder_MouseDown", "", ex);
             }
         }
+
+
+        /// <summary>Opens the browser because of the execution of a hyperlink</summary>
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e) {
+            try {
+                Task.Run(async () => {
+                    try {
+                        await Windows.System.Launcher.LaunchUriAsync(e.Uri);
+                    }
+                    catch (Exception ex) {
+                        this.log.Exception(9999, "Hyperlink_RequestNavigate", "", ex);
+                    }
+                });
+                e.Handled = true;
+            }
+            catch (Exception ex) {
+                Log.Exception(9999, "", ex);
+            }
+        }
+
 
 
         #region Init Controls

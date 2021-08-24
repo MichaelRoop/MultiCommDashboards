@@ -41,7 +41,7 @@ namespace MultiCommDashboards {
 
         /// <summary>Build number to display</summary>
         public static string Build {
-            get { return "2021.04.16.03"; }
+            get { return "2021.08.24.01"; }
         }
 
         #endregion
