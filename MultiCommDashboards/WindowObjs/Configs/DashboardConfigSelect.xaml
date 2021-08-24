@@ -1,0 +1,60 @@
+﻿<Window x:Class="MultiCommDashboards.WindowObjs.Configs.DashboardConfigSelect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultiCommDashboards.WindowObjs.Configs"
+        xmlns:helpers="clr-namespace:MultiCommDashboards.WpfHelpers"
+        xmlns:customControls="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
+        mc:Ignorable="d"
+        
+        Style="{DynamicResource MyWindowStyle}"
+        Title="{Binding Source={x:Static helpers:TxtBinder.Configure}}" 
+        Icon="{Binding Source={x:Static helpers:IconBinder.CONFIGS}}"
+        MinHeight="150" MinWidth="100" BorderThickness=".25"
+        Loaded="Window_Loaded" Closing="Window_Closing"        
+        >
+    <Grid Margin="10">
+        <StackPanel>
+            <DockPanel Margin="10">
+                <ListBox x:Name="lbConfigs" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="100" MinHeight="100" MaxHeight="300"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Display}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Margin="10,0,0,0">
+                    <customControls:UC_RoundIconButton x:Name="btnAdd" Click="btnAdd_Click"
+                        Style="{StaticResource RoundIconButton}" Margin="0,5"
+                        IconSource="{Binding Source={x:Static helpers:IconBinder.ADD}}" />
+                    <customControls:UC_RoundIconButton x:Name="btnEdit" Click="btnEdit_Click"
+                        Style="{StaticResource RoundIconButton}" Margin="0,5"
+                        IconSource="{Binding Source={x:Static helpers:IconBinder.EDIT}}" />
+                    <customControls:UC_RoundIconButton x:Name="btnDelete" Click="btnDelete_Click"
+                        Style="{StaticResource RoundIconButton}" Margin="0,5"
+                        IconSource="{Binding Source={x:Static helpers:IconBinder.DELETE}}" />
+                </StackPanel>
+
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center">
+                <customControls:UC_IconButton x:Name="btnExit"  Margin="5" 
+                    Style="{StaticResource TextIconButton}"  
+                    Content="{Binding Source={x:Static helpers:TxtBinder.Exit}}"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.EXIT}}"                                   
+                    Click="btnExit_Click"/>
+            </DockPanel>
+
+
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>

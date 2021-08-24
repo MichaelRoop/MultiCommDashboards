@@ -56,6 +56,11 @@ namespace MultiCommDashboards.WpfHelpers {
         }
 
 
+        public static string Configure { get { return GetTxt(MsgCode.Configure); } }
+
+
+
+
         // new
         public static string Preview { get { return "Preview"; } }
         public static string Digital { get { return "Digital"; } }

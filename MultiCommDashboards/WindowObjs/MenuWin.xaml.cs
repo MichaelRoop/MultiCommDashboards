@@ -4,6 +4,7 @@ using MultiCommDashboardData.DataModels;
 using MultiCommDashboardData.Enumerations;
 using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.WindowObjs.BTWins;
+using MultiCommDashboards.WindowObjs.Configs;
 using MultiCommDashboards.WpfHelpers;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,13 @@ namespace MultiCommDashboards.WindowObjs {
                         LanguageSelector.ShowBox(this.mainWindow, DI.W.Languages);
                         break;
                     case MenuCode.Dashboards:
-                        DashboardEditor.ShowBox(this);
+                        // TODO - need to open an intermediate window to select edit or create
+                        DashboardConfigSelect.ShowBox(this);
+
+                        //DashboardEditor.ShowBox(this);
+
+
+
                         break;
                     case MenuCode.Ethernet:
                         //this.runPageManager.Open(typeof(EthernetRun));
