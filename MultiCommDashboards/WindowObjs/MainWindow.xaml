@@ -37,26 +37,7 @@
                     Content="{Binding Source={x:Static helpers:TxtBinder.Exit}}"
                     IconSource="{Binding Source={x:Static helpers:IconBinder.EXIT}}"                                   
                     Click="btnExit_Click"/>
-
-                <buttons:UC_IconButton x:Name="btnEdit"  Margin="0,0,10,0" 
-                    Style="{StaticResource TextIconButton}"  
-                    Content="Dashboard"
-                    IconSource="{Binding Source={x:Static helpers:IconBinder.SEND}}"                                   
-                    Click="btnEdit_Click"/>
-                <buttons:UC_IconButton x:Name="btnBluetooth"  Margin="0,0,10,0" 
-                    Style="{StaticResource TextIconButton}"  
-                    Content="Bluetooth"
-                    IconSource="{Binding Source={x:Static helpers:IconBinder.BLUETOOTH_W}}"                                   
-                    Click="btnBluetooth_Click"/>
-
-
             </DockPanel>
-
-
-            <!--<controls:UC_BoolToggle x:Name="sliderBool" Margin="5"/>
-            <controls:UC_HorizontalSlider x:Name="numericSlider" Margin="5"/>
-            <controls:UC_HorizontalProgressBar x:Name="numericOutput" Margin="5"/>
-            <controls:UC_HorizontalProgressBar x:Name="temperature" Margin="5"/>-->
         </StackPanel>
     </Grid>
 </Window>

@@ -142,6 +142,7 @@ namespace MultiCommDashboards.WpfHelpers {
         //}
 
 
+        public static string BLUETOOTH { get { return IconBinder.GetIconSource("icons8-bluetooth-50.png"); } }
         public static string BLUETOOTH_W { get { return IconBinder.GetIconSource("icons8-bluetooth-white-50.png"); } }
         public static string CANCEL { get { return IconBinder.GetIconSource("icons8-close-window-50-noborder.png"); } }
         public static string DELETE { get { return IconBinder.GetIconSource("icons8-trash-can-50.png"); } }
@@ -160,7 +161,11 @@ namespace MultiCommDashboards.WpfHelpers {
 
         private static string GetIconSource(string name) {
             // Images must be in the app\Images directory and marked as Resource
-            return string.Format(@"MultiCommDashboards;component\Images\{0}", name);
+            //return string.Format(@"MultiCommDashboards;component\Images\{0}", name);
+
+            // This works in more situations. Gets them from Resource.  Images must be in the
+            // app\Images directory and marked as Resource
+            return string.Format("pack://application:,,/Images/{0}", name);
         }
 
 

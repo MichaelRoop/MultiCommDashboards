@@ -1,0 +1,76 @@
+﻿<Window x:Class="MultiCommDashboards.WindowObjs.MenuWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultiCommDashboards.WindowObjs"
+        mc:Ignorable="d"
+        Title="MenuWin" 
+        WindowStartupLocation="Manual" ContentRendered="Window_ContentRendered" Closing="Window_Closing"
+        WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True"
+        MinHeight="20" MinWidth="20">
+    <Grid>
+        <Border BorderBrush="Blue" BorderThickness="0.25" >
+            <!-- Hack the upper margin to hide the top most separator -->
+            
+            
+            <ListView x:Name="lvMenuItems" MinHeight="10" MinWidth="10" Margin="0,-4.5,0,0" Padding="0" FontSize="16">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                
+                
+                <!--<ListView.Resources>
+                    <local:ImgConverter x:Key="conv" />
+                </ListView.Resources>-->
+                
+                <!--<ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="40" Header="Icon">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding IconSource, Converter={StaticResource conv}}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" Header="Name" DisplayMemberBinding="{Binding Display}"/>
+
+                    </GridView>
+                </ListView.View>-->
+                
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Separator Background="#0277bd" />
+                            <!--<Grid>
+                                <Image Source="{Binding IconSource}"
+                                           RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"
+                                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                            </Grid>
+                            <TextBlock Text="{Binding Display}" VerticalAlignment="Center" Margin="10,0"/>-->
+
+                            
+                            <DockPanel Height="22" Margin="5">
+                                <Border Padding="{Binding Padding}">
+                                    <Image Source="{Binding IconSource}"
+                                           RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.EdgeMode="Aliased"
+                                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                </Border>
+                                <TextBlock Text="{Binding Display}" VerticalAlignment="Center" Margin="10,0"/>
+                            </DockPanel>
+                            
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+                
+                
+            </ListView>
+        </Border>
+    </Grid>
+</Window>

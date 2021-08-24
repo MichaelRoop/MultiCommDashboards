@@ -1,13 +1,10 @@
-﻿using BluetoothCommon.Net;
-using CommunicationStack.Net.BinaryMsgs;
-using CommunicationStack.Net.Enumerations;
-using LanguageFactory.Net.data;
+﻿using LanguageFactory.Net.data;
 using LogUtils.Net;
-using MultiCommDashboardData.Storage;
 using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.WindowObjs.BTWins;
 using System;
 using System.Windows;
+using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.WindowObjs {
 
@@ -15,12 +12,15 @@ namespace MultiCommDashboards.WindowObjs {
     public partial class MainWindow : Window {
 
         ClassLog log = new ClassLog("MainWindow");
+        MenuWin menu = null;
 
         public MainWindow() {
             InitializeComponent();
+            // TEMP
             DI.W.SetLanguage(LangCode.Spanish, App.ShowErrMsg);
-            //this.InitControls();
+            DI.W.LanguageChanged += this.languageChanged;
         }
+
 
         #region Window events
 
@@ -30,101 +30,95 @@ namespace MultiCommDashboards.WindowObjs {
 
 
         private void Window_ContentRendered(object sender, EventArgs e) {
-            //try {
-            //    this.menu = new MenuWin(this);
-            //    this.menu.Collapse();
-            //}
-            //catch (Exception ex) {
-            //    this.log.Exception(9999, "Window_MouseDown", "", ex);
-            //}
+            try {
+                this.menu = new MenuWin(this);
+                this.menu.Collapse();
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "Window_ContentRendered", "", ex);
+            }
         }
 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-            //DI.Wrapper.LanguageChanged -= this.LanguageChangedHandler;
-            //if (this.menu != null) {
-            //    this.menu.Close();
-            //}
-            //DI.Wrapper.Teardown();
+            DI.W.LanguageChanged -= this.languageChanged;
+            if (this.menu != null) {
+                this.menu.Close();
+            }
+            DI.W.Teardown();
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            //try {
-            //    this.HideMenu();
-            //}
-            //catch (Exception ex) {
-            //    this.log.Exception(9999, "Window_MouseDown", "", ex);
-            //}
+            try {
+                this.HideMenu();
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "Window_MouseDown", "", ex);
+            }
         }
 
         #endregion
 
         private void btnMenu_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("Clicked menu");
-            //try {
-            //    if (this.menu != null) {
-            //        if (this.menu.IsVisible) {
-            //            this.menu.Hide();
-            //        }
-            //        else {
-            //            // Need to get offset from current position of main window at click time
-            //            this.menu.Left = this.Left;
-            //            this.menu.Top = this.Top + this.taskBar.ActualHeight;
-            //            this.menu.Show();
-            //        }
-            //    }
-            //}
-            //catch (Exception ex) {
-            //    this.log.Exception(9999, "imgMenu_MouseLeftButtonDown", "", ex);
-            //}
+            try {
+                if (this.menu != null) {
+                    if (this.menu.IsVisible) {
+                        this.menu.Hide();
+                    }
+                    else {
+                        // Need to get offset from current position of main window at click time
+                        this.menu.Left = this.Left;
+                        this.menu.Top = this.Top + this.taskBar.ActualHeight;
+                        this.menu.Show();
+                    }
+                }
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "btnMenu_Click", "", ex);
+            }
         }
-
-
-
-        //private void imgMenu_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-        //    e.Handled = true;
-        //}
 
 
         private void titleBarBorder_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             try {
-            //    this.HideMenu();
+                this.HideMenu();
                 this.DragMove();
             }
             catch (Exception ex) {
-            //    this.log.Exception(9999, "TitleBarBorder_MouseDown", "", ex);
+                this.log.Exception(9999, "titleBarBorder_MouseDown", "", ex);
             }
         }
 
 
-
-        //private void HideMenu() {
-        //    try {
-        //        if (this.menu != null && this.menu.IsVisible) {
-        //            this.menu.Hide();
-        //        }
-        //    }
-        //    catch (Exception ex) {
-        //        this.log.Exception(9999, "HideMenu", "", ex);
-        //    }
-        //}
-
-
-        // TEMP -----------------------------------------------------------
-        private void btnEdit_Click(object sender, RoutedEventArgs e) {
-            DashboardEditor.ShowBox(this);
+        private void HideMenu() {
+            try {
+                if (this.menu != null && this.menu.IsVisible) {
+                    this.menu.Hide();
+                }
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "HideMenu", "", ex);
+            }
         }
-        private void btnBluetooth_Click(object sender, RoutedEventArgs e) {
-            RunBT win = new RunBT();
-            win.ShowDialog();
-        }
-        //------------------------------------------------------------------
 
 
         private void btnExit_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
 
+
+        private void languageChanged(object sender, LanguageFactory.Net.Messaging.SupportedLanguage l) {
+            try {
+                this.btnExit.Content = l.GetText(MsgCode.exit);
+                //this.lbAuthor.Content = l.GetText(MsgCode.Author);
+                //this.lbIcons.Content = l.GetText(MsgCode.Icons);
+                //this.txtUserManual.Text = l.GetText(MsgCode.UserManual);
+                //this.txtSupport.Text = l.GetText(MsgCode.Support);
+            }
+            catch (Exception ex) {
+                this.log.Exception(9999, "TitleBarBorder_MouseDown", "", ex);
+            }
+        }
 
 
         #region Init Controls
