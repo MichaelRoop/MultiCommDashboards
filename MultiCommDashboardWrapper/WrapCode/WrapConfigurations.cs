@@ -11,6 +11,12 @@ namespace MultiCommDashboardWrapper.WrapCode {
     public partial class CommDashWrapper : ICommDashWrapper {
 
 
+        // Load index
+        public void GetConfigsIndex(Action<List<IIndexItem<DashboardConfigIndexExtraInfo>>> onSuccess, OnErr onError) {
+            this.RetrieveIndex(this.Configurations, onSuccess, onError);
+        }
+
+
         public void CreateConfiguration(DashboardConfiguration data, Action<IIndexItem<DashboardConfigIndexExtraInfo>> onSuccess, OnErr onError) {
             this.Create(this.Configurations, data.Display, data, onSuccess, onError, new DashboardConfigIndexExtraInfo(data));
         }

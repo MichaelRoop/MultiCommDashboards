@@ -2,6 +2,10 @@
 using CommunicationStack.Net.Enumerations;
 using LogUtils.Net;
 using MultiCommDashboardData.Storage;
+using MultiCommDashboardData.StorageIndex;
+using MultiCommDashboards.DependencyInjection;
+using StorageFactory.Net.interfaces;
+using StorageFactory.Net.StorageManagers;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -16,6 +20,7 @@ namespace MultiCommDashboards.UserControls {
         #region Data
 
         private List<UC_OutputBase> outputs = new List<UC_OutputBase>();
+        private List<IIndexItem<DashboardConfigIndexExtraInfo>> confgurations = new List<IIndexItem<DashboardConfigIndexExtraInfo>>();
         private ClassLog log = new ClassLog("UC_Dashboard");
 
         #endregion
@@ -41,6 +46,12 @@ namespace MultiCommDashboards.UserControls {
         public UC_Dashboard() {
             InitializeComponent();
             this.SetDemo();
+
+            DI.W.GetConfigsIndex((configs) => {
+                this.confgurations = configs;
+                this.lbConfigs.ItemsSource = this.confgurations;
+            }, App.ShowErrMsg);
+
         }
 
 

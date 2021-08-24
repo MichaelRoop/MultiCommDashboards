@@ -39,7 +39,7 @@
 
             <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" x:Name="spList" Visibility="Visible" >
                 <Border Style="{StaticResource brd075}">
-                    <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="100" MinHeight="100" MaxHeight="300"
+                    <ListBox x:Name="lbConfigs" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="100" MinHeight="100" MaxHeight="300"
                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
                              ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListBox.ItemTemplate>
