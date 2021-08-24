@@ -154,7 +154,7 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string SEND { get { return IconBinder.GetIconSource("icons8-running-24.png"); } }
         public static string YES { get { return IconBinder.GetIconSource("icons8-checkmark-50.png"); } }
         public static string ADD { get { return IconBinder.GetIconSource("icons8-add-50-noborder.png"); } }
-
+        public static string MENU { get { return IconBinder.GetIconSource("icons8-menu-white-50.png"); } }
 
 
 

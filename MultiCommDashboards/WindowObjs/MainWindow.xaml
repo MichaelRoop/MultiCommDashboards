@@ -8,42 +8,55 @@
         xmlns:helpers="clr-namespace:MultiCommDashboards.WpfHelpers"
         xmlns:buttons="clr-namespace:WpfCustomControlLib.Core.Buttons;assembly=WpfCustomControlLib.Core"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="MainWindow" WindowStyle="None" AllowsTransparency="True"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderThickness="1" BorderBrush="#0277bd"
         Loaded="Window_Loaded"
+        ContentRendered="Window_ContentRendered"
+        Closing="Window_Closing"
+        MouseDown="Window_MouseDown"
+        MinHeight="300" MinWidth="600" 
         >
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <DockPanel HorizontalAlignment="Center" Margin="10">
-                <buttons:UC_IconButton x:Name="btnConnect"  Margin="0,0,10,0" 
-                Style="{StaticResource TextIconButton}"  
-                Content="{Binding Source={x:Static helpers:TxtBinder.Connect}}"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.OK}}"                                   
-                Click="btnConnect_Click"/>
-
-                <buttons:UC_IconButton x:Name="btnDisconnect"  Margin="0,0,10,0" 
-                Style="{StaticResource TextIconButton}"  
-                Content="{Binding Source={x:Static helpers:TxtBinder.Disconnect}}"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.CANCEL}}"                                   
-                Click="btnDisconnect_Click"/>
-
-                <buttons:UC_IconButton x:Name="btnDashboard"  Margin="0,0,10,0" 
-                Style="{StaticResource TextIconButton}"  
-                Content="Dashboard"
-                IconSource="{Binding Source={x:Static helpers:IconBinder.SEND}}"                                   
-                Click="btnDashboard_Click"/>
+    <Grid>
+        <Border x:Name="titleBarBorder" Height="30" VerticalAlignment="Top" Background="#0277bd"  MouseDown="titleBarBorder_MouseDown" >
+            <DockPanel x:Name="taskBar" >
+                <buttons:UC_RoundIconButton x:Name="btnMenu" Margin="6,0,0,0" Width="25" Height="25" 
+                    Style="{StaticResource IconButton}" IconSource="{Binding Source={x:Static helpers:IconBinder.MENU}}"                                   
+                    Click="btnMenu_Click"/>
+                <DockPanel HorizontalAlignment="Center">
+                    <Label x:Name="lbTitle" Content="Multi Comm Dashboard" 
+                           Foreground="White" Background="#0277bd" FontSize="14" FontWeight="Bold" 
+                               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                </DockPanel>
             </DockPanel>
-            <controls:UC_BoolToggle x:Name="sliderBool" Margin="5"/>
+        </Border>
+
+        <StackPanel VerticalAlignment="Center">
+            <DockPanel HorizontalAlignment="Center">
+                <buttons:UC_IconButton x:Name="btnExit"  Margin="5" 
+                    Style="{StaticResource TextIconButton}"  
+                    Content="{Binding Source={x:Static helpers:TxtBinder.Exit}}"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.EXIT}}"                                   
+                    Click="btnExit_Click"/>
+
+                <buttons:UC_IconButton x:Name="btnEdit"  Margin="0,0,10,0" 
+                    Style="{StaticResource TextIconButton}"  
+                    Content="Dashboard"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.SEND}}"                                   
+                    Click="btnEdit_Click"/>
+                <buttons:UC_IconButton x:Name="btnBluetooth"  Margin="0,0,10,0" 
+                    Style="{StaticResource TextIconButton}"  
+                    Content="Bluetooth"
+                    IconSource="{Binding Source={x:Static helpers:IconBinder.BLUETOOTH_W}}"                                   
+                    Click="btnBluetooth_Click"/>
+
+
+            </DockPanel>
+
+
+            <!--<controls:UC_BoolToggle x:Name="sliderBool" Margin="5"/>
             <controls:UC_HorizontalSlider x:Name="numericSlider" Margin="5"/>
             <controls:UC_HorizontalProgressBar x:Name="numericOutput" Margin="5"/>
-            <controls:UC_HorizontalProgressBar x:Name="temperature" Margin="5"/>
+            <controls:UC_HorizontalProgressBar x:Name="temperature" Margin="5"/>-->
         </StackPanel>
     </Grid>
 </Window>

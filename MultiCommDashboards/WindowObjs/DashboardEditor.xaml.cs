@@ -61,5 +61,9 @@ namespace MultiCommDashboards.WindowObjs {
             DI.W.CreateConfiguration(this.ucDashboardEdit.GetConfig(), idx => { this.Close(); }, App.ShowErrMsg);
 
         }
+
+        private void ucDashboardEdit_Loaded(object sender, RoutedEventArgs e) {
+
+        }
     }
 }
