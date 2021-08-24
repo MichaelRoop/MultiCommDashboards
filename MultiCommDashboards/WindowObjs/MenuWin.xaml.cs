@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using WpfCustomControlLib.Core.UtilWindows;
 
 namespace MultiCommDashboards.WindowObjs {
 
@@ -47,13 +48,10 @@ namespace MultiCommDashboards.WindowObjs {
                 this.Hide();
                 switch (item.Code) {
                     case MenuCode.Language:
-                        //LanguageSelector.ShowBox(this.mainWindow);
+                        LanguageSelector.ShowBox(this.mainWindow, DI.W.Languages);
                         break;
                     case MenuCode.Dashboards:
                         DashboardEditor.ShowBox(this);
-
-                        //Commands cmds = new Commands(this.mainWindow);
-                        //cmds.ShowDialog();
                         break;
                     case MenuCode.Ethernet:
                         //this.runPageManager.Open(typeof(EthernetRun));
@@ -102,14 +100,14 @@ namespace MultiCommDashboards.WindowObjs {
                 this.lvMenuItems.SelectionChanged -= this.menuItemsSelectionChanged;
                 this.lvMenuItems.ItemsSource = null;
                 this.items.Clear();
-                this.AddItem(MenuCode.Bluetooth, "Bluetooth", IconBinder.BLUETOOTH, "0");
-                this.AddItem(MenuCode.Dashboards, MsgCode.Edit, IconBinder.EDIT, "0");
+                this.AddItem(MenuCode.Bluetooth, "Bluetooth", IconBinder.BLUETOOTH);
+                this.AddItem(MenuCode.Dashboards, MsgCode.Edit, IconBinder.EDIT);
 
                 //this.AddItem(MenuCode.BLE, "BLE", UIIcon.BluetoothLE, "0");
                 //this.AddItem(MenuCode.Wifi, "WIFI", UIIcon.Wifi, "0");
                 //this.AddItem(MenuCode.Usb, "USB", UIIcon.Usb, "0");
                 //this.AddItem(MenuCode.Ethernet, MsgCode.Ethernet, UIIcon.Ethernet, "0");
-                //this.AddItem(MenuCode.Language, MsgCode.language, UIIcon.Language, "0");
+                this.AddItem(MenuCode.Language, MsgCode.language, IconBinder.LANGUAGE);
                 //this.AddItem(MenuCode.CodeSamples, MsgCode.CodeSamples, UIIcon.Code, "0");
                 //this.AddItem(MenuCode.Settings, MsgCode.Settings, UIIcon.Settings, "0");
                 this.lvMenuItems.ItemsSource = this.items;

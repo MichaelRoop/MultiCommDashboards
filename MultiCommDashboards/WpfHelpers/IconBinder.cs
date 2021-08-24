@@ -149,6 +149,7 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string EDIT { get { return IconBinder.GetIconSource("icons8-edit-50.png"); } }
         public static string EXIT { get { return IconBinder.GetIconSource("icons8-exit-50.png"); } }
         public static string HELP { get { return IconBinder.GetIconSource("icons8-help-50.png"); } }
+        public static string LANGUAGE { get { return IconBinder.GetIconSource("icons8-language-50.png"); } }
         public static string LANGUAGE_W { get { return IconBinder.GetIconSource("icons8-language-white-50.png"); } }
         public static string NO { get { return IconBinder.CANCEL; } }
         public static string OK { get { return IconBinder.YES; } }

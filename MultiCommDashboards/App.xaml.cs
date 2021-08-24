@@ -1,6 +1,7 @@
 ﻿using ChkUtils.Net;
 using ChkUtils.Net.ErrObjects;
 using LanguageFactory.Net.data;
+using LanguageFactory.Net.Messaging;
 using log4net;
 using log4net.Appender;
 using log4net.Core;
@@ -88,7 +89,7 @@ namespace MultiCommDashboards {
             ErrReport err;
             WrapErr.ToErrReport(out err, 9999, () => {
                 DI.W.UnexpectedExceptionEvent += this.Wrapper_UnexpectedExceptionEvent;
-                WpfCustomControlLib.Core.Helpers.CustomTxtBinder.SetLanguageFactory(DI.W.Languages);
+                this.SetupLanguage();
             });
             if (err.Code != 0) {
                 MessageBox.Show(err.Msg, "Critical Error loading DI container");
@@ -110,6 +111,19 @@ namespace MultiCommDashboards {
                     this.log.Exception(9999, "Wrapper_UnexpectedExceptionEvent", "", e);
                 }
             });
+        }
+
+
+        private void SetupLanguage() {
+            WpfCustomControlLib.Core.Helpers.CustomTxtBinder.SetLanguageFactory(DI.W.Languages);
+            DI.W.LanguageChanged += this.languageChanged;
+        }
+
+        private void languageChanged(object sender, SupportedLanguage l) {
+            // Save the language when changed anywhere in App
+            DI.W.LanguageChanged -= this.languageChanged;
+            DI.W.SetLanguage(l.Language.Code, App.ShowErrMsg);
+            DI.W.LanguageChanged += this.languageChanged;
         }
 
         #endregion

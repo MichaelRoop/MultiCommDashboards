@@ -1,7 +1,7 @@
 ﻿using LanguageFactory.Net.data;
+using LanguageFactory.Net.Messaging;
 using LogUtils.Net;
 using MultiCommDashboards.DependencyInjection;
-using MultiCommDashboards.WindowObjs.BTWins;
 using System;
 using System.Windows;
 using WpfHelperClasses.Core;
@@ -16,8 +16,6 @@ namespace MultiCommDashboards.WindowObjs {
 
         public MainWindow() {
             InitializeComponent();
-            // TEMP
-            DI.W.SetLanguage(LangCode.Spanish, App.ShowErrMsg);
             DI.W.LanguageChanged += this.languageChanged;
         }
 
@@ -47,6 +45,7 @@ namespace MultiCommDashboards.WindowObjs {
             }
             DI.W.Teardown();
         }
+
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             try {
@@ -107,7 +106,7 @@ namespace MultiCommDashboards.WindowObjs {
         }
 
 
-        private void languageChanged(object sender, LanguageFactory.Net.Messaging.SupportedLanguage l) {
+        private void languageChanged(object sender, SupportedLanguage l) {
             try {
                 this.btnExit.Content = l.GetText(MsgCode.exit);
                 //this.lbAuthor.Content = l.GetText(MsgCode.Author);
