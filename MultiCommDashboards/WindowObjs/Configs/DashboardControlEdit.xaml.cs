@@ -72,18 +72,21 @@ namespace MultiCommDashboards.WindowObjs.Configs {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             this.SizeToContent = SizeToContent.WidthAndHeight;
-            this.CenterToParent(this.callingUserControl);
+            if (this.callingUserControl != null) {
+                this.CenterToParent(this.callingUserControl);
+            }
         }
 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-            if (this.DataModel.DataType != BinaryMsgDataType.typeBool) {
+            if (this.DataModel != null && this.DataModel.DataType != BinaryMsgDataType.typeBool) {
                 this.cbDataType.SelectionChanged -= this.dataTypeChanged;
             }
         }
 
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
+            this.DataModel = null;
             this.Close();        
         }
 

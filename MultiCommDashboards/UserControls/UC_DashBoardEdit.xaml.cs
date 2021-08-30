@@ -113,9 +113,9 @@ namespace MultiCommDashboards.UserControls {
 
 
         private void InitInput<T>(DashboardControlDataModel dm, List<DashboardControlBuilder<T>> ctrls) where T : UC_InputBase, new() {
-            foreach (var input in ctrls) {
-                if (input.GetRow() == dm.Row) {
-                    input.AddExisting(dm.Row);
+            foreach (var ctrl in ctrls) {
+                if (ctrl.GetRow() == dm.Row) {
+                    ctrl.AddExisting(dm);
                 }
             }
         }
@@ -124,7 +124,7 @@ namespace MultiCommDashboards.UserControls {
         private void InitOutput<T>(DashboardControlDataModel dm, List<DashboardControlBuilder<T>> ctrls) where T : UC_OutputBase, new() {
             foreach (var ctrl in ctrls) {
                 if (ctrl.GetRow() == dm.Row) {
-                    ctrl.AddExisting(dm.Row);
+                    ctrl.AddExisting(dm);
                 }
             }
         }

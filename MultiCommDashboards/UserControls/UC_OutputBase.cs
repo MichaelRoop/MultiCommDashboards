@@ -102,16 +102,18 @@ namespace MultiCommDashboards.UserControls {
 
 
         public void Update(DashboardControlDataModel dataModel) {
-            this.Id = dataModel.Id;
-            this.IOName = dataModel.IOName;
-            this.DataType = dataModel.DataType;
-            this.Precision = dataModel.Precision;
-            this.SendAtStep = dataModel.SendAtStep;
-            this.Minimum = dataModel.Minimum;
-            this.Maximum = dataModel.Maximum;
-            this.Row = dataModel.Row;
-            this.Column = dataModel.Column;
-            this.DoInit();
+            if (dataModel != null) {
+                this.Id = dataModel.Id;
+                this.IOName = dataModel.IOName;
+                this.DataType = dataModel.DataType;
+                this.Precision = dataModel.Precision;
+                this.SendAtStep = dataModel.SendAtStep;
+                this.Minimum = dataModel.Minimum;
+                this.Maximum = dataModel.Maximum;
+                this.Row = dataModel.Row;
+                this.Column = dataModel.Column;
+                this.DoInit();
+            }
         }
 
         public abstract void SetEditState(bool onOff);

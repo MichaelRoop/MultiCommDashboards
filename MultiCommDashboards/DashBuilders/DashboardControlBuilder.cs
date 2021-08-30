@@ -1,6 +1,7 @@
 ﻿using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
 using MultiCommDashboards.UserControls;
+using MultiCommDashboards.WindowObjs.Configs;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -98,47 +99,51 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        public void AddExisting(int row) {
-            this.Add(row);
+        public void AddExisting(DashboardControlDataModel dm) {
+            T control = this.CreateControl(dm.Row);
+            if (control != null) {
+                this.InsertControl(control, dm, dm.Row);
+            }
         }
 
 
         // TODO TEMP - REMOVE
-        int count = 1;
         string nameBase = string.Empty;
 
         private bool Add(int row) {
-            if (this.nextColumn <= this.max) {
-                T control = new T();
-                control.Column = nextColumn;
-                control.Row = row;
-                control.SetEditState(true);
-
-                //---------------------------------------------------
-                // TODO REMOVE - REPLACE WITH DIALOG
-                DashboardControlDataModel dm = control.StorageInfo;
-                dm.IOName = string.Format("{0}{1}", this.nameBase, count);
-                if (dm.DataType != BinaryMsgDataType.typeBool) {
-                    dm.Minimum = 0;
-                    dm.Maximum = 255;
-                    dm.DataType = BinaryMsgDataType.typeUInt8;
-                    dm.SendAtStep = 1;
+            T control = this.CreateControl(row);
+            if (control != null) {
+                var dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
+                if (dm == null) {
+                    return false;
                 }
-
-
-                control.Update(dm);
-                count++;
-                //---------------------------------------------------
-
-                Grid.SetRow(control, row);
-                Grid.SetColumn(control, nextColumn);
-                this.grid.Children.Add(control);
-                control.DeleteRequest += this.deleteRequest;
-                this.Controls.Add(control);
-                nextColumn++;
+                this.InsertControl(control, dm, dm.Row);
                 return true;
             }
             return false;
+        }
+
+
+        private T CreateControl(int row) {
+            if (this.nextColumn <= this.max) {
+                T control = new T();
+                control.Column = this.nextColumn;
+                control.Row = row;
+                control.SetEditState(true);
+                return control;
+            }
+            return null;
+        }
+
+
+        private void InsertControl(T control, DashboardControlDataModel dm, int row) {
+            control.Update(dm);
+            Grid.SetRow(control, row);
+            Grid.SetColumn(control, this.nextColumn);
+            this.grid.Children.Add(control);
+            control.DeleteRequest += this.deleteRequest;
+            this.Controls.Add(control);
+            this.nextColumn++;
         }
 
 
