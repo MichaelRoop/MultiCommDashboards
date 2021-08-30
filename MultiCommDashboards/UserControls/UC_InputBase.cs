@@ -5,6 +5,7 @@ using MultiCommDashboards.WindowObjs.Configs;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using VariousUtils.Net;
 
 namespace MultiCommDashboards.UserControls {
 
@@ -90,6 +91,19 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
+        public void InitNew(int row, int column, BinaryMsgDataType dataType) {
+            this.Id = 0;
+            this.IOName = "";
+            this.DataType = dataType;
+            this.SendAtStep = 1;
+            this.Minimum = dataType.Min();
+            this.Maximum = dataType.Max();
+            this.Row = row;
+            this.Column = column;
+            this.DoInit();
+        }
+
+
         public void Update(DashboardControlDataModel dataModel) {
             if (dataModel != null) {
                 this.Id = dataModel.Id;
@@ -103,7 +117,6 @@ namespace MultiCommDashboards.UserControls {
                 this.DoInit();
             }
         }
-
 
         #endregion
 

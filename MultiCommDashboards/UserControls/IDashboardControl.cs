@@ -34,6 +34,12 @@ namespace MultiCommDashboards.UserControls {
 
         DashboardControlDataModel StorageInfo { get; }
 
+        /// <summary>Initialise the internals for a new dashboard control</summary>
+        /// <param name="row">The row</param>
+        /// <param name="column">The column</param>
+        /// <param name="dataType">The data type</param>
+        void InitNew(int row, int column, BinaryMsgDataType dataType);
+
         /// <summary>Update the fields with the new data</summary>
         /// <param name="dataModel">The data model with new values</param>
         void Update(DashboardControlDataModel dataModel);

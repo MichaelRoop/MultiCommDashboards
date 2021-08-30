@@ -92,7 +92,7 @@ namespace MultiCommDashboards.DashBuilders {
         private void addButtonClick(object sender, System.Windows.RoutedEventArgs e) {
             if (sender is Button) {
                 Button btn = (Button)sender;
-                this.Add(Grid.GetRow(btn));
+                this.AddNew(Grid.GetRow(btn));
             }
         }
 
@@ -104,39 +104,33 @@ namespace MultiCommDashboards.DashBuilders {
         public void AddExisting(DashboardControlDataModel dm) {
             T control = this.CreateControl(dm.Row);
             if (control != null) {
-                this.InsertControl(control, dm, dm.Row);
+                this.InsertControl(control, dm);
             }
         }
 
+
+        BinaryMsgDataType DefaultDataType() {
+            return
+                (this.controlType == ControlType.InBool || this.controlType == ControlType.OutBool)
+                ? BinaryMsgDataType.typeBool
+                : BinaryMsgDataType.typeUInt8;
+        }
+
+
         // Adding new control. Need to initialize the storage model used in edit dialog
-        private bool Add(int row) {
-            T control = this.CreateControl(row);
-            if (control != null) {
-                DashboardControlDataModel dm = new DashboardControlDataModel() {
-                    Column = control.Column,
-                    Row = control.Row,
-                    DataType = this.SetInitialDataType(),
-                };
-                DI.W.GetRange(
-                    new BinaryMsgDataTypeDisplay(dm.DataType),
-                    range => {
-                        dm.Minimum = Double.Parse(range.Min);
-                        dm.Maximum = Double.Parse(range.Max);
-                        dm.Precision = 1;
-                    }, App.ShowErrMsg);
-
-
-
-                //// New control. Must update the storage object for the edit
-                control.Update(dm);
-                dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
-                if (dm == null) {
-                    return false;
-                }
-                this.InsertControl(control, dm, dm.Row);
-                return true;
+        private bool AddNew(int row) {
+            if (this.nextColumn > this.max) {
+                return false;
             }
-            return false;
+            T control = new T();
+            control.InitNew(this.nextColumn, row, this.DefaultDataType());
+            control.SetEditState(true); //TODO - move to init?
+            DashboardControlDataModel dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
+            if (dm == null) {
+                return false;
+            }
+            this.InsertControl(control, dm);
+            return true;
         }
 
 
@@ -157,9 +151,9 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        private void InsertControl(T control, DashboardControlDataModel dm, int row) {
+        private void InsertControl(T control, DashboardControlDataModel dm) {
             control.Update(dm);
-            Grid.SetRow(control, row);
+            Grid.SetRow(control, dm.Row);
             Grid.SetColumn(control, this.nextColumn);
             this.grid.Children.Add(control);
             control.DeleteRequest += this.deleteRequest;
