@@ -35,7 +35,7 @@ namespace MultiCommDashboards.WindowObjs.Configs {
         }
 
 
-        public DashboardControlEdit(UserControl parent, DashboardControlDataModel dm) {
+        private DashboardControlEdit(UserControl parent, DashboardControlDataModel dm) {
             this.callingUserControl = parent;
             this.DataModel = dm;
             InitializeComponent();
@@ -56,6 +56,7 @@ namespace MultiCommDashboards.WindowObjs.Configs {
                 this.rowMin.Height = new GridLength(0);
                 this.rowMax.Height = new GridLength(0);
                 this.rowStep.Height = new GridLength(0);
+                this.cbDataType.SelectedIndex = 0;
                 this.cbDataType.IsEnabled = false;
             }
             else {

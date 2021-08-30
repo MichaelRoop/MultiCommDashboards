@@ -130,9 +130,19 @@ namespace MultiCommDashboards.DashBuilders {
                 control.Column = this.nextColumn;
                 control.Row = row;
                 control.SetEditState(true);
+                this.SetCtrlType(ref control);
                 return control;
             }
             return null;
+        }
+
+
+        private void SetCtrlType(ref T control) {
+            if (this.controlType == ControlType.InBool || this.controlType == ControlType.OutBool) {
+                control.StorageInfo.DataType = BinaryMsgDataType.typeBool;
+                control.DataType = BinaryMsgDataType.typeBool;
+                // TODO - determine why set both
+            }
         }
 
 
