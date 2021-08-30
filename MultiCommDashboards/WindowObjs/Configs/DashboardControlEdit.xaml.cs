@@ -49,8 +49,9 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             this.SetFieldValue(this.txtMin, this.DataModel.Minimum, this.DataModel.DataType);
             this.SetFieldValue(this.txtMax, this.DataModel.Maximum, this.DataModel.DataType);
             this.SetFieldValue(this.txtStep, this.DataModel.SendAtStep, this.DataModel.DataType);
-            this.lblRow.Content = this.DataModel.Row;
-            this.lblColum.Content = this.DataModel.Column;
+            // User display show visual value row and colum
+            this.lblRow.Content = this.DataModel.Row + 1;
+            this.lblColum.Content = this.DataModel.Column - 1;
 
             if (this.DataModel.DataType == BinaryMsgDataType.typeBool) {
                 this.rowMin.Height = new GridLength(0);

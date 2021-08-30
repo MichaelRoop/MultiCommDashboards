@@ -1,5 +1,7 @@
-﻿using CommunicationStack.Net.Enumerations;
+﻿using CommunicationStack.Net.DataModels;
+using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
+using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.UserControls;
 using MultiCommDashboards.WindowObjs.Configs;
 using System;
@@ -106,14 +108,28 @@ namespace MultiCommDashboards.DashBuilders {
             }
         }
 
-
-        // TODO TEMP - REMOVE
-        string nameBase = string.Empty;
-
+        // Adding new control. Need to initialize the storage model used in edit dialog
         private bool Add(int row) {
             T control = this.CreateControl(row);
             if (control != null) {
-                var dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
+                DashboardControlDataModel dm = new DashboardControlDataModel() {
+                    Column = control.Column,
+                    Row = control.Row,
+                    DataType = this.SetInitialDataType(),
+                };
+                DI.W.GetRange(
+                    new BinaryMsgDataTypeDisplay(dm.DataType),
+                    range => {
+                        dm.Minimum = Double.Parse(range.Min);
+                        dm.Maximum = Double.Parse(range.Max);
+                        dm.Precision = 1;
+                    }, App.ShowErrMsg);
+
+
+
+                //// New control. Must update the storage object for the edit
+                control.Update(dm);
+                dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
                 if (dm == null) {
                     return false;
                 }
@@ -131,18 +147,13 @@ namespace MultiCommDashboards.DashBuilders {
                 control.Row = row;
                 control.SetEditState(true);
                 this.SetCtrlType(ref control);
+
+                // TODO Update the control storage before calling Edit
+
+
                 return control;
             }
             return null;
-        }
-
-
-        private void SetCtrlType(ref T control) {
-            if (this.controlType == ControlType.InBool || this.controlType == ControlType.OutBool) {
-                control.StorageInfo.DataType = BinaryMsgDataType.typeBool;
-                control.DataType = BinaryMsgDataType.typeBool;
-                // TODO - determine why set both
-            }
         }
 
 
@@ -157,21 +168,39 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
+        private BinaryMsgDataType SetInitialDataType() {
+            switch (this.controlType) {
+                case ControlType.InBool:
+                case ControlType.OutBool:
+                    return BinaryMsgDataType.typeBool;
+                case ControlType.Undefined:
+                case ControlType.InHorizontal:
+                case ControlType.OutHorizontal:
+                default:
+                    return BinaryMsgDataType.typeUInt8;
+            }
+        }
+
+
+        private void SetCtrlType(ref T control) {
+            if (this.controlType == ControlType.InBool || 
+                this.controlType == ControlType.OutBool) {
+                control.DataType = BinaryMsgDataType.typeBool;
+            }
+        }
+
+
         private void SetType() {
             if (typeof(T) == typeof(UC_BoolToggle)) {
-                this.nameBase = "Dig In:";
                 this.controlType = ControlType.InBool;
             }
             else if (typeof(T) == typeof(UC_HorizontalSlider)) {
-                this.nameBase = "Num In:";
                 this.controlType = ControlType.InHorizontal;
             }
             else if (typeof(T) == typeof(UC_BoolProgress)) {
-                this.nameBase = "Dig Out:";
                 this.controlType = ControlType.OutBool;
             }
             else if (typeof(T) == typeof(UC_HorizontalProgressBar)) {
-                this.nameBase = "Num Out:";
                 this.controlType = ControlType.OutHorizontal;
             }
         }
