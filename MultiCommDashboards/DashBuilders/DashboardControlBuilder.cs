@@ -119,18 +119,17 @@ namespace MultiCommDashboards.DashBuilders {
 
         // Adding new control. Need to initialize the storage model used in edit dialog
         private bool AddNew(int row) {
-            if (this.nextColumn > this.max) {
-                return false;
+            if (this.nextColumn <= this.max) {
+                T control = new T();
+                control.InitNew(this.nextColumn, row, this.DefaultDataType());
+                control.SetEditState(true); //TODO - move to init?
+                DashboardControlDataModel dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
+                if (dm != null) {
+                    this.InsertControl(control, dm);
+                    return true;
+                }
             }
-            T control = new T();
-            control.InitNew(this.nextColumn, row, this.DefaultDataType());
-            control.SetEditState(true); //TODO - move to init?
-            DashboardControlDataModel dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
-            if (dm == null) {
-                return false;
-            }
-            this.InsertControl(control, dm);
-            return true;
+            return false;
         }
 
 

@@ -129,10 +129,10 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             DI.W.GetRange(
                 this.cbDataType.SelectedItem as BinaryMsgDataTypeDisplay, 
                 range => {
-                    this.txtStep.Text = "1";
-                    this.txtMin.Text = range.Min;
-                    this.txtMax.Text = range.Max;
                     this.currentDataType = (this.cbDataType.SelectedItem as BinaryMsgDataTypeDisplay).DataType;
+                    this.SetFieldValue(this.txtMin, range.Min, this.currentDataType);
+                    this.SetFieldValue(this.txtMax, range.Max, this.currentDataType);
+                    this.SetFieldValue(this.txtStep, "1", this.currentDataType);
                 }, App.ShowErrMsg);
         }
 
