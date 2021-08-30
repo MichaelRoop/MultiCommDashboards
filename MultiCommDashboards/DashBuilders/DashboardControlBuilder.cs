@@ -93,6 +93,15 @@ namespace MultiCommDashboards.DashBuilders {
             }
         }
 
+        public int GetRow() {
+            return Grid.GetRow(this.addButton);
+        }
+
+
+        public void AddExisting(int row) {
+            this.Add(row);
+        }
+
 
         // TODO TEMP - REMOVE
         int count = 1;

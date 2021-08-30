@@ -14,6 +14,7 @@ namespace MultiCommDashboards.UserControls {
         List<DashboardControlBuilder<UC_HorizontalSlider>> inputsHNum = new List<DashboardControlBuilder<UC_HorizontalSlider>>();
         List<DashboardControlBuilder<UC_BoolProgress>> outputsBool = new List<DashboardControlBuilder<UC_BoolProgress>>();
         List<DashboardControlBuilder<UC_HorizontalProgressBar>> outputsHNum = new List<DashboardControlBuilder<UC_HorizontalProgressBar>>();
+        private string StorageUId = "";
 
         #endregion
 
@@ -30,22 +31,23 @@ namespace MultiCommDashboards.UserControls {
         /// <param name="config"></param>
         public void Init(DashboardConfiguration config) {
             foreach (var dataModel in config.InputsBool) {
-                this.InitItem(new UC_BoolToggle(dataModel), this.grdInputsBool);
+                this.InitInput(dataModel, this.inputsBool);
             }
 
             foreach (var dataModel in config.InputsNumericHorizontal) {
-                this.InitItem(new UC_HorizontalSlider(dataModel), this.grdInputsNumHorizontal);
+                this.InitInput(dataModel, this.inputsHNum);
             }
 
             // Outputs
             foreach (var dataModel in config.OutputsBool) {
-                this.InitItem(new UC_BoolProgress(dataModel), this.grdOutputsBool);
+                this.InitOutput(dataModel, this.outputsBool);
             }
 
             foreach (var dataModel in config.OutputsNumericHorizontal) {
-                this.InitItem(new UC_HorizontalProgressBar(dataModel), this.grdOutputsNumHorizontal);
+                this.InitOutput(dataModel, this.outputsHNum);
             }
             this.txtName.Text = config.Display;
+            this.StorageUId = config.UId;
         }
 
 
@@ -54,6 +56,10 @@ namespace MultiCommDashboards.UserControls {
             DashboardConfiguration config = new DashboardConfiguration() {
                 Display = this.txtName.Text,
             };
+            // For loaded stored configs
+            if (!string.IsNullOrWhiteSpace(this.StorageUId)) {
+                config.UId = this.StorageUId;
+            }
 
             this.BuildInConfig(this.inputsBool, config);
             this.BuildInConfig(this.inputsHNum, config);
@@ -106,20 +112,22 @@ namespace MultiCommDashboards.UserControls {
         }
 
 
-        private void InitItem(UC_InputBase input, Grid grid) {
-            Grid.SetRow(input, input.Row);
-            Grid.SetColumn(input, input.Column);
-            grid.Children.Add(input);
+        private void InitInput<T>(DashboardControlDataModel dm, List<DashboardControlBuilder<T>> ctrls) where T : UC_InputBase, new() {
+            foreach (var input in ctrls) {
+                if (input.GetRow() == dm.Row) {
+                    input.AddExisting(dm.Row);
+                }
+            }
         }
 
 
-        private void InitItem(UC_OutputBase input, Grid grid) {
-            // TODO - register to receive. subscribe
-            Grid.SetRow(input, input.Row);
-            Grid.SetColumn(input, input.Column);
-            grid.Children.Add(input);
+        private void InitOutput<T>(DashboardControlDataModel dm, List<DashboardControlBuilder<T>> ctrls) where T : UC_OutputBase, new() {
+            foreach (var ctrl in ctrls) {
+                if (ctrl.GetRow() == dm.Row) {
+                    ctrl.AddExisting(dm.Row);
+                }
+            }
         }
-
 
     }
 }

@@ -45,7 +45,7 @@ namespace MultiCommDashboards.UserControls {
 
         public UC_Dashboard() {
             InitializeComponent();
-            this.SetDemo();
+            //this.SetDemo();
 
             DI.W.GetConfigsIndex((configs) => {
                 this.confgurations = configs;

@@ -3,6 +3,7 @@ using MultiCommDashboards.DependencyInjection;
 using StorageFactory.Net.interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfCustomControlLib.Core.Helpers;
+using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.WindowObjs.Configs {
 
@@ -32,10 +34,9 @@ namespace MultiCommDashboards.WindowObjs.Configs {
         private DashboardConfigSelect(Window parent) {
             this.parent = parent;
             InitializeComponent();
-            DI.W.GetConfigsIndex((configs) => {
-                this.confgurations = configs;
-                this.lbConfigs.ItemsSource = this.confgurations;
-            }, App.ShowErrMsg);
+            this.btnEdit.Hide();
+            this.btnDelete.Hide();
+            this.LoadIndexes();
         }
 
 
@@ -50,16 +51,18 @@ namespace MultiCommDashboards.WindowObjs.Configs {
 
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+        private void Window_Closing(object sender, CancelEventArgs e) {
 
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e) {
-
+            DashboardEditor.ShowBox(this.parent);
+            this.LoadIndexes();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e) {
-
+            DashboardEditor.ShowBox(this.parent, this.lbConfigs.SelectedItem as IIndexItem<DashboardConfigIndexExtraInfo>);
+            this.LoadIndexes();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
@@ -69,5 +72,23 @@ namespace MultiCommDashboards.WindowObjs.Configs {
         private void btnExit_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
+
+        private void lbConfigs_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            this.btnEdit.Show();
+            this.btnDelete.Show();
+        }
+
+
+        private void LoadIndexes() {
+            this.lbConfigs.SelectionChanged -= this.lbConfigs_SelectionChanged;
+            this.lbConfigs.ItemsSource = null;
+            DI.W.GetConfigsIndex((configs) => {
+                this.confgurations = configs;
+                this.lbConfigs.ItemsSource = this.confgurations;
+            }, App.ShowErrMsg);
+            this.lbConfigs.SelectionChanged += this.lbConfigs_SelectionChanged;
+        }
+
+
     }
 }

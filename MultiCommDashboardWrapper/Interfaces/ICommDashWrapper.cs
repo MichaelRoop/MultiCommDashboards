@@ -100,6 +100,8 @@ namespace MultiCommDashboardWrapper.Interfaces {
         #region Dasboard configurations
         void GetConfigsIndex(Action<List<IIndexItem<DashboardConfigIndexExtraInfo>>> onSuccess, OnErr onError);
 
+        void RetrieveConfig(IIndexItem<DashboardConfigIndexExtraInfo> ndx, Action<DashboardConfiguration> onSuccess, OnErr onError);
+
         void CreateConfiguration(DashboardConfiguration data, Action<IIndexItem<DashboardConfigIndexExtraInfo>> onSuccess, OnErr onError);
 
         void CreateOrSaveConfiguration(DashboardConfiguration data, Action onSuccess, OnErr onError);
