@@ -106,6 +106,9 @@ namespace MultiCommDashboardWrapper.Interfaces {
 
         void CreateOrSaveConfiguration(DashboardConfiguration data, Action onSuccess, OnErr onError);
 
+        void DeleteConfiguration(IIndexItem<DashboardConfigIndexExtraInfo> ndx, Action onSuccess, OnErr onError);
+
+
         #endregion
 
         #region General

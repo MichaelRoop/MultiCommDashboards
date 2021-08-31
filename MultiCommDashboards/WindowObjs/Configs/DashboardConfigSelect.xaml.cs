@@ -70,9 +70,11 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             this.LoadIndexes();
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e) {
 
+        private void btnDelete_Click(object sender, RoutedEventArgs e) {
+            DI.W.DeleteConfiguration(this.Selected, this.LoadIndexes, App.ShowErrMsg);
         }
+
 
         private void btnExit_Click(object sender, RoutedEventArgs e) {
             this.Close();
@@ -92,6 +94,13 @@ namespace MultiCommDashboards.WindowObjs.Configs {
                 this.lbConfigs.ItemsSource = this.confgurations;
             }, App.ShowErrMsg);
             this.lbConfigs.SelectionChanged += this.lbConfigs_SelectionChanged;
+        }
+
+
+        private IIndexItem<DashboardConfigIndexExtraInfo> Selected {
+            get {
+                return this.lbConfigs.SelectedItem as IIndexItem<DashboardConfigIndexExtraInfo>;
+            }
         }
 
     }

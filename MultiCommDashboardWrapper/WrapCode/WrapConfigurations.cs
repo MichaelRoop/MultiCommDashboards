@@ -38,10 +38,9 @@ namespace MultiCommDashboardWrapper.WrapCode {
         }
 
 
-        private void DeleteConfig() {
-
+        public void DeleteConfiguration(IIndexItem<DashboardConfigIndexExtraInfo> ndx, Action onSuccess, OnErr onError) {
+            this.Delete(this.Configurations, ndx, onSuccess, onError);
         }
-
 
     }
 }

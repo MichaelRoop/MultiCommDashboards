@@ -300,6 +300,97 @@ namespace MultiCommDashboardWrapper.WrapCode {
 
         #endregion
 
+        #region Generic Deletes
+
+
+        private void Delete<TSToreObject, TExtraInfo>(
+            IIndexedStorageManager<TSToreObject, TExtraInfo> manager, 
+            IIndexItem<TExtraInfo> indexItem, 
+            Action onSuccess, 
+            OnErr onError)
+            where TSToreObject : class where TExtraInfo : class {
+
+            WrapErr.ToErrReport(9999, () => {
+                ErrReport report;
+                WrapErr.ToErrReport(out report, 9999, () => {
+                    if (indexItem == null) {
+                        onError(this.GetText(MsgCode.NothingSelected));
+                    }
+                    else {
+                        if (manager.DeleteFile(indexItem)) {
+                            onSuccess();
+                        }
+                        else {
+                            onError(this.GetText(MsgCode.DeleteFailure));
+                        }
+                    }
+                });
+                if (report.Code != 0) {
+                    onError.Invoke(this.GetText(MsgCode.DeleteFailure));
+                }
+            });
+        }
+
+
+        private void Delete<TSToreObject, TExtraInfo>(
+            IIndexedStorageManager<TSToreObject, TExtraInfo> manager, 
+            IIndexItem<TExtraInfo> indexItem,
+            string msg, 
+            Func<string, bool> areYouSure,
+            Action<bool> onComplete, 
+            OnErr onError)
+            where TSToreObject : class where TExtraInfo : class {
+
+            WrapErr.ToErrReport(9999, () => {
+                ErrReport report;
+                WrapErr.ToErrReport(out report, 9999, () => {
+                    if (indexItem == null) {
+                        onError(this.GetText(MsgCode.NothingSelected));
+                    }
+                    else {
+                        if (areYouSure(msg)) {
+                            bool ok = manager.DeleteFile(indexItem);
+                            onComplete(ok);
+                        }
+                    }
+                });
+                if (report.Code != 0) {
+                    onError.Invoke(this.GetText(MsgCode.DeleteFailure));
+                }
+            });
+        }
+
+
+        private void Delete<TSToreObject, TExtraInfo>(
+            IIndexedStorageManager<TSToreObject, TExtraInfo> manager,
+            TSToreObject data,
+            Func<string, bool> areYouSure,
+            Action<bool> onComplete,
+            OnErr onError)
+            where TSToreObject : class, IDisplayable, IIndexible  where TExtraInfo : class {
+
+            WrapErr.ToErrReport(9999, () => {
+                ErrReport report;
+                WrapErr.ToErrReport(out report, 9999, () => {
+                    this.RetrievelIndexedItem(manager, data,
+                        (ndx) => {
+                            if (areYouSure(data.Display)) {
+                                bool ok = manager.DeleteFile(ndx);
+                                onComplete(ok);
+                            }
+                        }, onError);
+                });
+                if (report.Code != 0) {
+                    onError.Invoke(this.GetText(MsgCode.DeleteFailure));
+                }
+            });
+        }
+
+        #endregion
+
+
+
+
         #endregion
 
     }
