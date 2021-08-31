@@ -1,7 +1,5 @@
-﻿using CommunicationStack.Net.DataModels;
-using CommunicationStack.Net.Enumerations;
+﻿using CommunicationStack.Net.Enumerations;
 using MultiCommDashboardData.Storage;
-using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.UserControls;
 using MultiCommDashboards.WindowObjs.Configs;
 using System;
@@ -57,7 +55,6 @@ namespace MultiCommDashboards.DashBuilders {
             foreach (var control in Controls) {
                 // Note. All the columns are over by 1 since 0 is occupied by event dummy
                 DashboardControlDataModel dm = control.StorageInfo;
-                dm.Column -= COLUMN_OFFSET;
                 switch (this.controlType) {
                     case ControlType.Undefined:
                         break;
@@ -102,9 +99,11 @@ namespace MultiCommDashboards.DashBuilders {
 
 
         public void AddExisting(DashboardControlDataModel dm) {
-            T control = this.CreateControl(dm.Row);
-            if (control != null) {
-                this.InsertControl(control, dm);
+            if (this.nextColumn <= this.max) {
+                T control = new T();
+                control.Update(dm);
+                control.SetEditState(true);
+                this.InsertControl(control);
             }
         }
 
@@ -121,11 +120,12 @@ namespace MultiCommDashboards.DashBuilders {
         private bool AddNew(int row) {
             if (this.nextColumn <= this.max) {
                 T control = new T();
-                control.InitNew(this.nextColumn, row, this.DefaultDataType());
-                control.SetEditState(true); //TODO - move to init?
+                control.InitNew(row, this.nextColumn, this.DefaultDataType());
+                control.SetEditState(true);
                 DashboardControlDataModel dm = DashboardControlEdit.ShowBox(null, control.StorageInfo);
                 if (dm != null) {
-                    this.InsertControl(control, dm);
+                    control.Update(dm);
+                    this.InsertControl(control);
                     return true;
                 }
             }
@@ -133,27 +133,9 @@ namespace MultiCommDashboards.DashBuilders {
         }
 
 
-        private T CreateControl(int row) {
-            if (this.nextColumn <= this.max) {
-                T control = new T();
-                control.Column = this.nextColumn;
-                control.Row = row;
-                control.SetEditState(true);
-                this.SetCtrlType(ref control);
-
-                // TODO Update the control storage before calling Edit
-
-
-                return control;
-            }
-            return null;
-        }
-
-
-        private void InsertControl(T control, DashboardControlDataModel dm) {
-            control.Update(dm);
-            Grid.SetRow(control, dm.Row);
-            Grid.SetColumn(control, this.nextColumn);
+        private void InsertControl(T control) {
+            Grid.SetRow(control, control.Row);
+            Grid.SetColumn(control, control.Column);
             this.grid.Children.Add(control);
             control.DeleteRequest += this.deleteRequest;
             this.Controls.Add(control);
@@ -171,14 +153,6 @@ namespace MultiCommDashboards.DashBuilders {
                 case ControlType.OutHorizontal:
                 default:
                     return BinaryMsgDataType.typeUInt8;
-            }
-        }
-
-
-        private void SetCtrlType(ref T control) {
-            if (this.controlType == ControlType.InBool || 
-                this.controlType == ControlType.OutBool) {
-                control.DataType = BinaryMsgDataType.typeBool;
             }
         }
 
