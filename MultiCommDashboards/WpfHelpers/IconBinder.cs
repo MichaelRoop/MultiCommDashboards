@@ -58,7 +58,6 @@ namespace MultiCommDashboards.WpfHelpers {
         //public static string ArduinoIcon { get { return Source(UIIcon.ArduinoIcon); } }
         //public static string Help { get { return Source(UIIcon.Help); } }
         //public static string HelpWhite { get { return Source(UIIcon.HelpWhite); } }
-        //public static string Configure { get { return Source(UIIcon.Configure); } }
         //public static string Pair { get { return Source(UIIcon.Pair); } }
         //public static string Unpair { get { return Source(UIIcon.Unpair); } }
         //public static string Credentials { get { return Source(UIIcon.Credentials); } }
@@ -157,7 +156,8 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string YES { get { return IconBinder.GetIconSource("icons8-checkmark-50.png"); } }
         public static string ADD { get { return IconBinder.GetIconSource("icons8-add-50-noborder.png"); } }
         public static string MENU { get { return IconBinder.GetIconSource("icons8-menu-white-50.png"); } }
-        public static string CONFIGS { get { return IconBinder.GetIconSource("icons8-index-50.png"); } }
+        public static string CONFIGS { get { return IconBinder.GetIconSource("icons8_maintenance.png"); } }
+        public static string CONFIGS_W { get { return IconBinder.GetIconSource("icons8_maintenance_white.png"); } }
 
 
         private static string GetIconSource(string name) {

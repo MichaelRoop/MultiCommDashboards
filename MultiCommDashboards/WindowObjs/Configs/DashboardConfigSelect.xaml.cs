@@ -34,6 +34,8 @@ namespace MultiCommDashboards.WindowObjs.Configs {
         private DashboardConfigSelect(Window parent) {
             this.parent = parent;
             InitializeComponent();
+            this.SizeToContent = SizeToContent.WidthAndHeight;
+            this.CenterToParent(this.parent);
             this.btnEdit.Hide();
             this.btnDelete.Hide();
             this.LoadIndexes();
@@ -47,12 +49,15 @@ namespace MultiCommDashboards.WindowObjs.Configs {
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            this.SizeToContent = SizeToContent.WidthAndHeight;
+        }
+
+
+        private void Window_ContentRendered(object sender, EventArgs e) {
 
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e) {
 
+        private void Window_Closing(object sender, CancelEventArgs e) {
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e) {
@@ -88,7 +93,6 @@ namespace MultiCommDashboards.WindowObjs.Configs {
             }, App.ShowErrMsg);
             this.lbConfigs.SelectionChanged += this.lbConfigs_SelectionChanged;
         }
-
 
     }
 }

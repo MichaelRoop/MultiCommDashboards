@@ -23,6 +23,7 @@ namespace MultiCommDashboards.WindowObjs {
             this.parent = parent;
             this.config = config;
             InitializeComponent();
+            this.Title = this.config.Display;
         }
 
         public override void OnApplyTemplate() {

@@ -52,13 +52,7 @@ namespace MultiCommDashboards.WindowObjs {
                         LanguageSelector.ShowBox(this.mainWindow, DI.W.Languages);
                         break;
                     case MenuCode.Dashboards:
-                        // TODO - need to open an intermediate window to select edit or create
                         DashboardConfigSelect.ShowBox(this);
-
-                        //DashboardEditor.ShowBox(this);
-
-
-
                         break;
                     case MenuCode.Ethernet:
                         //this.runPageManager.Open(typeof(EthernetRun));
@@ -108,7 +102,7 @@ namespace MultiCommDashboards.WindowObjs {
                 this.lvMenuItems.ItemsSource = null;
                 this.items.Clear();
                 this.AddItem(MenuCode.Bluetooth, "Bluetooth", IconBinder.BLUETOOTH);
-                this.AddItem(MenuCode.Dashboards, MsgCode.Edit, IconBinder.EDIT);
+                this.AddItem(MenuCode.Dashboards, MsgCode.Configure, IconBinder.CONFIGS);
 
                 //this.AddItem(MenuCode.BLE, "BLE", UIIcon.BluetoothLE, "0");
                 //this.AddItem(MenuCode.Wifi, "WIFI", UIIcon.Wifi, "0");

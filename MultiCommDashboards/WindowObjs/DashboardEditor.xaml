@@ -10,8 +10,8 @@
         mc:Ignorable="d"
         Style="{StaticResource MyWindowStyle}"
         WindowStartupLocation="CenterScreen" 
-        Title="{Binding Source={x:Static helpers:TxtBinder.Select}}"
-        Icon="{Binding Source={x:Static helpers:IconBinder.BLUETOOTH_W}}"
+        Title="{Binding Source={x:Static helpers:TxtBinder.Configure}}"
+        Icon="{Binding Source={x:Static helpers:IconBinder.CONFIGS_W}}"
         Loaded="Window_Loaded" Closing="Window_Closing"
          BorderThickness=".5"        
         >
