@@ -58,6 +58,7 @@ namespace MultiCommDashboards.WpfHelpers {
 
 
         public static string Configure { get { return GetTxt(MsgCode.Configure); } }
+        public static string Configuration { get { return GetTxt(MsgCode.Configure); } }
 
 
 

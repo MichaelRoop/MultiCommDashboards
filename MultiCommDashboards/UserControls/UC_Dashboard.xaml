@@ -34,11 +34,13 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="White" >
-                <Label Content="Outputs" Style="{StaticResource NameLabelCenter}"  />
+                <Label Content="{Binding Source={x:Static helpers:TxtBinder.Outputs}}" 
+                       Style="{StaticResource NameLabelCenter}"  />
             </DockPanel>
-
             <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" x:Name="spList" Visibility="Visible" >
-                <Border Style="{StaticResource brd075}">
+                <Label Style="{StaticResource NameLabelCenter}" 
+                       Content="{Binding Source={x:Static helpers:TxtBinder.Configuration}}" />
+                <Border Style="{StaticResource brd075}" BorderThickness="0">
                     <ListBox x:Name="lbConfigs" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="100" MinHeight="100" MaxHeight="300"
                              ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"
                              SelectionChanged="lbConfigs_SelectionChanged">
@@ -108,7 +110,8 @@
             </Grid>
 
             <DockPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="White">
-                <Label Content="Inputs" Style="{StaticResource NameLabelCenter}" />
+                <Label Content="{Binding Source={x:Static helpers:TxtBinder.Inputs}}" 
+                       Style="{StaticResource NameLabelCenter}" />
             </DockPanel>
 
             <Grid Grid.Row="3" Grid.Column="1" >
