@@ -43,11 +43,12 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string Select { get { return GetTxt(MsgCode.select); } }
         public static string Send { get { return GetTxt(MsgCode.send); } }
         public static string Id { get { return GetTxt(MsgCode.Id); } }
-
         public static string Author { get { return GetTxt(MsgCode.Author); } }
         public static string Icons { get { return GetTxt(MsgCode.Icons); } }
         public static string UserManual { get { return GetTxt(MsgCode.UserManual); } }
         public static string Support { get { return GetTxt(MsgCode.Support); } }
+        public static string CodeSamples { get { return GetTxt(MsgCode.CodeSamples); } }
+        public static string Copy { get { return GetTxt(MsgCode.copy); } }
 
         public static string BuildNumber {
             get {
@@ -75,7 +76,6 @@ namespace MultiCommDashboards.WpfHelpers {
 
         #endregion
 
-        //public static string Copy { get { return GetTxt(MsgCode.copy); } }
         //public static string OK { get { return GetTxt(MsgCode.Ok); } }
         //public static string Yes { get { return GetTxt(MsgCode.yes); } }
         //public static string No { get { return GetTxt(MsgCode.no); } }

@@ -73,7 +73,6 @@ namespace MultiCommDashboards.WpfHelpers {
         //public static string EthernetWhite { get { return Source(UIIcon.EthernetWhite); } }
         //public static string Wifi { get { return Source(UIIcon.Wifi); } }
         //public static string WifiWhite { get { return Source(UIIcon.WifiWhite); } }
-        //public static string Code { get { return Source(UIIcon.Code); } }
         //public static string CodeWhite { get { return Source(UIIcon.CodeWhite); } }
         //public static string Read { get { return Source(UIIcon.Read); } }
 
@@ -158,6 +157,8 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string MENU { get { return IconBinder.GetIconSource("icons8-menu-white-50.png"); } }
         public static string CONFIGS { get { return IconBinder.GetIconSource("icons8_maintenance.png"); } }
         public static string CONFIGS_W { get { return IconBinder.GetIconSource("icons8_maintenance_white.png"); } }
+        public static string CODE_SAMPLES { get { return IconBinder.GetIconSource("icons8_code.png"); } }
+        public static string CODE_SAMPLES_W { get { return IconBinder.GetIconSource("icons8_code_white.png.png"); } }
 
 
         private static string GetIconSource(string name) {

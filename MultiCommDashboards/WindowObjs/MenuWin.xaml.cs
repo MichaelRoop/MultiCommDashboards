@@ -4,6 +4,7 @@ using MultiCommDashboardData.DataModels;
 using MultiCommDashboardData.Enumerations;
 using MultiCommDashboards.DependencyInjection;
 using MultiCommDashboards.WindowObjs.BTWins;
+using MultiCommDashboards.WindowObjs.Code;
 using MultiCommDashboards.WindowObjs.Configs;
 using MultiCommDashboards.WpfHelpers;
 using System;
@@ -72,8 +73,7 @@ namespace MultiCommDashboards.WindowObjs {
                         //this.runPageManager.Open(typeof(BLE_Full));
                         break;
                     case MenuCode.CodeSamples:
-                        //Help_CommunicationMediums cm = new Help_CommunicationMediums(this.mainWindow);
-                        //cm.ShowDialog();
+                        CodeSelectWin.ShowBox(this.mainWindow);
                         break;
                     case MenuCode.Settings:
                         //MainSettings.ShowBox(this.mainWindow);
@@ -108,8 +108,9 @@ namespace MultiCommDashboards.WindowObjs {
                 //this.AddItem(MenuCode.Wifi, "WIFI", UIIcon.Wifi, "0");
                 //this.AddItem(MenuCode.Usb, "USB", UIIcon.Usb, "0");
                 //this.AddItem(MenuCode.Ethernet, MsgCode.Ethernet, UIIcon.Ethernet, "0");
+
+                this.AddItem(MenuCode.CodeSamples, MsgCode.CodeSamples, IconBinder.CODE_SAMPLES, "0");
                 this.AddItem(MenuCode.Language, MsgCode.language, IconBinder.LANGUAGE);
-                //this.AddItem(MenuCode.CodeSamples, MsgCode.CodeSamples, UIIcon.Code, "0");
                 //this.AddItem(MenuCode.Settings, MsgCode.Settings, UIIcon.Settings, "0");
                 this.lvMenuItems.ItemsSource = this.items;
                 this.lvMenuItems.SelectionChanged += this.menuItemsSelectionChanged;

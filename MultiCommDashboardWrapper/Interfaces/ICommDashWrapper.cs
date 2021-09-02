@@ -6,6 +6,7 @@ using CommunicationStack.Net.Enumerations;
 using LanguageFactory.Net.data;
 using LanguageFactory.Net.interfaces;
 using LanguageFactory.Net.Messaging;
+using MultiCommDashboardData.DataModels;
 using MultiCommDashboardData.Storage;
 using MultiCommDashboardData.StorageIndex;
 using MultiCommDashboardWrapper.DataModels;
@@ -112,6 +113,16 @@ namespace MultiCommDashboardWrapper.Interfaces {
 
         void DeleteConfiguration(IIndexItem<DashboardConfigIndexExtraInfo> ndx, string title, string msg, Func<string, string,  bool> areYouSure, Action onSuccess, OnErr onError);
 
+
+        #endregion
+
+        #region Code
+
+        void GetCodeList(Action<List<CodeSelectDisplayDataModel>> onSuccess, OnErr onError);
+
+        void HasCodeFile(CodeSelectDisplayDataModel dataModel, Action<bool> onSuccess, OnErr onError);
+
+        void RetrieveCodeFile(CodeSelectDisplayDataModel dataModel, Action<string> onSuccess, OnErr onError);
 
         #endregion
 
