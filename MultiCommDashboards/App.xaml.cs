@@ -216,6 +216,14 @@ namespace MultiCommDashboards {
         }
 
 
+        private T DispatchProxy<T>(Func<T> func) {
+            return this.Dispatcher.Invoke(new Func<T>(() => {
+                ErrReport report;
+                return WrapErr.ToErrReport(out report, 9999, "", func);
+            }));
+        }
+
+
         public static void ShowErrMsg(string msg) {
             STATIC_APP.DispatchProxy(() => {
                 try {
@@ -237,28 +245,26 @@ namespace MultiCommDashboards {
 
 
         public static bool ShowAreYouSure(string msg) {
-            //STATIC_APP.DispatchProxy(() => {
+            return STATIC_APP.DispatchProxy(() => {
                 try {
                     return MsgBoxYesNo.ShowBox(msg) == MsgBoxYesNo.MsgBoxResult.Yes;
-                    //MsgBoxSimple.ShowBox(title, msg);
                 }
                 catch (Exception) {
                     return false;
                 }
-            //});
+            });
         }
 
 
         public static bool ShowAreYouSure(string title, string msg) {
-            //STATIC_APP.DispatchProxy(() => {
-            try {
-                return MsgBoxYesNo.ShowBox(title, msg) == MsgBoxYesNo.MsgBoxResult.Yes;
-                //MsgBoxSimple.ShowBox(title, msg);
-            }
-            catch (Exception) {
-                return false;
-            }
-            //});
+            return STATIC_APP.DispatchProxy(() => {
+                try {
+                    return MsgBoxYesNo.ShowBox(title, msg) == MsgBoxYesNo.MsgBoxResult.Yes;
+                }
+                catch (Exception) {
+                    return false;
+                }
+            });
         }
 
         #endregion
