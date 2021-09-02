@@ -5,7 +5,6 @@ using MultiCommDashboardData.Storage;
 using MultiCommDashboardData.StorageIndex;
 using MultiCommDashboards.DependencyInjection;
 using StorageFactory.Net.interfaces;
-using StorageFactory.Net.StorageManagers;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -237,6 +236,15 @@ namespace MultiCommDashboards.UserControls {
                     // TODO - raise error
                     break;
             }
+        }
+
+
+        private void lbConfigs_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            DI.W.RetrieveConfig(
+                this.lbConfigs.SelectedItem as IIndexItem<DashboardConfigIndexExtraInfo>,
+                this.Init,
+                App.ShowErrMsg);
+
         }
     }
 }
