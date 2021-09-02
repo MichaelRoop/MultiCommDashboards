@@ -108,6 +108,10 @@ namespace MultiCommDashboardWrapper.Interfaces {
 
         void DeleteConfiguration(IIndexItem<DashboardConfigIndexExtraInfo> ndx, Action onSuccess, OnErr onError);
 
+        void DeleteConfiguration(IIndexItem<DashboardConfigIndexExtraInfo> ndx, string msg, Func<string, bool> areYouSure, Action onSuccess, OnErr onError);
+
+        void DeleteConfiguration(IIndexItem<DashboardConfigIndexExtraInfo> ndx, string title, string msg, Func<string, string,  bool> areYouSure, Action onSuccess, OnErr onError);
+
 
         #endregion
 

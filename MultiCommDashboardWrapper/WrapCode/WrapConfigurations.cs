@@ -42,5 +42,28 @@ namespace MultiCommDashboardWrapper.WrapCode {
             this.Delete(this.Configurations, ndx, onSuccess, onError);
         }
 
+
+        public void DeleteConfiguration(
+            IIndexItem<DashboardConfigIndexExtraInfo> ndx, 
+            string msg, 
+            Func<string, bool> areYouSure, 
+            Action onSuccess, 
+            OnErr onError) {
+            this.Delete(this.Configurations, ndx, msg, areYouSure, onSuccess, onError);
+        }
+
+
+        public void DeleteConfiguration(
+            IIndexItem<DashboardConfigIndexExtraInfo> ndx, 
+            string title, 
+            string msg, Func<string, string, bool> areYouSure, 
+            Action onSuccess, 
+            OnErr onError) {
+            this.Delete(this.Configurations, ndx, title, msg, areYouSure, onSuccess, onError);
+        }
+
+
+
+
     }
 }

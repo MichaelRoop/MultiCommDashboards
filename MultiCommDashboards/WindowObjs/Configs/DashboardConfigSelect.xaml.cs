@@ -72,7 +72,14 @@ namespace MultiCommDashboards.WindowObjs.Configs {
 
 
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
-            DI.W.DeleteConfiguration(this.Selected, this.LoadIndexes, App.ShowErrMsg);
+            string id = this.Selected == null ? "" : this.Selected.Display;
+            DI.W.DeleteConfiguration(
+                this.Selected, 
+                id,
+                DI.W.GetText(LanguageFactory.Net.data.MsgCode.Delete), 
+                App.ShowAreYouSure, 
+                this.LoadIndexes, 
+                App.ShowErrMsg);
         }
 
 

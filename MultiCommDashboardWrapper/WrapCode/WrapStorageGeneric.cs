@@ -337,7 +337,7 @@ namespace MultiCommDashboardWrapper.WrapCode {
             IIndexItem<TExtraInfo> indexItem,
             string msg, 
             Func<string, bool> areYouSure,
-            Action<bool> onComplete, 
+            Action onComplete, 
             OnErr onError)
             where TSToreObject : class where TExtraInfo : class {
 
@@ -349,8 +349,36 @@ namespace MultiCommDashboardWrapper.WrapCode {
                     }
                     else {
                         if (areYouSure(msg)) {
-                            bool ok = manager.DeleteFile(indexItem);
-                            onComplete(ok);
+                            this.Delete(manager, indexItem, onComplete, onError);
+                        }
+                    }
+                });
+                if (report.Code != 0) {
+                    onError.Invoke(this.GetText(MsgCode.DeleteFailure));
+                }
+            });
+        }
+
+
+        private void Delete<TSToreObject, TExtraInfo>(
+            IIndexedStorageManager<TSToreObject, TExtraInfo> manager,
+            IIndexItem<TExtraInfo> indexItem,
+            string title,
+            string msg,
+            Func<string, string, bool> areYouSure,
+            Action onComplete,
+            OnErr onError)
+            where TSToreObject : class where TExtraInfo : class {
+
+            WrapErr.ToErrReport(9999, () => {
+                ErrReport report;
+                WrapErr.ToErrReport(out report, 9999, () => {
+                    if (indexItem == null) {
+                        onError(this.GetText(MsgCode.NothingSelected));
+                    }
+                    else {
+                        if (areYouSure(title, msg)) {
+                            this.Delete(manager, indexItem, onComplete, onError);
                         }
                     }
                 });

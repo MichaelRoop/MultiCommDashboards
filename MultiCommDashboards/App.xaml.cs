@@ -235,6 +235,32 @@ namespace MultiCommDashboards {
             });
         }
 
+
+        public static bool ShowAreYouSure(string msg) {
+            //STATIC_APP.DispatchProxy(() => {
+                try {
+                    return MsgBoxYesNo.ShowBox(msg) == MsgBoxYesNo.MsgBoxResult.Yes;
+                    //MsgBoxSimple.ShowBox(title, msg);
+                }
+                catch (Exception) {
+                    return false;
+                }
+            //});
+        }
+
+
+        public static bool ShowAreYouSure(string title, string msg) {
+            //STATIC_APP.DispatchProxy(() => {
+            try {
+                return MsgBoxYesNo.ShowBox(title, msg) == MsgBoxYesNo.MsgBoxResult.Yes;
+                //MsgBoxSimple.ShowBox(title, msg);
+            }
+            catch (Exception) {
+                return false;
+            }
+            //});
+        }
+
         #endregion
 
         #region Log4NEt config
