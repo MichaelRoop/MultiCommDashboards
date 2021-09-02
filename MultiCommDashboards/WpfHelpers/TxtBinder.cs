@@ -58,20 +58,16 @@ namespace MultiCommDashboards.WpfHelpers {
 
 
         public static string Configure { get { return GetTxt(MsgCode.Configure); } }
-        public static string Configuration { get { return GetTxt(MsgCode.Configure); } }
-
-
-
-
-        // new
-        public static string Preview { get { return "Preview"; } }
-        public static string Digital { get { return "Digital"; } }
-        public static string Analog { get { return "Analog"; } }
-        public static string Outputs { get { return "Outputs"; } }
-        public static string Inputs { get { return "Inputs"; } }
-        public static string Step { get { return "Step"; } }
-        public static string Row { get { return "Row"; } }
-        public static string Column { get { return "Column"; } }
+        public static string Configuration { get { return GetTxt(MsgCode.Configuration); } }
+        public static string Configurations { get { return GetTxt(MsgCode.Configurations); } }
+        public static string Preview { get { return GetTxt(MsgCode.Preview); } }
+        public static string Digital { get { return GetTxt(MsgCode.Digital); } }
+        public static string Analog { get { return GetTxt(MsgCode.Analog); } }
+        public static string Outputs { get { return GetTxt(MsgCode.Outputs); } }
+        public static string Inputs { get { return GetTxt(MsgCode.Inputs); } }
+        public static string Step { get { return GetTxt(MsgCode.Step); } }
+        public static string Row { get { return GetTxt(MsgCode.Row); } }
+        public static string Column { get { return GetTxt(MsgCode.Column); } }
 
 
 
