@@ -1,23 +1,14 @@
 ﻿using MultiCommDashboardData.DataModels;
 using MultiCommDashboards.DependencyInjection;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfCustomControlLib.Core.Helpers;
 using WpfHelperClasses.Core;
 
 namespace MultiCommDashboards.WindowObjs.Code {
-    /// <summary>
-    /// Interaction logic for CodeSelectWin.xaml
-    /// </summary>
+
+    /// <summary>Interaction logic for CodeSelectWin.xaml</summary>
     public partial class CodeSelectWin : Window {
 
         Window parent = null;
@@ -67,8 +58,6 @@ namespace MultiCommDashboards.WindowObjs.Code {
         private void OnLoadSuccess(List<CodeSelectDisplayDataModel> list) {
             this.listBoxCode.ItemsSource = list;
         }
-
-
 
     }
 }

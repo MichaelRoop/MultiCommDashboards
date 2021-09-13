@@ -81,7 +81,6 @@ namespace MultiCommDashboards.WindowObjs.Code {
             this.Close();
         }
 
-
-
     }
+
 }
