@@ -26,6 +26,7 @@ namespace MultiCommDashboards.WindowObjs.Code {
             this.parent = parent;
             this.codeDataModel = codeDataModel;
             InitializeComponent();
+            this.Title = this.codeDataModel.Name;
             this.buttonWidthManager = new ButtonGroupSizeSyncManager(this.btnCopy, this.btnExit);
             this.buttonWidthManager.PrepForChange();
         }

@@ -60,10 +60,7 @@ namespace MultiCommDashboards.WindowObjs.Code {
 
         private void listBoxCode_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             CodeSelectDisplayDataModel dm = this.listBoxCode.SelectedItem as CodeSelectDisplayDataModel;
-            DI.W.HasCodeFile(dm, (tf) => {
-                this.Close();
-                CodeViewWin.ShowBox(this.parent, dm);
-            }, App.ShowErrMsg);
+            DI.W.HasCodeFile(dm, (tf) => CodeViewWin.ShowBox(this.parent, dm), App.ShowErrMsg);
         }
 
 
