@@ -112,7 +112,7 @@ namespace MultiCommDashboards.WindowObjs {
                 this.btnExit.Content = l.GetText(MsgCode.exit);
                 this.lbAuthor.Content = l.GetText(MsgCode.Author);
                 this.lbIcons.Content = l.GetText(MsgCode.Icons);
-                //this.lblBuild.Content = l.GetText
+                this.lblBuild.Content = l.GetText(MsgCode.Build);
                 //this.txtUserManual.Text = l.GetText(MsgCode.UserManual);
                 //this.txtSupport.Text = l.GetText(MsgCode.Support);
             }
