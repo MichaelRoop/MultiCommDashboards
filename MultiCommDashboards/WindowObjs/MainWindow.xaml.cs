@@ -110,8 +110,9 @@ namespace MultiCommDashboards.WindowObjs {
         private void languageChanged(object sender, SupportedLanguage l) {
             try {
                 this.btnExit.Content = l.GetText(MsgCode.exit);
-                //this.lbAuthor.Content = l.GetText(MsgCode.Author);
-                //this.lbIcons.Content = l.GetText(MsgCode.Icons);
+                this.lbAuthor.Content = l.GetText(MsgCode.Author);
+                this.lbIcons.Content = l.GetText(MsgCode.Icons);
+                //this.lblBuild.Content = l.GetText
                 //this.txtUserManual.Text = l.GetText(MsgCode.UserManual);
                 //this.txtSupport.Text = l.GetText(MsgCode.Support);
             }
