@@ -49,13 +49,13 @@
 
                 <!--<Label Grid.Row="0" Grid.ColumnSpan="3" Content="Multi Comm Serial Terminal" Style="{StaticResource  NameLabelCenter}" FontWeight="Bold" />-->
 
-                <Label Grid.Row="1" x:Name="lbAuthor" Content="{Binding Source={x:Static helpers:TxtBinder.Author}}" Style="{StaticResource NameLabelLeft}" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <Label Grid.Row="1" x:Name="lbAuthor" Content="{Binding Source={x:Static helpers:TxtBinder.Author}}" Style="{StaticResource NameLabelLeft}" VerticalAlignment="Bottom" />
                 <Label Grid.Row="1" Grid.Column="1" Content=":" Style="{StaticResource NameLabelCenter}" />
                 <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource TxtBlockRight}">
                     <Hyperlink  NavigateUri="https://linkedin.com/in/michael-roop-21800b19" RequestNavigate="Hyperlink_RequestNavigate" >Michael Roop</Hyperlink>
                 </TextBlock>
 
-                <Label Grid.Row="2" Grid.Column="0" x:Name="lbIcons" Content="{Binding Source={x:Static helpers:TxtBinder.Icons}}" Style="{StaticResource NameLabelLeft}" />
+                <Label Grid.Row="1" x:Name="lbIcons" Content="{Binding Source={x:Static helpers:TxtBinder.Icons}}" Style="{StaticResource NameLabelLeft}" Margin="0,0,0,1" Grid.RowSpan="2" VerticalAlignment="Bottom" />
                 <Label Grid.Row="2" Grid.Column="1" Content=":" Style="{StaticResource NameLabelCenter}" />
                 <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource TxtBlockRight}">
                     <Hyperlink  NavigateUri="https://icons8.com" RequestNavigate="Hyperlink_RequestNavigate">ICONS8</Hyperlink>

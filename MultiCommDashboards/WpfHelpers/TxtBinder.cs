@@ -44,6 +44,7 @@ namespace MultiCommDashboards.WpfHelpers {
         public static string Send { get { return GetTxt(MsgCode.send); } }
         public static string Id { get { return GetTxt(MsgCode.Id); } }
         public static string Author { get { return GetTxt(MsgCode.Author); } }
+        public static string Build { get { return GetTxt(MsgCode.Build); } }
         public static string Icons { get { return GetTxt(MsgCode.Icons); } }
         public static string UserManual { get { return GetTxt(MsgCode.UserManual); } }
         public static string Support { get { return GetTxt(MsgCode.Support); } }
